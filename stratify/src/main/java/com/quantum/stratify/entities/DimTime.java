@@ -31,6 +31,6 @@ public class DimTime {
     @Column(name = "start_date")
     private LocalDateTime startDate;
 
-    @Column(name = "finish_date")
+    @Column(name = "finished_date")
     private LocalDateTime finishDate;
 }
