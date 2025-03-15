@@ -1,36 +1,29 @@
 package com.quantum.stratify.entities;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
-@Table(name = "dim_time")
-public class DimTime {
+public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "due_date")
-    private LocalDateTime dueDate;
+    @Column(name = "nome")
+    private String nome;
 
-    @Column(name = "start_date")
-    private LocalDateTime startDate;
-
-    @Column(name = "finished_date")
-    private LocalDateTime finishDate;
+    @OneToMany(mappedBy = "tag")
+    private List<FatoProgressoUserStory> progressoUserStories;
 }

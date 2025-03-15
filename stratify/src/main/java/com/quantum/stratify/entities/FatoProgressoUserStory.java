@@ -7,30 +7,27 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-
-//OBS: Entidade sem objetivo de ser utilizada no momento. Caso necessário, retirar entity do comentario para voltar a funcionar
-// @Entity
-@Table(name = "dim_user_story")
-public class UserStory {
+public class FatoProgressoUserStory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "titulo")
-    private String titulo;
+    @Column(name = "quantidade_user_stories")
+    private Long quantidadeUserStories;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tag", nullable = false)
+    private Tag tag;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_projeto")
+    @JoinColumn(name = "id_projeto", nullable = false)
     private Projeto projeto;
+
 }
