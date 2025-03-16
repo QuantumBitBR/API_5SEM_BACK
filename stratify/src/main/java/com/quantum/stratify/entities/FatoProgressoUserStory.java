@@ -10,10 +10,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -24,7 +26,7 @@ public class FatoProgressoUserStory {
     private Long id;
 
     @Column(name = "quantidade_user_stories")
-    private Long quantidadeUserStories;
+    private Integer quantidadeUserStories;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tag", nullable = false)
