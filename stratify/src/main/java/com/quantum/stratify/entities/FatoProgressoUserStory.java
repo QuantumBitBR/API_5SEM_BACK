@@ -2,9 +2,12 @@ package com.quantum.stratify.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,26 +18,22 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
-@Table(name = "dim_variable")
-public class DimVariable {
+@Table(name = "fato_progresso_user_stories")
+public class FatoProgressoUserStory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "is_blocked")
-    private Boolean isBlocked;
+    @Column(name = "quantidade_user_stories")
+    private Integer quantidadeUserStories;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tag", nullable = false)
+    private Tag tag;
 
-    @Column(name = "team_requirement")
-    private Boolean teamRequirement;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_projeto", nullable = false)
+    private Projeto projeto;
 
-    @Column(name = "client_requirement")
-    private Boolean clientRequirement;
-
-    @Column(name = "is_iocaine")
-    private Boolean isIocaine;
-
-    @Column(name = "is_closed")
-    private Boolean isClosed;
 }
