@@ -29,7 +29,7 @@ public class ProjetoController {
     @Operation(summary = "Get all projects", description = "Returns a list of all registered projects")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "List of projects returned successfully"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            // @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     public List<ProjetoDTO> getAllProjetos() {
         return projetoService.getAll();
