@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.quantum.stratify.services.FatoProgressoService;
 import com.quantum.stratify.web.dtos.ResponseQuantidadeCardsByTags;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/fatoProgresso")
@@ -24,5 +28,14 @@ public class FatoProgressoController {
     public List<ResponseQuantidadeCardsByTags> getQuantidadePorEtiqueta(
             @RequestParam(required = false) Long projetoId) {
         return fatoProgressoService.getQuantidadeUserStoriesByTag(projetoId);
+    }
+
+    @Operation(summary = "Obter o total de cards", description = "Retorna o número total de cards existentes.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Total de cards retornado com sucesso")
+    })
+    @GetMapping("/total-cards")
+    public Long getTotalCards() {
+        return fatoProgressoService.getTotalCardCount();
     }
 }
