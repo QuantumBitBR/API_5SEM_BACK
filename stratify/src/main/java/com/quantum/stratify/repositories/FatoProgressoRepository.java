@@ -14,6 +14,6 @@ public interface FatoProgressoRepository extends JpaRepository<FatoProgressoUser
 
     List<FatoProgressoUserStory> findByProjeto(Projeto projetoId);
 
-    @Query("SELECT COUNT(f) FROM FatoProgressoUserStory f")
+    @Query("SELECT SUM(f.quantidadeUserStories) FROM FatoProgressoUserStory f")
     Long countTotalCards();
 }
