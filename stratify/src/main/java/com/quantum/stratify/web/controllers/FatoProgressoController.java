@@ -25,4 +25,6 @@ public class FatoProgressoController {
             @RequestParam(required = false) Long projetoId) {
         return fatoProgressoService.getQuantidadeUserStoriesByTag(projetoId);
     }
+
+
 }

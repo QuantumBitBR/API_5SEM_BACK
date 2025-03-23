@@ -1,5 +1,6 @@
 package com.quantum.stratify.entities;
 
+import com.quantum.stratify.enums.StatusTypes;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

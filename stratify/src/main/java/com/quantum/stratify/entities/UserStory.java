@@ -1,17 +1,13 @@
 package com.quantum.stratify.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,4 +29,23 @@ public class UserStory {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_projeto")
     private Projeto projeto;
+
+    private String assunto;
+
+    @Column(name = "criado_em")
+    private LocalDateTime criadoEm;
+
+    @Column(name = "finalizado_em")
+    private LocalDateTime finalizadoEm;
+
+    private Boolean encerrado;
+
+    private Boolean bloqueado;
+
+    @Column(name = "data_limite")
+    private LocalDateTime dataLimite;
+
+    @OneToMany(mappedBy = "userStory")
+    private List<FatoEficienciaUserStory> eficienciaUserStories;
+
 }
