@@ -3,6 +3,7 @@ package com.quantum.stratify.web.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,9 @@ public class FatoProgressoController {
         @ApiResponse(responseCode = "200", description = "Total de cards retornado com sucesso")
     })
     @GetMapping("/total-cards")
-    public Long getTotalCards() {
-        return fatoProgressoService.getTotalCardCount();
+    public ResponseEntity<Long> getTotalCards() {
+        return ResponseEntity.ok(
+            fatoProgressoService.getTotalCardCount()
+        );
     }
 }

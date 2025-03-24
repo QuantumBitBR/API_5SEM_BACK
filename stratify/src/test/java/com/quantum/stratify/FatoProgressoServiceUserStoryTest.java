@@ -24,7 +24,7 @@ import com.quantum.stratify.services.ProjetoService;
 import com.quantum.stratify.web.dtos.ResponseQuantidadeCardsByTags;
 
 @ExtendWith(MockitoExtension.class)
-public class FatoProgressoServiceTest {
+public class FatoProgressoServiceUserStoryTest {
 
     @Mock
     private FatoProgressoRepository fatoProgressoRepository;
