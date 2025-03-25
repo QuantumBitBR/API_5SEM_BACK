@@ -23,9 +23,13 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "nome")
     private String nome;
 
     @OneToMany(mappedBy = "projeto")
-    private List<FatoProgressoUserStory> progressoUserStories;
+    private List<FatoEficienciaUserStory> fatoEficienciaUserStory;
+
+    @OneToMany(mappedBy = "projeto")
+    private List<FatoProgressoUserStory> fatoProgressoUserStory;
+
 }

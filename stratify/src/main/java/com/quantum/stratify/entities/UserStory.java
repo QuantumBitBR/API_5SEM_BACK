@@ -16,19 +16,12 @@ import java.util.List;
 
 
 //OBS: Entidade sem objetivo de ser utilizada no momento. Caso necessário, retirar entity do comentario para voltar a funcionar
-// @Entity
+@Entity
 @Table(name = "dim_user_story")
 public class UserStory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "titulo")
-    private String titulo;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_projeto")
-    private Projeto projeto;
 
     private String assunto;
 

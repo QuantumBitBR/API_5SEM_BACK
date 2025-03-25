@@ -11,8 +11,7 @@ import java.time.Duration;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
-@Table(name = "fato_progresso_user_stories")
+@Entity
 public class FatoEficienciaUserStory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +24,10 @@ public class FatoEficienciaUserStory {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user_story", nullable = false)
     private UserStory userStory;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_projeto", nullable = false)
+    private Projeto projeto;
 
     @Column(name = "tempo_medio")
     private Double tempoMedio;
