@@ -27,5 +27,5 @@ public class FatoEficienciaUserStory {
     private UserStory userStory;
 
     @Column(name = "tempo_medio")
-    private Duration tempoMedio;
+    private Double tempoMedio;
 }
