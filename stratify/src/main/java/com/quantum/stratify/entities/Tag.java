@@ -27,5 +27,5 @@ public class Tag {
     private String nome;
 
     @OneToMany(mappedBy = "tag")
-    private List<FatoProgressoUserStory> progressoUserStories;
+    private List<FatoTagUserStory> progressoUserStories;
 }

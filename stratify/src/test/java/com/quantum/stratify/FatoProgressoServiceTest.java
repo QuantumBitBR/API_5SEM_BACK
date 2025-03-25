@@ -15,7 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.quantum.stratify.entities.FatoProgressoUserStory;
+import com.quantum.stratify.entities.FatoTagUserStory;
 import com.quantum.stratify.entities.Projeto;
 import com.quantum.stratify.entities.Tag;
 import com.quantum.stratify.repositories.FatoProgressoRepository;
@@ -46,13 +46,13 @@ public class FatoProgressoServiceTest {
         tag.setId(1L);
         tag.setNome("Tag Teste");
 
-        FatoProgressoUserStory fatoProgressoUserStory = new FatoProgressoUserStory();
-        fatoProgressoUserStory.setTag(tag);
-        fatoProgressoUserStory.setProjeto(projeto);
-        fatoProgressoUserStory.setQuantidadeUserStories(10);
+        FatoTagUserStory FatoTagUserStory = new FatoTagUserStory();
+        FatoTagUserStory.setTag(tag);
+        FatoTagUserStory.setProjeto(projeto);
+        FatoTagUserStory.setQuantidadeUserStories(10);
 
         when(projetoService.getById(projetoId)).thenReturn(projeto);
-        when(fatoProgressoRepository.findByProjeto(projeto)).thenReturn(Arrays.asList(fatoProgressoUserStory));
+        when(fatoProgressoRepository.findByProjeto(projeto)).thenReturn(Arrays.asList(FatoTagUserStory));
 
         // Act
         List<ResponseQuantidadeCardsByTags> resultados = fatoProgressoService.getQuantidadeUserStoriesByTag(projetoId);
@@ -77,12 +77,12 @@ public class FatoProgressoServiceTest {
         Projeto projeto = new Projeto();
         projeto.setId(1L);
 
-        FatoProgressoUserStory fatoProgressoUserStory = new FatoProgressoUserStory();
-        fatoProgressoUserStory.setTag(tag);
-        fatoProgressoUserStory.setProjeto(projeto);
-        fatoProgressoUserStory.setQuantidadeUserStories(10);
+        FatoTagUserStory FatoTagUserStory = new FatoTagUserStory();
+        FatoTagUserStory.setTag(tag);
+        FatoTagUserStory.setProjeto(projeto);
+        FatoTagUserStory.setQuantidadeUserStories(10);
 
-        when(fatoProgressoRepository.findAll()).thenReturn(Arrays.asList(fatoProgressoUserStory));
+        when(fatoProgressoRepository.findAll()).thenReturn(Arrays.asList(FatoTagUserStory));
 
         // Act
         List<ResponseQuantidadeCardsByTags> resultados = fatoProgressoService.getQuantidadeUserStoriesByTag(null);
@@ -97,15 +97,15 @@ public class FatoProgressoServiceTest {
     }
 
     @Test
-    void getAllShouldReturnListOfFatoProgressoUserStory() {
+    void getAllShouldReturnListOfFatoTagUserStory() {
         // Arrange
-        FatoProgressoUserStory fatoProgressoUserStory = new FatoProgressoUserStory();
-        fatoProgressoUserStory.setId(1L);
+        FatoTagUserStory FatoTagUserStory = new FatoTagUserStory();
+        FatoTagUserStory.setId(1L);
 
-        when(fatoProgressoRepository.findAll()).thenReturn(Arrays.asList(fatoProgressoUserStory));
+        when(fatoProgressoRepository.findAll()).thenReturn(Arrays.asList(FatoTagUserStory));
 
         // Act
-        List<FatoProgressoUserStory> resultados = fatoProgressoService.getAll();
+        List<FatoTagUserStory> resultados = fatoProgressoService.getAll();
 
         // Assert
         assertEquals(1, resultados.size());
