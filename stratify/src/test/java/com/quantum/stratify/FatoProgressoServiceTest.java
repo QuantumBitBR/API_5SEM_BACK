@@ -1,7 +1,8 @@
 package com.quantum.stratify;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,28 +17,26 @@ import com.quantum.stratify.services.FatoProgressoService;
 public class FatoProgressoServiceTest {
 
     @Mock
-    private FatoProgressoRepository fatoProgressoRepository;
+    private FatoProgressoRepository fatoProgressoRepository; // Mock do repositório
 
     @InjectMocks
-    private FatoProgressoService fatoProgressoService;
+    private FatoProgressoService fatoProgressoService; // Injeta o mock no service
 
     @Test
-    public void getTotalCardCount_DeveRetornarTotalCards() {
-        long expectedTotal = 5L;
-        when(fatoProgressoRepository.countTotalCards()).thenReturn(expectedTotal);
+    void quandoChamarGetTotalCardCount_deveRetornarSomaTotalDasUserStories() {
+        when(fatoProgressoRepository.countTotalCards()).thenReturn(15L);
 
-        long actualTotal = fatoProgressoService.getTotalCardCount();
+        Long resultado = fatoProgressoService.getTotalCardCount();
 
-        assertEquals(expectedTotal, actualTotal);
+        assertEquals(15L, resultado); // Valida o retorno
+        verify(fatoProgressoRepository, times(1)).countTotalCards();
     }
 
     @Test
-    public void getTotalCardCount_QuandoSemCards_DeveRetornarZero() {
-        long expectedTotal = 0L;
-        when(fatoProgressoRepository.countTotalCards()).thenReturn(expectedTotal);
+    void quandoNaoHouverRegistros_deveRetornarZero() {
+        when(fatoProgressoRepository.countTotalCards()).thenReturn(0L);
 
-        long actualTotal = fatoProgressoService.getTotalCardCount();
-
-        assertEquals(expectedTotal, actualTotal);
+        assertEquals(0L, fatoProgressoService.getTotalCardCount());
+        verify(fatoProgressoRepository, times(1)).countTotalCards();
     }
 }

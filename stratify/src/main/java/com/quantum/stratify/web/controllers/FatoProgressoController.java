@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.quantum.stratify.services.FatoProgressoService;
 import com.quantum.stratify.web.dtos.ResponseQuantidadeCardsByTags;
+import com.quantum.stratify.web.dtos.TotalCardsDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,9 +37,8 @@ public class FatoProgressoController {
         @ApiResponse(responseCode = "200", description = "Total de cards retornado com sucesso")
     })
     @GetMapping("/total-cards")
-    public ResponseEntity<Long> getTotalCards() {
-        return ResponseEntity.ok(
-            fatoProgressoService.getTotalCardCount()
-        );
+    public ResponseEntity<TotalCardsDTO> getTotalCards() {
+        Long total = fatoProgressoService.getTotalCardCount();
+        return ResponseEntity.ok(new TotalCardsDTO(total));
     }
 }
