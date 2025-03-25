@@ -46,7 +46,10 @@ public class FatoProgressoService {
         return fatoProgressoRepository.findAll();
     }
 
-    
+    @Operation(summary = "Obter o total de cards", description = "Retorna o número total de cards existentes.")
+     @ApiResponses(value = {
+         @ApiResponse(responseCode = "200", description = "Total de cards retornado com sucesso")
+     })
     @GetMapping("/total-cards")
     public Long  getTotalCardCount() {
         return fatoProgressoRepository.countTotalCards();
