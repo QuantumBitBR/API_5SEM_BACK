@@ -25,7 +25,7 @@ public class Usuario {
 
     private String senha;
 
-    private String role;
+    private Role role;
 
     @OneToMany(mappedBy = "usuario")
     private List<FatoEficienciaUserStory> eficienciaUserStories;
