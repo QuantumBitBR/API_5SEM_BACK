@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.quantum.stratify.entities.FatoProgressoUserStory;
+import com.quantum.stratify.entities.FatoTagUserStory;
 import com.quantum.stratify.entities.Projeto;
 import com.quantum.stratify.repositories.FatoProgressoRepository;
 import com.quantum.stratify.web.dtos.ResponseQuantidadeCardsByTags;
@@ -25,7 +25,7 @@ public class FatoProgressoService {
     private ProjetoService projetoService;
 
     public List<ResponseQuantidadeCardsByTags> getQuantidadeUserStoriesByTag(Long projetoId) {
-        List<FatoProgressoUserStory> resultados;
+        List<FatoTagUserStory> resultados;
         if(projetoId == null){
             resultados = getAll();
         }
@@ -42,7 +42,7 @@ public class FatoProgressoService {
     .collect(Collectors.toList());
     }
 
-    public List<FatoProgressoUserStory> getAll(){
+    public List<FatoTagUserStory> getAll(){
         return fatoProgressoRepository.findAll();
     }
 

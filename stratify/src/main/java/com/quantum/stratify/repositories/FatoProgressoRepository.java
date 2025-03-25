@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.quantum.stratify.entities.FatoProgressoUserStory;
+import com.quantum.stratify.entities.FatoTagUserStory;
 import com.quantum.stratify.entities.Projeto;
 
 @Repository
-public interface FatoProgressoRepository extends JpaRepository<FatoProgressoUserStory, Long> {
+public interface FatoProgressoRepository extends JpaRepository<FatoTagUserStory, Long> {
 
-    List<FatoProgressoUserStory> findByProjeto(Projeto projetoId);
+    List<FatoTagUserStory> findByProjeto(Projeto projetoId);
 
     @Query("SELECT COUNT(f) FROM FatoProgressoUserStory f")
     Long countTotalCards();
