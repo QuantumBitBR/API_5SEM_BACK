@@ -27,9 +27,5 @@ public class Projeto {
     private String nome;
 
     @OneToMany(mappedBy = "projeto")
-    private List<FatoEficienciaUserStory> fatoEficienciaUserStory;
-
-    @OneToMany(mappedBy = "projeto")
-    private List<FatoProgressoUserStory> fatoProgressoUserStory;
-
+    private List<FatoTagUserStory> progressoUserStories;
 }

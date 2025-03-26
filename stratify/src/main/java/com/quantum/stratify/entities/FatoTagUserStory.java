@@ -19,13 +19,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "fato_progresso_user_stories")
-public class FatoProgressoUserStory {
+@Table(name = "fato_tag_user_story")
+public class FatoTagUserStory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "quantidade_user_stories")
+    @Column(name = "quantidade_user_story")
     private Integer quantidadeUserStories;
     
     @ManyToOne(fetch = FetchType.LAZY)
