@@ -9,5 +9,5 @@ import com.quantum.stratify.repositories.TagRepository;
 public class TagService {
 
     @Autowired
-    private TagRepository tegRepository;
+    private TagRepository tagRepository;
 }
