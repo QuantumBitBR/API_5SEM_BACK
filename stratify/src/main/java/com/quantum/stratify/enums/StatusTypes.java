@@ -1,4 +1,4 @@
-package com.quantum.stratify.entities;
+package com.quantum.stratify.enums;
 
 public enum StatusTypes {
     NEW,
