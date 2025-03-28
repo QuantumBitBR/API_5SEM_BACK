@@ -21,8 +21,6 @@ public class UserStoryController {
 
     @GetMapping("/total-cards")
     public ResponseEntity<TotalCardsDTO> getTotalCardCount() {
-        Long total = userStoryService.getTotalCardCount();
-        return ResponseEntity.ok(new TotalCardsDTO(total));
+        return ResponseEntity.ok().body(userStoryService.getTotalCardCount());
     }
-    
 }
