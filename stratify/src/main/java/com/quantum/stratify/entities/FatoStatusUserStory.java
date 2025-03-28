@@ -8,33 +8,33 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
+@Table(name="fato_status_user_story")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class FatoEficienciaUserStory {
+public class FatoStatusUserStory {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_usuario", nullable = false)
-    private Usuario usuario;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user_story", nullable = false)
-    private UserStory userStory;
+    @JoinColumn(name = "id_status", nullable = false)
+    private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_projeto", nullable = false)
     private Projeto projeto;
 
-    @Column(name = "tempo_medio")
-    private Double tempoMedio;
+    @Column(name="quantidade_user_story")
+    private Integer quantidadeUserStory;
+
 }

@@ -1,16 +1,15 @@
 package com.quantum.stratify.entities;
 
-import com.quantum.stratify.enums.StatusTypes;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-//OBS: Entidade sem objetivo de ser utilizada no momento. Caso necessário, retirar entity do comentario para voltar a funcionar
 @Entity
 @Table(name = "dim_status")
 public class Status {
@@ -19,6 +18,6 @@ public class Status {
     private Long id;
 
     @Column(name = "tipo")
-    @Enumerated(EnumType.STRING)
-    private StatusTypes type;
+    // @Enumerated(EnumType.STRING)
+    private String type;
 }

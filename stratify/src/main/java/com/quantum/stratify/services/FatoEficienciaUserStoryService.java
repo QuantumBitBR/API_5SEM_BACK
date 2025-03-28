@@ -1,16 +1,15 @@
 package com.quantum.stratify.services;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.quantum.stratify.entities.FatoEficienciaUserStory;
 import com.quantum.stratify.repositories.FatoEficienciaUserStoryRepository;
 import com.quantum.stratify.web.dtos.FatoEficienciaTempoMedioGeralDTO;
 import com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO;
 import com.quantum.stratify.web.exceptions.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 @Service
 public class FatoEficienciaUserStoryService {
