@@ -1,6 +1,5 @@
 package com.quantum.stratify.entities;
 
-import com.quantum.stratify.enums.StatusTypes;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
