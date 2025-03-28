@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/fatoeficiencia")
 @Tag(name = "Eficiencia", description = "Retona tempo medio por cards e projetos")
+@CrossOrigin("*")
 public class FatoEficienciaUserStoryController {
     @Autowired
     private FatoEficienciaUserStoryService fatoEficienciaUserStoryService;
