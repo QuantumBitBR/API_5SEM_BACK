@@ -11,7 +11,6 @@ import com.quantum.stratify.entities.Projeto;
 import com.quantum.stratify.repositories.FatoProgressoRepository;
 import com.quantum.stratify.web.dtos.ResponseQuantidadeCardsByTags;
 
-
 @Service
 public class FatoProgressoService {
 
@@ -41,4 +40,5 @@ public class FatoProgressoService {
     public List<FatoTagUserStory> getAll(){
         return fatoProgressoRepository.findAll();
     }
+
 }

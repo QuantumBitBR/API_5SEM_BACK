@@ -12,5 +12,4 @@ import com.quantum.stratify.entities.Projeto;
 public interface FatoProgressoRepository extends JpaRepository<FatoTagUserStory, Long> {
 
     List<FatoTagUserStory> findByProjeto(Projeto projetoId);
-
 }
