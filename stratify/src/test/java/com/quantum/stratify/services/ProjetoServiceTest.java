@@ -1,4 +1,4 @@
-package com.quantum.stratify;
+package com.quantum.stratify.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -21,7 +21,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.quantum.stratify.entities.Projeto;
 import com.quantum.stratify.repositories.ProjetoRepository;
-import com.quantum.stratify.services.ProjetoService;
 import com.quantum.stratify.web.dtos.ProjetoDTO;
 
 @ExtendWith(MockitoExtension.class)

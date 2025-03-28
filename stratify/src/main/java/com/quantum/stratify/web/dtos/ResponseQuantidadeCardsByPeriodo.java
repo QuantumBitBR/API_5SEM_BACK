@@ -2,14 +2,14 @@ package com.quantum.stratify.web.dtos;
 
 import java.time.LocalDate;
 
-public class ResponseQuantidadeCardsByPeriodo { LocalDate startDate; LocalDate endDate; Long totalCardsCreated; Long totalCardsFinished;
-
-    public ResponseQuantidadeCardsByPeriodo() {}
-
-    public ResponseQuantidadeCardsByPeriodo(LocalDate startDate, LocalDate endDate, Long totalCardsCreated, Long totalCardsFinished) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.totalCardsCreated = totalCardsCreated;
-        this.totalCardsFinished = totalCardsFinished;
+public record ResponseQuantidadeCardsByPeriodo(Long quantidadeCriadas, Long quantidadeFinalizadas, LocalDate dataInicio, LocalDate dataFim
+) {
+    public ResponseQuantidadeCardsByPeriodo {
+        if (quantidadeCriadas == null) {
+            quantidadeCriadas = 0L;
+        }
+        if (quantidadeFinalizadas == null) {
+            quantidadeFinalizadas = 0L;
+        }
     }
 }

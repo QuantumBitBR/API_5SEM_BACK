@@ -5,31 +5,30 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.time.Duration;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "fato_user_story_temporais")
-public class FatoUserStoryTemporais {
-
+public class FatoEficienciaUserStory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "quantidade_user_stories_criadas", nullable = false)
-    private Integer quantidadeUserStoriesCriadas;
-
-    @Column(name = "quantidade_user_stories_finalizadas", nullable = false)
-    private Integer quantidadeUserStoriesFinalizadas;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_usuario", nullable = false)
+    private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_periodo", nullable = false)
-    private Periodo periodo;
+    @JoinColumn(name = "id_user_story", nullable = false)
+    private UserStory userStory;
 
-    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_projeto", nullable = false)
     private Projeto projeto;
+
+    @Column(name = "tempo_medio")
+    private Double tempoMedio;
 }

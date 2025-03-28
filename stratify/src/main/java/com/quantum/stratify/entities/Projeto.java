@@ -28,4 +28,7 @@ public class Projeto {
 
     @OneToMany(mappedBy = "projeto")
     private List<FatoTagUserStory> progressoUserStories;
+
+    @OneToMany(mappedBy = "projeto")
+    private List<FatoEficienciaUserStory> fatoEficienciaUserStories;
 }
