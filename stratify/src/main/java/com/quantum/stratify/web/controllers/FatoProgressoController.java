@@ -31,5 +31,4 @@ public class FatoProgressoController {
         return fatoProgressoService.getQuantidadeUserStoriesByTag(projetoId);
     }
 
-
 }
