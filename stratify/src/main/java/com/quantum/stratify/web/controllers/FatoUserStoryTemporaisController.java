@@ -24,15 +24,14 @@ public class FatoUserStoryTemporaisController {
 
     private final FatoUserStoryTemporaisService fatoUserStoryTemporaisService;
 
-    @Operation(summary = "Get user stories by time period", description = "Retrieve metrics of created and finished user stories filtered by project and/or period")
+    @Operation(summary = "Get user stories by project", description = "Retrieve metrics of created and finished user stories filtered by project.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Metrics successfully retrieved"),
         @ApiResponse(responseCode = "400", description = "Invalid filter parameters"),
         @ApiResponse(responseCode = "500", description = "Internal server error")})
     @GetMapping
     public List<ResponseQuantidadeCardsByPeriodo> getUserStoriesByPeriodo(
-            @RequestParam(required = false) Long projetoId,
-            @RequestParam(required = false) Long periodoId) {
-        return fatoUserStoryTemporaisService.getUserStoriesByPeriodo(projetoId, periodoId);
+            @RequestParam(required = false) Long projetoId) {
+        return fatoUserStoryTemporaisService.getUserStoriesByPeriodo(projetoId);
     }
 }
