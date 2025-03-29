@@ -40,4 +40,15 @@ public class FatoEficienciaUserStoryController {
     public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioPorProjeto(@PathVariable Long projetoId) {
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioPorProjeto(projetoId));
     }
+
+    @Operation(summary = "Tempo medio por projeto", description = "Retorna tempo médio entre todas as userStories de um projeto")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Projeto não foi encontrada")
+    })
+    @GetMapping("/total")
+    public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getTempoMedioPorProjetoTotal(@RequestParam Long projetoId) {
+        return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotal(projetoId));
+    }
+
 }
