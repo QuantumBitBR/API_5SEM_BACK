@@ -35,7 +35,7 @@ public class FatoProgressoService {
         }
         )
     .collect(Collectors.toList());
-    }
+    }    
 
     public List<FatoTagUserStory> getAll(){
         return fatoProgressoRepository.findAll();

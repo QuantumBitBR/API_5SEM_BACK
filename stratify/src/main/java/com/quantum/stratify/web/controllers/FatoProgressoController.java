@@ -20,6 +20,7 @@ public class FatoProgressoController {
     @Autowired
     private FatoProgressoService fatoProgressoService;
 
+    
     @GetMapping("/quantidade-por-etiqueta")
     public List<ResponseQuantidadeCardsByTags> getQuantidadePorEtiqueta(
             @RequestParam(required = false) Long projetoId) {
