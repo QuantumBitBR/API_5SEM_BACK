@@ -1,15 +1,8 @@
 package com.quantum.stratify;
 
-<<<<<<< HEAD
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDateTime;
-
-=======
-import static org.mockito.Mockito.when;
-
->>>>>>> 7b929760acc64bdb84108eecd2d91cd85a5d1b71
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.quantum.stratify.repositories.UserStoryRepository;
 import com.quantum.stratify.services.UserStoryService;
+import com.quantum.stratify.web.dtos.TotalCardsDTO;
 
 @ExtendWith(MockitoExtension.class)
 public class UserStoryServiceTest {
@@ -34,10 +28,13 @@ public class UserStoryServiceTest {
         when(userStoryRepository.countTotalUserStories()).thenReturn(5L);
 
         // Quando
-        // Long result = userStoryService.getTotalCardCount();
+        TotalCardsDTO result = userStoryService.getTotalCardCount();
+
+        System.out.println("Resultado do teste: " + result);
+        System.out.println("Quantidade de User Stories: " + result.quantidadeUserStories());
 
         // Então
-        // assertEquals(5L, result);
+        assertEquals(5L, result.quantidadeUserStories());
     }
 
     @Test
@@ -45,10 +42,13 @@ public class UserStoryServiceTest {
         // Dado
         when(userStoryRepository.countTotalUserStories()).thenReturn(0L);
 
-        // // Quando
-        // Long result = userStoryService.getTotalCardCount();
+        // Quando
+        TotalCardsDTO result = userStoryService.getTotalCardCount();
 
-        // // Então
-        // assertEquals(0L, result);
+        System.out.println("Resultado do teste: " + result);
+        System.out.println("Quantidade de User Stories: " + result.quantidadeUserStories());
+        
+        // Então
+        assertEquals(0L, result.quantidadeUserStories());
     }
 }
