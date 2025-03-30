@@ -42,8 +42,6 @@ public class FatoEficienciaUserStoryService {
             tempoMedio += userStory.tempoMedio();
         }
         tempoMedio = userStories.isEmpty() ? 0.0 : tempoMedio / userStories.size();
-        tempoMedio = Double.parseDouble(String.format("%.2f", tempoMedio));
-
         return new FatoEficienciaTempoMedioGeralDTO(tempoMedio / userStories.size());
 
     }
