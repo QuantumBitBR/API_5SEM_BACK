@@ -51,6 +51,11 @@ public class FatoEficienciaUserStoryController {
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotalPorProjeto(projetoId));
     }
 
+    @Operation(summary = "Tempo medio geral de todos os projetos", description = "Retorna tempo médio entre todas as userStories de todos projeto")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Projeto não foi encontrada")
+    })
     @GetMapping("/projeto/todos")
     public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getTempoMedioTotal() {
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotal());
