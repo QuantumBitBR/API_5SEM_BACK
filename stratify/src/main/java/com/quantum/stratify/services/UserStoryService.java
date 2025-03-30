@@ -24,5 +24,6 @@ public class UserStoryService {
         Long total = UserStoryRepository.countTotalUserStories();
         return new TotalCardsDTO(total);
     }
-    
+
+
 }

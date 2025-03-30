@@ -18,7 +18,7 @@ public class FatoEficienciaUserStoryService {
 
     public FatoEficienciaTempoMedioGeralDTO getTempoMedioPorUserStory(Long idUserStory) {
         FatoEficienciaUserStory fatoEficiencia = fatoEficienciaRepository.findByUserStoryId(idUserStory);
-        if(fatoEficiencia == null) {
+        if (fatoEficiencia == null) {
             throw new EntityNotFoundException("UserStory not found");
         }
         return new FatoEficienciaTempoMedioGeralDTO(fatoEficiencia.getTempoMedio());
@@ -27,21 +27,39 @@ public class FatoEficienciaUserStoryService {
 
     public List<TempoMedioPorProjetoDTO> getTempoMedioPorProjeto(Long idProjeto) {
         List<TempoMedioPorProjetoDTO> results = fatoEficienciaRepository.findByProjetoId(idProjeto);
-        if(results == null || results.isEmpty()) {
+        if (results == null || results.isEmpty()) {
             throw new EntityNotFoundException("UserStory not found");
         }
 
         return fatoEficienciaRepository.findByProjetoId(idProjeto);
     }
 
-    public FatoEficienciaTempoMedioGeralDTO getTempoMedioTotal(Long projetoId) {
+    public FatoEficienciaTempoMedioGeralDTO getTempoMedioTotalPorProjeto(Long projetoId) {
         List<TempoMedioPorProjetoDTO> userStories = getTempoMedioPorProjeto(projetoId);
         Double tempoMedio = 0.0;
 
-        for(TempoMedioPorProjetoDTO userStory : userStories) {
+        for (TempoMedioPorProjetoDTO userStory : userStories) {
             tempoMedio += userStory.tempoMedio();
         }
-        return new FatoEficienciaTempoMedioGeralDTO(tempoMedio/userStories.size());
+        tempoMedio = userStories.isEmpty() ? 0.0 : tempoMedio / userStories.size();
+        tempoMedio = Double.parseDouble(String.format("%.2f", tempoMedio));
 
+        return new FatoEficienciaTempoMedioGeralDTO(tempoMedio / userStories.size());
+
+    }
+
+    public FatoEficienciaTempoMedioGeralDTO getTempoMedioTotal() {
+        List<FatoEficienciaUserStory> listaFatos = fatoEficienciaRepository.findAll();
+
+        Double tempoMedio = 0.0;
+        for (FatoEficienciaUserStory userStory : listaFatos) {
+            tempoMedio += userStory.getTempoMedio();
+        }
+
+        tempoMedio = listaFatos.isEmpty() ? 0.0 : tempoMedio / listaFatos.size();
+
+        tempoMedio = Double.parseDouble(String.format("%.2f", tempoMedio));
+
+        return new FatoEficienciaTempoMedioGeralDTO(tempoMedio);
     }
 }

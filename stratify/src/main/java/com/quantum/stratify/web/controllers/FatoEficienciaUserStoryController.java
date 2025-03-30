@@ -48,7 +48,11 @@ public class FatoEficienciaUserStoryController {
     })
     @GetMapping("/total")
     public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getTempoMedioPorProjetoTotal(@RequestParam Long projetoId) {
-        return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotal(projetoId));
+        return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotalPorProjeto(projetoId));
     }
 
+    @GetMapping("/projeto/todos")
+    public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getTempoMedioTotal() {
+        return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotal());
+    }
 }
