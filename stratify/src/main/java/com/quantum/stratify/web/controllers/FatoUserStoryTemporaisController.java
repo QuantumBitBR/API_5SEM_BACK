@@ -2,10 +2,7 @@ package com.quantum.stratify.web.controllers;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.quantum.stratify.web.dtos.ResponseQuantidadeCardsByPeriodo;
 
@@ -20,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/temporais")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class FatoUserStoryTemporaisController {
 
     private final FatoUserStoryTemporaisService fatoUserStoryTemporaisService;
