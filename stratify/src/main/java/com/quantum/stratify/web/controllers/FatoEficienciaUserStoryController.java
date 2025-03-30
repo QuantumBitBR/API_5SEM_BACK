@@ -1,5 +1,6 @@
 package com.quantum.stratify.web.controllers;
 
+import com.quantum.stratify.entities.FatoEficienciaUserStory;
 import com.quantum.stratify.services.FatoEficienciaUserStoryService;
 import com.quantum.stratify.web.dtos.FatoEficienciaTempoMedioGeralDTO;
 import com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO;
@@ -57,7 +58,7 @@ public class FatoEficienciaUserStoryController {
             @ApiResponse(responseCode = "404", description = "Projeto não foi encontrada")
     })
     @GetMapping("/projeto/todos")
-    public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getTempoMedioTotal() {
+    public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioTotal() {
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotal());
     }
 }

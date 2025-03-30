@@ -31,7 +31,7 @@ public class FatoEficienciaUserStoryService {
             throw new EntityNotFoundException("UserStory not found");
         }
 
-        return fatoEficienciaRepository.findByProjetoId(idProjeto);
+        return results;
     }
 
     public FatoEficienciaTempoMedioGeralDTO getTempoMedioTotalPorProjeto(Long projetoId) {
@@ -48,18 +48,9 @@ public class FatoEficienciaUserStoryService {
 
     }
 
-    public FatoEficienciaTempoMedioGeralDTO getTempoMedioTotal() {
-        List<FatoEficienciaUserStory> listaFatos = fatoEficienciaRepository.findAll();
+    public List<TempoMedioPorProjetoDTO> getTempoMedioTotal() {
 
-        Double tempoMedio = 0.0;
-        for (FatoEficienciaUserStory userStory : listaFatos) {
-            tempoMedio += userStory.getTempoMedio();
-        }
+        return fatoEficienciaRepository.getAll();
 
-        tempoMedio = listaFatos.isEmpty() ? 0.0 : tempoMedio / listaFatos.size();
-
-        tempoMedio = Double.parseDouble(String.format("%.2f", tempoMedio));
-
-        return new FatoEficienciaTempoMedioGeralDTO(tempoMedio);
     }
 }
