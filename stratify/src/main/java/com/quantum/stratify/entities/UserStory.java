@@ -38,4 +38,12 @@ public class UserStory {
     @OneToMany(mappedBy = "userStory")
     private List<FatoEficienciaUserStory> eficienciaUserStories;
 
+    @ManyToOne
+    @JoinColumn(name = "id_projeto")
+    private Projeto projeto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
 }
