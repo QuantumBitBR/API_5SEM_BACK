@@ -15,6 +15,10 @@ import com.quantum.stratify.services.UserStoryTagService;
 import com.quantum.stratify.web.dtos.QuantidadeCardsPorTagDTO;
 import com.quantum.stratify.web.dtos.TotalCardsDTO;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/userStory")
@@ -31,13 +35,14 @@ public class UserStoryController {
         return ResponseEntity.ok().body(userStoryService.getTotalCardCount());
     }
 
+    @Operation(summary = "Obter a quantidade de user story por tag", description = "Método para buscar quantidade de User Story por tag filtrando por usuario e projeto")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Quantidade de Tags por User Story buscada com successo") })
     @GetMapping("/quantidade-por-tag")
     public ResponseEntity<List<QuantidadeCardsPorTagDTO>> getQuantidadePorTag(
-            @RequestParam(required = false) Long projetoId,
-            @RequestParam(required = false) Long usuarioId
-    ) {
-        List<QuantidadeCardsPorTagDTO> resultado =
-                userStoryTagService.getQuantidadeUserStoriesByTag(projetoId, usuarioId);
+            @RequestParam(required = false) Long projetoId, @RequestParam(required = false) Long usuarioId) {
+        List<QuantidadeCardsPorTagDTO> resultado = userStoryTagService.getQuantidadeUserStoriesByTag(projetoId,
+                usuarioId);
         return ResponseEntity.ok(resultado);
     }
 }
