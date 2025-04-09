@@ -10,7 +10,7 @@ public class QuantidadeCardsPorStatusDTO {
     private String nomeStatus;
     private Long quantidade;
 
-    public QuantidadeCardsPorStatusDTO(Long idStatus, String nomeStatus, Long quantidade) {
+    public QuantidadeCardsPorStatusDTO(String nomeStatus, Long quantidade) {
         this.nomeStatus = nomeStatus;
         this.quantidade = quantidade;
     }
