@@ -29,21 +29,14 @@ class UserStoryTagServiceTest {
         Long usuarioId = 2L;
 
         List<QuantidadeCardsPorTagDTO> mockResultado = List.of(
-            new QuantidadeCardsPorTagDTO(1L, "Backend", projetoId, 3L),
-            new QuantidadeCardsPorTagDTO(2L, "Frontend", projetoId, 5L)
+            new QuantidadeCardsPorTagDTO("Backend",3L),
+            new QuantidadeCardsPorTagDTO("Frontend", 5L)
         );
 
         when(userStoryRepository.contarUserStoriesPorTag(projetoId, usuarioId)).thenReturn(mockResultado);
 
         // Act
         List<QuantidadeCardsPorTagDTO> resultado = userStoryTagService.getQuantidadeUserStoriesByTag(projetoId, usuarioId);
-
-        // Output visual
-        System.out.println("User stories encontradas:");
-        resultado.forEach(dto -> System.out.printf(
-            "- Tag: %s | Projeto: %d | Quantidade: %d%n",
-            dto.getNomeTag(), dto.getIdProjeto(), dto.getQuantidade()
-        ));
 
         // Assert
         assertNotNull(resultado);

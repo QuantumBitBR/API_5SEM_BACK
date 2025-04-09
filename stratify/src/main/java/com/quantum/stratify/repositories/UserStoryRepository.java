@@ -18,16 +18,14 @@ public interface UserStoryRepository extends JpaRepository<UserStory, Long> {
 
     @Query("""
         SELECT new com.quantum.stratify.web.dtos.QuantidadeCardsPorTagDTO(
-            t.id,
             t.nome,
-            us.projeto.id,
             COUNT(us)
         )
         FROM UserStory us
         JOIN us.tags t
         WHERE (:projetoId IS NULL OR us.projeto.id = :projetoId)
         AND (:usuarioId IS NULL OR us.usuario.id = :usuarioId)
-        GROUP BY t.id, t.nome, us.projeto.id
+        GROUP BY t.id, t.nome
     """)
     List<QuantidadeCardsPorTagDTO> contarUserStoriesPorTag(
         @Param("projetoId") Long projetoId,
