@@ -13,8 +13,7 @@ public class UserStoryService {
     @Autowired
     private UserStoryRepository userStoryRepository;
 
-
-    @PostMapping("/total-cards")
+    
     public TotalCardsDTO getTotalCardCount(
             @RequestParam(required = false) Long idProjeto,
             @RequestParam(required = false) Long idUsuario) {
