@@ -1,5 +1,7 @@
 package com.quantum.stratify.services;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,9 +27,12 @@ public class UserStoryStatusService {
 
         return dados.stream()
             .map(item -> new PercentualStatusUsuarioDTO(
-                item.getNomeStatus(),
-                total == 0 ? 0.0 : (item.getQuantidade() * 100.0) / total
+            item.getNomeStatus(),
+            total == 0 ? 0.0 :
+            BigDecimal.valueOf((item.getQuantidade() * 100.0) / total)
+                  .setScale(2, RoundingMode.HALF_UP)
+                  .doubleValue()
             ))
-            .collect(Collectors.toList());
+        .collect(Collectors.toList());
     }
 }
