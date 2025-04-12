@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quantum.stratify.services.UserStoryService;
+import com.quantum.stratify.services.UserStoryStatusService;
 import com.quantum.stratify.services.UserStoryTagService;
+import com.quantum.stratify.web.dtos.PercentualStatusUsuarioDTO;
 import com.quantum.stratify.web.dtos.QuantidadeCardsPorTagDTO;
 import com.quantum.stratify.web.dtos.TotalCardsDTO;
 
@@ -30,6 +32,9 @@ public class UserStoryController {
     @Autowired
     private UserStoryTagService userStoryTagService;
 
+    @Autowired
+    private UserStoryStatusService userStoryStatusService;
+
     @GetMapping("/total-cards")
     public ResponseEntity<TotalCardsDTO> getTotalCardCount() {
         return ResponseEntity.ok().body(userStoryService.getTotalCardCount());
@@ -45,4 +50,17 @@ public class UserStoryController {
                 usuarioId);
         return ResponseEntity.ok(resultado);
     }
+
+    @Operation(summary = "Obter o percentual de user stories por status", description = "Retorna a proporção percentual de user stories agrupadas por status, com filtros opcionais por projeto e usuário")
+    @ApiResponses(value = {
+    @ApiResponse(responseCode = "200", description = "Percentual de User Stories por status retornado com sucesso")
+    })
+    @GetMapping("/percentual-por-status")
+    public ResponseEntity<List<PercentualStatusUsuarioDTO>> getPercentualPorStatus(
+        @RequestParam(required = false) Long projetoId,
+        @RequestParam(required = false) Long usuarioId) {
+    List<PercentualStatusUsuarioDTO> resultado = userStoryStatusService.getPercentualUserStoriesPorStatus(projetoId, usuarioId);
+    return ResponseEntity.ok(resultado);
+}
+
 }
