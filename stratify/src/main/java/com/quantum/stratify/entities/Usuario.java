@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.quantum.stratify.enums.Role;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -39,6 +40,9 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(name = "is_enable", nullable = false)
+    private Boolean isEnable;
 
     @OneToMany(mappedBy = "usuario")
     private List<FatoEficienciaUserStory> eficienciaUserStories;
