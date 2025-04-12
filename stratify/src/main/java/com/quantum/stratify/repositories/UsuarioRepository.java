@@ -1,11 +1,11 @@
 package com.quantum.stratify.repositories;
 
-import com.quantum.stratify.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.quantum.stratify.entities.Usuario;
+
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    
-    
+
 }
