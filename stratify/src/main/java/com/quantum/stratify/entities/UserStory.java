@@ -63,7 +63,6 @@ public class UserStory {
     @JoinColumn(name = "id_projeto", nullable = false)
     private Projeto projeto;
 
-
     @ManyToMany
     @JoinTable(name = "relacionamento_tag_user_story",
         joinColumns = @JoinColumn(name = "id_user_story"),
