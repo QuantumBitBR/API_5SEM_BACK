@@ -10,6 +10,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -39,4 +42,10 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<FatoEficienciaUserStory> eficienciaUserStories;
+
+    @ManyToMany
+    @JoinTable(name = "relacionamento_projeto_usuario",
+    joinColumns = @JoinColumn(name = "id_usuario"),
+    inverseJoinColumns = @JoinColumn(name = "id_projeto"))
+    private List<Projeto> projetos;
 }
