@@ -1,11 +1,7 @@
 package com.quantum.stratify.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -85,4 +81,44 @@ public class ProjetoServiceTest {
         assertTrue(resultados.isEmpty());
         verify(projetoRepository, times(1)).findAll();
     }
+
+    @Test
+    void buscarProjetosPorUsuarios_DeveRetornarProjetosAssociadosAoUsuario() {
+    // Arrange
+    Long usuarioId = 1L;
+    List<ProjetoDTO> projetosMock = List.of(
+        new ProjetoDTO(10L, "Projeto A"),
+        new ProjetoDTO(11L, "Projeto B")
+    );
+
+    when(projetoRepository.findProjetoByUsuarioId(usuarioId)).thenReturn(projetosMock);
+
+    // Act
+    List<ProjetoDTO> resultado = projetoService.buscarProjetosPorUsuarios(usuarioId);
+
+    // Assert
+    assertEquals(2, resultado.size());
+    assertEquals("Projeto A", resultado.get(0).nome());
+    verify(projetoRepository, times(1)).findProjetoByUsuarioId(usuarioId);
+    }
+
+    @Test
+    void buscarProjetosPorUsuarios_SemUsuario_DeveRetornarTodosProjetos() {
+        // Arrange
+        List<ProjetoDTO> projetosMock = List.of(
+            new ProjetoDTO(20L, "Projeto X"),
+            new ProjetoDTO(21L, "Projeto Y")
+        );
+
+        when(projetoRepository.findProjetoByUsuarioId(null)).thenReturn(projetosMock);
+
+        // Act
+        List<ProjetoDTO> resultado = projetoService.buscarProjetosPorUsuarios(null);
+
+        // Assert
+        assertEquals(2, resultado.size());
+        assertEquals("Projeto X", resultado.get(0).nome());
+        verify(projetoRepository, times(1)).findProjetoByUsuarioId(null);
+    }
+
 }
