@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -44,6 +45,14 @@ public class Usuario {
     @Column(name = "is_enable", nullable = false)
     private Boolean isEnable;
 
+    @ManyToOne
+    @JoinColumn(name="id_gestor")
+    private Usuario gestor;
+
+    @OneToMany(mappedBy = "gestor")
+    private List<Usuario> subordinado;
+
+    
     @OneToMany(mappedBy = "usuario")
     private List<FatoEficienciaUserStory> eficienciaUserStories;
 
