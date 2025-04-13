@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-64 - feat:">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/AuthorizationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/enums/Role.java" afterDir="false" />
+    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-64 - feat: add AuthorizationService and update Role and Usuario for Spring Security integration">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/AuthorizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/AuthorizationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744414253327</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="SCRUM-64 - feat: add AuthorizationService and update Role and Usuario for Spring Security integration">
+      <option name="closed" value="true" />
+      <created>1744421942192</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1744421942192</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,6 +132,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SCRUM-64 - feat:implemented spring security and security methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-64 - feat:implemented spring security and security methods" />
+    <MESSAGE value="SCRUM-64 - feat: add AuthorizationService and update Role and Usuario for Spring Security integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-64 - feat: add AuthorizationService and update Role and Usuario for Spring Security integration" />
   </component>
 </project>

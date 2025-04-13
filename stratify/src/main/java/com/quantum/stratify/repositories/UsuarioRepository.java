@@ -6,11 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    @Query ("SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha")
-    UserDetails loadUserByEmail(String email, String password);
 
-    @Query("SELECT u.nome FROM Usuario u WHERE u.nome = :nome")
-    UserDetails loadUserByNome(@Param("nome") String nome);
+    @Query("SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha")
+    UserDetails loadUserByEmail(@Param("email") String email, @Param("senha") String senha);
+
+    Usuario findByEmail(String email);
 }
