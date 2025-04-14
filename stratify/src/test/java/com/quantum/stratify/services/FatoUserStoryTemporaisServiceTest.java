@@ -6,6 +6,7 @@ import com.quantum.stratify.entities.Projeto;
 import com.quantum.stratify.entities.Usuario;
 import com.quantum.stratify.repositories.FatoUserStoryTemporaisRepository;
 import com.quantum.stratify.web.dtos.ResponseQuantidadeCardsByPeriodo;
+import com.quantum.stratify.web.exceptions.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,11 +14,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class FatoUserStoryTemporaisServiceTest {
 
@@ -31,119 +32,143 @@ class FatoUserStoryTemporaisServiceTest {
     private UsuarioService usuarioService;
 
     @InjectMocks
-    private FatoUserStoryTemporaisService fatoUserStoryTemporaisService;
+    private FatoUserStoryTemporaisService service;
 
-    private Projeto projetoMock;
-    private Usuario usuarioMock;
-    private Periodo periodoMock1;
-    private Periodo periodoMock2;
-    private FatoUserStoryTemporais fato1;
-    private FatoUserStoryTemporais fato2;
-    private FatoUserStoryTemporais fato3;
+    private Projeto projeto;
+    private Usuario usuario;
+    private Periodo periodo1;
+    private Periodo periodo2;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        projetoMock = new Projeto();
-        projetoMock.setId(1L);
+        projeto = new Projeto();
+        projeto.setId(1L);
 
-        usuarioMock = new Usuario();
-        usuarioMock.setId(2L);
+        usuario = new Usuario();
+        usuario.setId(2L);
 
-        periodoMock1 = new Periodo();
-        periodoMock1.setNome("Semana 1");
+        periodo1 = new Periodo();
+        periodo1.setNome("Sprint 1");
 
-        periodoMock2 = new Periodo();
-        periodoMock2.setNome("Semana 2");
-
-        fato1 = new FatoUserStoryTemporais();
-        fato1.setProjeto(projetoMock);
-        fato1.setPeriodo(periodoMock1);
-        fato1.setQuantidadeUserStoriesCriadas(5);
-        fato1.setQuantidadeUserStoriesFinalizadas(2);
-
-        fato2 = new FatoUserStoryTemporais();
-        fato2.setProjeto(projetoMock);
-        fato2.setPeriodo(periodoMock1);
-        fato2.setQuantidadeUserStoriesCriadas(3);
-        fato2.setQuantidadeUserStoriesFinalizadas(4);
-
-        fato3 = new FatoUserStoryTemporais();
-        fato3.setProjeto(projetoMock);
-        fato3.setUsuario(usuarioMock);
-        fato3.setPeriodo(periodoMock2);
-        fato3.setQuantidadeUserStoriesCriadas(2);
-        fato3.setQuantidadeUserStoriesFinalizadas(3);
+        periodo2 = new Periodo();
+        periodo2.setNome("Sprint 2");
     }
 
     @Test
-    void deveRetornarDadosAgrupadosPorPeriodoQuandoBuscarPorProjeto() {
+    void getUserStoriesByPeriodoAndUser_ComUsuarioNull_DeveRetornarDadosAgrupados() {
         // Arrange
-        when(projetoService.getById(1L)).thenReturn(projetoMock);
-        when(fatoUserStoryTemporaisRepository.findByProjeto(projetoMock)).thenReturn(Arrays.asList(fato1, fato2));
+        FatoUserStoryTemporais fato1 = criarFato(projeto, null, periodo1, 3, 2);
+        FatoUserStoryTemporais fato2 = criarFato(projeto, null, periodo1, 2, 1);
+        FatoUserStoryTemporais fato3 = criarFato(projeto, null, periodo2, 5, 3);
+
+        when(projetoService.getById(1L)).thenReturn(projeto);
+        when(fatoUserStoryTemporaisRepository.findByProjeto(projeto))
+            .thenReturn(Arrays.asList(fato1, fato2, fato3));
 
         // Act
-        List<ResponseQuantidadeCardsByPeriodo> resultado = fatoUserStoryTemporaisService.getUserStoriesByPeriodoAndUser(1L, null);
+        List<ResponseQuantidadeCardsByPeriodo> result = service.getUserStoriesByPeriodoAndUser(1L, null);
 
         // Assert
-        assertNotNull(resultado);
-        assertEquals(1, resultado.size());
-        assertEquals("Semana 1", resultado.get(0).periodo());
-        assertEquals(8, resultado.get(0).quantidadeCriadas());
-        assertEquals(6, resultado.get(0).quantidadeFinalizadas());
+        assertEquals(2, result.size());
+        assertTrue(result.stream().anyMatch(r -> 
+            r.periodo().equals("Sprint 1") && 
+            r.quantidadeCriadas() == 5 && 
+            r.quantidadeFinalizadas() == 3));
+        assertTrue(result.stream().anyMatch(r -> 
+            r.periodo().equals("Sprint 2") && 
+            r.quantidadeCriadas() == 5 && 
+            r.quantidadeFinalizadas() == 3));
     }
 
     @Test
-    void deveRetornarListaComMensagemDeNenhumRegistroQuandoBuscarPorProjetoENaoEncontrarDados() {
+    void getUserStoriesByPeriodoAndUser_ComUsuario_DeveRetornarDadosAgrupados() {
         // Arrange
-        when(projetoService.getById(1L)).thenReturn(projetoMock);
-        when(fatoUserStoryTemporaisRepository.findByProjeto(projetoMock)).thenReturn(List.of());
+        FatoUserStoryTemporais fato1 = criarFato(projeto, usuario, periodo1, 4, 3);
+        FatoUserStoryTemporais fato2 = criarFato(projeto, usuario, periodo2, 2, 1);
+
+        when(projetoService.getById(1L)).thenReturn(projeto);
+        when(usuarioService.getById(2L)).thenReturn(usuario);
+        when(fatoUserStoryTemporaisRepository.findByProjetoAndUsuario(projeto, usuario))
+            .thenReturn(Arrays.asList(fato1, fato2));
 
         // Act
-        List<ResponseQuantidadeCardsByPeriodo> resultado = fatoUserStoryTemporaisService.getUserStoriesByPeriodoAndUser(1L, null);
+        List<ResponseQuantidadeCardsByPeriodo> result = service.getUserStoriesByPeriodoAndUser(1L, 2L);
 
         // Assert
-        assertNotNull(resultado);
-        assertEquals(1, resultado.size());
-        assertEquals("Nenhum Registro Encontrado", resultado.get(0).periodo());
-        assertEquals(0, resultado.get(0).quantidadeCriadas());
-        assertEquals(0, resultado.get(0).quantidadeFinalizadas());
+        assertEquals(2, result.size());
+        assertTrue(result.stream().anyMatch(r -> 
+            r.periodo().equals("Sprint 1") && 
+            r.quantidadeCriadas() == 4 && 
+            r.quantidadeFinalizadas() == 3));
+        assertTrue(result.stream().anyMatch(r -> 
+            r.periodo().equals("Sprint 2") && 
+            r.quantidadeCriadas() == 2 && 
+            r.quantidadeFinalizadas() == 1));
     }
 
     @Test
-    void deveRetornarDadosAgrupadosPorPeriodoQuandoBuscarPorProjetoEUsuario() {
+    void getUserStoriesByPeriodoAndUser_ResultadosNull_DeveLancarExcecao() {
         // Arrange
-        when(projetoService.getById(1L)).thenReturn(projetoMock);
-        when(usuarioService.getById(2L)).thenReturn(usuarioMock);
-        when(fatoUserStoryTemporaisRepository.findByProjetoAndUsuario(projetoMock, usuarioMock)).thenReturn(Arrays.asList(fato3));
+        when(projetoService.getById(1L)).thenReturn(projeto);
+        when(fatoUserStoryTemporaisRepository.findByProjeto(projeto)).thenReturn(null);
 
-        // Act
-        List<ResponseQuantidadeCardsByPeriodo> resultado = fatoUserStoryTemporaisService.getUserStoriesByPeriodoAndUser(1L, 2L);
-
-        // Assert
-        assertNotNull(resultado);
-        assertEquals(1, resultado.size());
-        assertEquals("Semana 2", resultado.get(0).periodo());
-        assertEquals(2, resultado.get(0).quantidadeCriadas());
-        assertEquals(3, resultado.get(0).quantidadeFinalizadas());
+        // Act & Assert
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
+            service.getUserStoriesByPeriodoAndUser(1L, null);
+        });
+        
+        assertEquals("Nenhum registro de User Stories encontrado para os parâmetros fornecidos", 
+            exception.getMessage());
     }
 
     @Test
-    void deveRetornarListaComMensagemDeNenhumRegistroQuandoBuscarPorProjetoEUsuarioENaoEncontrarDados() {
+    void getUserStoriesByPeriodoAndUser_ResultadosVazios_DeveLancarExcecao() {
         // Arrange
-        when(projetoService.getById(1L)).thenReturn(projetoMock);
-        when(usuarioService.getById(2L)).thenReturn(usuarioMock);
-        when(fatoUserStoryTemporaisRepository.findByProjetoAndUsuario(projetoMock, usuarioMock)).thenReturn(List.of());
+        when(projetoService.getById(1L)).thenReturn(projeto);
+        when(fatoUserStoryTemporaisRepository.findByProjeto(projeto)).thenReturn(Collections.emptyList());
+
+        // Act & Assert
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
+            service.getUserStoriesByPeriodoAndUser(1L, null);
+        });
+        
+        assertEquals("Nenhum registro de User Stories encontrado para os parâmetros fornecidos", 
+            exception.getMessage());
+    }
+
+    @Test
+    void agruparResultadosPorPeriodo_ComMultiplosPeriodos_DeveAgruparCorretamente() {
+        // Arrange
+        FatoUserStoryTemporais fato1 = criarFato(projeto, null, periodo1, 3, 2);
+        FatoUserStoryTemporais fato2 = criarFato(projeto, null, periodo1, 2, 1);
+        FatoUserStoryTemporais fato3 = criarFato(projeto, null, periodo2, 5, 3);
 
         // Act
-        List<ResponseQuantidadeCardsByPeriodo> resultado = fatoUserStoryTemporaisService.getUserStoriesByPeriodoAndUser(1L, 2L);
+        List<ResponseQuantidadeCardsByPeriodo> result = service.agruparResultadosPorPeriodo(
+            Arrays.asList(fato1, fato2, fato3));
 
         // Assert
-        assertNotNull(resultado);
-        assertEquals(1, resultado.size());
-        assertEquals("Nenhum Registro Encontrado", resultado.get(0).periodo());
-        assertEquals(0, resultado.get(0).quantidadeCriadas());
-        assertEquals(0, resultado.get(0).quantidadeFinalizadas());
+        assertEquals(2, result.size());
+        assertTrue(result.stream().anyMatch(r -> 
+            r.periodo().equals("Sprint 1") && 
+            r.quantidadeCriadas() == 5 && 
+            r.quantidadeFinalizadas() == 3));
+        assertTrue(result.stream().anyMatch(r -> 
+            r.periodo().equals("Sprint 2") && 
+            r.quantidadeCriadas() == 5 && 
+            r.quantidadeFinalizadas() == 3));
+    }
+
+    private FatoUserStoryTemporais criarFato(Projeto projeto, Usuario usuario, Periodo periodo, 
+                                           int criadas, int finalizadas) {
+        FatoUserStoryTemporais fato = new FatoUserStoryTemporais();
+        fato.setProjeto(projeto);
+        fato.setUsuario(usuario);
+        fato.setPeriodo(periodo);
+        fato.setQuantidadeUserStoriesCriadas(criadas);
+        fato.setQuantidadeUserStoriesFinalizadas(finalizadas);
+        return fato;
     }
 }

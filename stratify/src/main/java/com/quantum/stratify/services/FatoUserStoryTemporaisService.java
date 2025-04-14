@@ -13,6 +13,7 @@ import com.quantum.stratify.entities.Projeto;
 import com.quantum.stratify.entities.Usuario;
 import com.quantum.stratify.repositories.FatoUserStoryTemporaisRepository;
 import com.quantum.stratify.web.dtos.ResponseQuantidadeCardsByPeriodo;
+import com.quantum.stratify.web.exceptions.EntityNotFoundException;
 
 
 @Service
@@ -40,15 +41,13 @@ public class FatoUserStoryTemporaisService {
     
         // Verifica null primeiro
         if (resultados == null || resultados.isEmpty()) {
-            List<ResponseQuantidadeCardsByPeriodo> retornoNenhumRegistro = new ArrayList<>();
-            retornoNenhumRegistro.add(new ResponseQuantidadeCardsByPeriodo("Nenhum Registro Encontrado", 0, 0));
-            return retornoNenhumRegistro;
+            throw new EntityNotFoundException("Nenhum registro de User Stories encontrado para os parâmetros fornecidos");
         }
     
         return agruparResultadosPorPeriodo(resultados);
     }
 
-    private List<ResponseQuantidadeCardsByPeriodo> agruparResultadosPorPeriodo(List<FatoUserStoryTemporais> resultados) {
+    List<ResponseQuantidadeCardsByPeriodo> agruparResultadosPorPeriodo(List<FatoUserStoryTemporais> resultados) {
         Map<String, Integer[]> temposMap = new HashMap<>();
         List<ResponseQuantidadeCardsByPeriodo> retorno = new ArrayList<>();
 
