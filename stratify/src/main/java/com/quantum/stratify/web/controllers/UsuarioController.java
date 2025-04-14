@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quantum.stratify.services.UsuarioService;
@@ -55,10 +54,9 @@ public class UsuarioController {
         @ApiResponse(responseCode = "404", description = "Gestor ou algum usuário não encontrado")
     })
     public ResponseEntity<Void> atribuirLiderados(
-        @RequestParam(required = false) Long id,
         @RequestBody AtribuirGestor dto
     ) {
-    usuarioService.atribuirLideradosAoGestor(id, dto);
+    usuarioService.atribuirLideradosAoGestor(dto);
     return ResponseEntity.ok().build();
     }
     

@@ -113,7 +113,7 @@ public class UsuarioServiceTest {
         when(usuarioRepository.findById(2L)).thenReturn(Optional.of(liderado2));
 
         // Act
-        usuarioService.atribuirLideradosAoGestor(null, dto);
+        usuarioService.atribuirLideradosAoGestor(dto);
 
         // Assert
         assertEquals(gestor, liderado1.getGestor());
@@ -134,7 +134,7 @@ public class UsuarioServiceTest {
 
         // Act + Assert
         ResponseStatusException exception = assertThrows(ResponseStatusException.class, () ->
-            usuarioService.atribuirLideradosAoGestor(null, dto)
+            usuarioService.atribuirLideradosAoGestor(dto)
         );
 
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
@@ -157,7 +157,7 @@ public class UsuarioServiceTest {
 
         // Act + Assert
         ResponseStatusException exception = assertThrows(ResponseStatusException.class, () ->
-            usuarioService.atribuirLideradosAoGestor(null, dto)
+            usuarioService.atribuirLideradosAoGestor(dto)
         );
 
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());

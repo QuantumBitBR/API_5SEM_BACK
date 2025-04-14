@@ -29,7 +29,7 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
-    public void atribuirLideradosAoGestor(Long idUsuario, AtribuirGestor dto) {
+    public void atribuirLideradosAoGestor(AtribuirGestor dto) {
         Usuario gestor = usuarioRepository.findById(dto.getIdUsuarioGestor())
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Gestor não encontrado"));
     
