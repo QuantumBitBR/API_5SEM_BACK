@@ -15,10 +15,6 @@ public class AuthorizationService implements UserDetailsService {
     @Autowired
     UsuarioRepository repository;
 
-    public UserDetails loadUserByEmail(String email, String senha) throws UsernameNotFoundException {
-        return repository.loadUserByEmail(email, senha);
-    }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario usuario = repository.findByEmail(username);
@@ -27,8 +23,8 @@ public class AuthorizationService implements UserDetailsService {
         }
         return User.builder()
                 .username(usuario.getEmail())
-                .password("{noop}"+usuario.getSenha())
-                .roles("USER") // Ajuste os papéis conforme necessário
+                .password(usuario.getSenha()) // sem {noop}
+                .roles(usuario.getRole().name()) // pega ADMIN ou USER dinamicamente
                 .build();
     }
-}
+    }

@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-64 - feat: add AuthorizationService and update Role and Usuario for Spring Security integration">
+    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-64 - feat(AuthorizationService): implement loadUserByEmail and loadUserByUsername methods for Spring Security integration">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/AuthorizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/AuthorizationService.java" afterDir="false" />
@@ -107,6 +108,7 @@
       <workItem from="1744412028591" duration="4421000" />
       <workItem from="1744416650893" duration="1000" />
       <workItem from="1744416701358" duration="3345000" />
+      <workItem from="1744668801438" duration="1293000" />
     </task>
     <task id="LOCAL-00001" summary="SCRUM-64 - feat:implemented spring security and security methods">
       <option name="closed" value="true" />
@@ -124,15 +126,35 @@
       <option name="project" value="LOCAL" />
       <updated>1744421942192</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="SCRUM-64 - feat(AuthorizationService): implement loadUserByEmail and loadUserByUsername methods for Spring Security integration">
+      <option name="closed" value="true" />
+      <created>1744504438365</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1744504438365</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SCRUM-64 - feat:implemented spring security and security methods" />
     <MESSAGE value="SCRUM-64 - feat: add AuthorizationService and update Role and Usuario for Spring Security integration" />
-    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-64 - feat: add AuthorizationService and update Role and Usuario for Spring Security integration" />
+    <MESSAGE value="SCRUM-64 - feat(AuthorizationService): implement loadUserByEmail and loadUserByUsername methods for Spring Security integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-64 - feat(AuthorizationService): implement loadUserByEmail and loadUserByUsername methods for Spring Security integration" />
   </component>
 </project>
