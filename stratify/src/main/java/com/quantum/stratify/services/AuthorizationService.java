@@ -21,10 +21,13 @@ public class AuthorizationService implements UserDetailsService {
         if (usuario == null) {
             throw new UsernameNotFoundException("Usuário não encontrado");
         }
+        if (!usuario.isEnabled()) {
+            throw new UsernameNotFoundException("Usuário não está ativo, solicite ativação ao administrador");
+        }
         return User.builder()
                 .username(usuario.getEmail())
-                .password(usuario.getSenha()) // sem {noop}
-                .roles(usuario.getRole().name()) // pega ADMIN ou USER dinamicamente
+                .password(usuario.getSenha())
+                .roles(usuario.getRole().name())
                 .build();
     }
     }
