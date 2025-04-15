@@ -1,18 +1,24 @@
 package com.quantum.stratify.web.controllers;
 
-import com.quantum.stratify.entities.FatoEficienciaUserStory;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.quantum.stratify.services.FatoEficienciaUserStoryService;
 import com.quantum.stratify.web.dtos.FatoEficienciaTempoMedioGeralDTO;
 import com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/fatoeficiencia")
@@ -22,22 +28,22 @@ public class FatoEficienciaUserStoryController {
     @Autowired
     private FatoEficienciaUserStoryService fatoEficienciaUserStoryService;
 
-    @Operation(summary = "Tempo medio por UserStory", description = "Tempo médio de uma única UserStory")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
-            @ApiResponse(responseCode = "404", description = "UserStory não foi encontrada")
-    })
-    @GetMapping("/userStory/{userStoryId}")
-    public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getFatoEficienciaTempoMedioPorUserStory(@PathVariable Long userStoryId) {
-        return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioPorUserStory(userStoryId));
-    }
+    // @Operation(summary = "Tempo medio por UserStory", description = "Tempo médio de uma única UserStory")
+    // @ApiResponses(value = {
+    //         @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
+    //         @ApiResponse(responseCode = "404", description = "UserStory não foi encontrada")
+    // })
+    // @GetMapping("/userStory/{userStoryId}")
+    // public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getFatoEficienciaTempoMedioPorUserStory(@PathVariable Long userStoryId) {
+    //     return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioPorUserStory(userStoryId));
+    // }
 
     @Operation(summary = "Tempo medio por projeto", description = "Retorna tempo médio, descricao e ID de todas as userStories de um projeto")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
             @ApiResponse(responseCode = "404", description = "Projeto não foi encontrada")
     })
-    @GetMapping("/projeto/{projetoId}")
+    @GetMapping("/projeto/{projetoId}")// FILTRAR POR USUARIO TBM
     public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioPorProjeto(@PathVariable Long projetoId) {
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioPorProjeto(projetoId));
     }
@@ -47,18 +53,18 @@ public class FatoEficienciaUserStoryController {
             @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
             @ApiResponse(responseCode = "404", description = "Projeto não foi encontrada")
     })
-    @GetMapping("/total")
+    @GetMapping("/total")// FILTRAR POR USUARIO 
     public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getTempoMedioPorProjetoTotal(@RequestParam Long projetoId) {
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotalPorProjeto(projetoId));
     }
 
-    @Operation(summary = "Tempo medio geral de todos os projetos", description = "Retorna tempo médio entre todas as userStories de todos projeto")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Projeto não foi encontrada")
-    })
-    @GetMapping("/projeto/todos")
-    public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioTotal() {
-        return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotal());
-    }
+    // @Operation(summary = "Tempo medio geral de todos os projetos", description = "Retorna tempo médio entre todas as userStories de todos projeto")
+    // @ApiResponses(value = {
+    //         @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
+    //         @ApiResponse(responseCode = "404", description = "Projeto não foi encontrada")
+    // })
+    // @GetMapping("/projeto/todos")
+    // public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioTotal() {
+    //     return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotal());
+    // }
 }
