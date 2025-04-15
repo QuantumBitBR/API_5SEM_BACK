@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.quantum.stratify.web.dtos.UsuarioDTO;
+
 @Service
 public class UsuarioService {
 
@@ -32,6 +34,10 @@ public class UsuarioService {
             .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
         usuario.setIsEnable(false);
         usuarioRepository.save(usuario);
+    }
+
+    public List<UsuarioDTO> buscarUsuariosPorProjetoEGestor(Long idProjeto, Long idGestor){
+        return usuarioRepository.findUsuarioByProjetoAndGestor(idProjeto, idGestor);
     }
 
 }

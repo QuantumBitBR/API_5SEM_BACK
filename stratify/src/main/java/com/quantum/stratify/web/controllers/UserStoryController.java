@@ -32,12 +32,22 @@ public class UserStoryController {
     @Autowired
     private UserStoryTagService userStoryTagService;
 
+    
     @Autowired
     private UserStoryStatusService userStoryStatusService;
 
+
+    @Operation(summary = "Obter o total de cards", description = "Retorna o número total de cards existentes, podendo filtrar por projeto e/ou usuário.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Total de cards retornado com sucesso")
+    })
     @GetMapping("/total-cards")
-    public ResponseEntity<TotalCardsDTO> getTotalCardCount() {
-        return ResponseEntity.ok().body(userStoryService.getTotalCardCount());
+    public ResponseEntity<TotalCardsDTO> getTotalCardCount(
+            @RequestParam(required = false) Long idProjeto,
+            @RequestParam(required = false) Long idUsuario) {
+        
+        TotalCardsDTO result = userStoryService.getTotalCardCount(idProjeto, idUsuario);
+        return ResponseEntity.ok().body(result);
     }
 
     @Operation(summary = "Obter a quantidade de user story por tag", description = "Método para buscar quantidade de User Story por tag filtrando por usuario e projeto")

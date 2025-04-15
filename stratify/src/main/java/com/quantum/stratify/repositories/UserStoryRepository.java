@@ -13,9 +13,18 @@ import com.quantum.stratify.web.dtos.QuantidadeCardsPorTagDTO;
 
 @Repository
 public interface UserStoryRepository extends JpaRepository<UserStory, Long> {
-    
+
     @Query("SELECT COUNT(u) FROM UserStory u")
     Long countTotalUserStories();
+
+    @Query("SELECT COUNT(u) FROM UserStory u WHERE u.projeto.id = :idProjeto")
+    Long countByProject(@Param("idProjeto") Long idProjeto);
+
+    @Query("SELECT COUNT(u) FROM UserStory u WHERE u.usuario.id = :idUsuario")
+    Long countByUser(@Param("idUsuario") Long idUsuario);
+
+    @Query("SELECT COUNT(u) FROM UserStory u WHERE u.projeto.id = :idProjeto AND u.usuario.id = :idUsuario")
+    Long countByProjectAndUser(@Param("idProjeto") Long idProjeto, @Param("idUsuario") Long idUsuario);
 
     @Query("""
         SELECT new com.quantum.stratify.web.dtos.QuantidadeCardsPorTagDTO(
