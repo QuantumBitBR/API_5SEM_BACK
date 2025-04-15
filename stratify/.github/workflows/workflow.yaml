@@ -1,4 +1,4 @@
-name: Continuos Integration Stratify
+name: Continuos Integration Stratify - API
 
 on: pull_request
 
