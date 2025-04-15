@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.quantum.stratify.entities.Usuario;
 import com.quantum.stratify.repositories.UsuarioRepository;
 import com.quantum.stratify.web.dtos.AtribuirGestor;
+import com.quantum.stratify.web.dtos.UsuarioDTO;
 
 @ExtendWith(MockitoExtension.class)
 public class UsuarioServiceTest {
@@ -161,6 +163,70 @@ public class UsuarioServiceTest {
         );
 
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
-        assertEquals("Usuário liderado não encontrado: 1", exception.getReason());
+        assertEquals("Usuário liderado não encontrado: 1", exception.getReason());}
+    void deveRetornarTodosUsuariosQuandoFiltrosForemNulos() {
+        // Arrange
+        List<UsuarioDTO> usuariosMock = List.of(
+            new UsuarioDTO(1L, "João"),
+            new UsuarioDTO(2L, "Maria")
+        );
+        when(usuarioRepository.findUsuarioByProjetoAndGestor(null, null)).thenReturn(usuariosMock);
+
+        // Act
+        List<UsuarioDTO> resultado = usuarioService.buscarUsuariosPorProjetoEGestor(null, null);
+
+        // Assert
+        assertEquals(2, resultado.size());
+        assertEquals("João", resultado.get(0).getNomeUsuario());
+        verify(usuarioRepository).findUsuarioByProjetoAndGestor(null, null);
+    }
+
+    @Test
+    void deveRetornarUsuariosDoProjetoQuandoSomenteIdProjetoForInformado() {
+        // Arrange
+        Long idProjeto = 10L;
+        List<UsuarioDTO> usuariosMock = List.of(new UsuarioDTO(3L, "Pedro"));
+        when(usuarioRepository.findUsuarioByProjetoAndGestor(idProjeto, null)).thenReturn(usuariosMock);
+
+        // Act
+        List<UsuarioDTO> resultado = usuarioService.buscarUsuariosPorProjetoEGestor(idProjeto, null);
+
+        // Assert
+        assertEquals(1, resultado.size());
+        assertEquals("Pedro", resultado.get(0).getNomeUsuario());
+        verify(usuarioRepository).findUsuarioByProjetoAndGestor(idProjeto, null);
+    }
+
+    @Test
+    void deveRetornarUsuariosDoGestorQuandoSomenteIdGestorForInformado() {
+        // Arrange
+        Long idGestor = 20L;
+        List<UsuarioDTO> usuariosMock = List.of(new UsuarioDTO(4L, "Lucia"));
+        when(usuarioRepository.findUsuarioByProjetoAndGestor(null, idGestor)).thenReturn(usuariosMock);
+
+        // Act
+        List<UsuarioDTO> resultado = usuarioService.buscarUsuariosPorProjetoEGestor(null, idGestor);
+
+        // Assert
+        assertEquals(1, resultado.size());
+        assertEquals("Lucia", resultado.get(0).getNomeUsuario());
+        verify(usuarioRepository).findUsuarioByProjetoAndGestor(null, idGestor);
+    }
+
+    @Test
+    void deveRetornarUsuariosFiltradosPorProjetoEGestorQuandoAmbosInformados() {
+        // Arrange
+        Long idProjeto = 10L;
+        Long idGestor = 20L;
+        List<UsuarioDTO> usuariosMock = List.of(new UsuarioDTO(5L, "Carlos"));
+        when(usuarioRepository.findUsuarioByProjetoAndGestor(idProjeto, idGestor)).thenReturn(usuariosMock);
+
+        // Act
+        List<UsuarioDTO> resultado = usuarioService.buscarUsuariosPorProjetoEGestor(idProjeto, idGestor);
+
+        // Assert
+        assertEquals(1, resultado.size());
+        assertEquals("Carlos", resultado.get(0).getNomeUsuario());
+        verify(usuarioRepository).findUsuarioByProjetoAndGestor(idProjeto, idGestor);
     }
 }

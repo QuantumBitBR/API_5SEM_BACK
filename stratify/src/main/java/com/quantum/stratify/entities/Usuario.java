@@ -53,6 +53,7 @@ public class Usuario {
     private List<Usuario> subordinado;
 
     
+
     @OneToMany(mappedBy = "usuario")
     private List<FatoEficienciaUserStory> eficienciaUserStories;
 
