@@ -1,19 +1,17 @@
 package com.quantum.stratify.web.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quantum.stratify.services.UsuarioService;
-import com.quantum.stratify.web.dtos.UsuarioDTO;
+import com.quantum.stratify.web.dtos.AtribuirGestor;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -48,19 +46,18 @@ public class UsuarioController {
     usuarioService.desativarUsuario(id);
     return ResponseEntity.noContent().build();
     }
-    
-       
-    @GetMapping("filtrarprojetogestor")
-    @Operation(summary = "Buscar usuários por projeto e/ou gestor")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso")
-    })
-    public ResponseEntity<List<UsuarioDTO>> filtrarUsuarios(
-        @RequestParam(required = false) Long idProjeto,
-        @RequestParam(required = false) Long idGestor
-    ) {
-            List<UsuarioDTO> usuarios = usuarioService.buscarUsuariosPorProjetoEGestor(idProjeto, idGestor);
-            return ResponseEntity.ok(usuarios);
-    }
 
+    @PostMapping("/lideradosgestor")
+    @Operation(summary = "Atribui usuários liderados a um gestor")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Usuários atribuídos com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Gestor ou algum usuário não encontrado")
+    })
+    public ResponseEntity<Void> atribuirLiderados(
+        @RequestBody AtribuirGestor dto
+    ) {
+    usuarioService.atribuirLideradosAoGestor(dto);
+    return ResponseEntity.ok().build();
+    }
+    
 }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.quantum.stratify.web.dtos.AtribuirGestor;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
 
 @Service
@@ -39,6 +40,18 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
+    public void atribuirLideradosAoGestor(AtribuirGestor dto) {
+        Usuario gestor = usuarioRepository.findById(dto.getIdUsuarioGestor())
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Gestor não encontrado"));
+    
+        for (Long idLiderado : dto.getListaIdLiderados()) {
+            Usuario liderado = usuarioRepository.findById(idLiderado)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário liderado não encontrado: " + idLiderado));
+            
+            liderado.setGestor(gestor);
+            usuarioRepository.save(liderado);
+        }
+    }
     public List<UsuarioDTO> buscarUsuariosPorProjetoEGestor(Long idProjeto, Long idGestor){
         return usuarioRepository.findUsuarioByProjetoAndGestor(idProjeto, idGestor);
     }
