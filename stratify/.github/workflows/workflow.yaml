@@ -1,4 +1,5 @@
-name: Continuos Integration
+name: Continuos Integration Stratify
+
 on: pull_request
 
 jobs:
