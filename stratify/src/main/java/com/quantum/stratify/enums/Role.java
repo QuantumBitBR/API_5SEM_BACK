@@ -2,7 +2,8 @@ package com.quantum.stratify.enums;
 
 public enum Role {
     USER("user"),
-    ADMIN("admin");
+    ADMIN("admin"),
+    GESTOR("gestor");
 
     private String role;
 

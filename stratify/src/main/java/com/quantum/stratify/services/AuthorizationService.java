@@ -22,7 +22,10 @@ public class AuthorizationService implements UserDetailsService {
             throw new UsernameNotFoundException("Usuário não encontrado");
         }
         if (!usuario.isEnabled()) {
-            throw new UsernameNotFoundException("Usuário não está ativo, solicite ativação ao administrador");
+            throw new UsernameNotFoundException("Usuário não está ativo");
+        }
+        if (usuario.isRequireReset()) {
+            throw new IllegalArgumentException("Usuário deve alterar a senha antes de continuar");
         }
         return User.builder()
                 .username(usuario.getEmail())

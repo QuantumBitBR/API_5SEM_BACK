@@ -12,7 +12,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance(); // ATENÇÃO: inseguro, apenas para testes
+        return new BCryptPasswordEncoder();
     }
 }
 

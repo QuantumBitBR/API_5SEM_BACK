@@ -37,14 +37,24 @@ public class Usuario implements UserDetails {
     @Column(name = "is_enable")
     private boolean enabled;
 
+    @Column(name = "require_reset")
+    private boolean requireReset;
+
 
     @OneToMany(mappedBy = "usuario")
     private List<FatoEficienciaUserStory> eficienciaUserStories;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       if (this.role == Role.ADMIN) {return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));}
-       else {return List.of(new SimpleGrantedAuthority("ROLE_USER"));}
+        if (this.role == Role.ADMIN) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else if (this.role == Role.USER) {
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        } else if (this.role == Role.GESTOR) {
+            return List.of(new SimpleGrantedAuthority("ROLE_GESTOR"));
+        } else {
+            throw new IllegalArgumentException("Role inválido para o usuário.");
+        }
     }
 
     @Override
