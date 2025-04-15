@@ -3,9 +3,12 @@ package com.quantum.stratify.web.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.quantum.stratify.web.dtos.ResponseQuantidadeCardsByPeriodo;
+import com.quantum.stratify.web.exceptions.EntityNotFoundException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -30,12 +33,20 @@ public class FatoUserStoryTemporaisController {
         @ApiResponse(responseCode = "200", description = "Metrics successfully retrieved"),
         @ApiResponse(responseCode = "400", description = "Invalid filter parameters"),
         @ApiResponse(responseCode = "500", description = "Internal server error")})
-    @GetMapping("/projeto/{idProjeto}/usuario")
+    @GetMapping("/projeto")
     public List<ResponseQuantidadeCardsByPeriodo> getUserStoriesByPeriodoAndUser(
-            @PathVariable Long idProjeto,
+            @RequestParam
+            @Parameter(description = "Project ID to filter", required = true)
+            Long idProjeto,
+            
             @RequestParam(required = false)
             @Parameter(description = "User ID to filter. If not provided, returns metrics for all users in the project")
             Long idUsuario) {
         return fatoUserStoryTemporaisService.getUserStoriesByPeriodoAndUser(idProjeto, idUsuario);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<String> handleEntityNotFoundException(EntityNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

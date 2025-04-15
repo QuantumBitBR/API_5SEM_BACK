@@ -29,22 +29,37 @@ public class FatoUserStoryTemporaisService {
     private UsuarioService usuarioService;
 
     public List<ResponseQuantidadeCardsByPeriodo> getUserStoriesByPeriodoAndUser(Long projetoId, Long usuarioId) {
-        Projeto projeto = projetoService.getById(projetoId);
-        List<FatoUserStoryTemporais> resultados;
-    
-        if (usuarioId == null) {
-            resultados = fatoUserStoryTemporaisRepository.findByProjeto(projeto);
-        } else {
-            Usuario usuario = usuarioService.getById(usuarioId);
-            resultados = fatoUserStoryTemporaisRepository.findByProjetoAndUsuario(projeto, usuario);
+        try {
+            Projeto projeto = projetoService.getById(projetoId);
+            
+            // Se usuário foi especificado, verifica se existe
+            Usuario usuario = null;
+            if (usuarioId != null) {
+                usuario = usuarioService.getById(usuarioId);
+            }
+            
+            List<FatoUserStoryTemporais> resultados;
+            
+            if (usuarioId == null) {
+                resultados = fatoUserStoryTemporaisRepository.findByProjeto(projeto);
+            } else {
+                resultados = fatoUserStoryTemporaisRepository.findByProjetoAndUsuario(projeto, usuario);
+            }
+            
+            if (resultados == null || resultados.isEmpty()) {
+                throw new EntityNotFoundException("Nenhum registro de User Stories encontrado para os parâmetros fornecidos");
+            }
+            
+            return agruparResultadosPorPeriodo(resultados);
+            
+        } catch (Exception e) {
+            // Se for uma EntityNotFoundException do projetoService ou usuarioService, relança
+            if (e instanceof EntityNotFoundException) {
+                throw e;
+            }
+            // Para outros erros, lança como EntityNotFoundException
+            throw new EntityNotFoundException("Não foi possível recuperar os dados solicitados", e);
         }
-    
-        // Verifica null primeiro
-        if (resultados == null || resultados.isEmpty()) {
-            throw new EntityNotFoundException("Nenhum registro de User Stories encontrado para os parâmetros fornecidos");
-        }
-    
-        return agruparResultadosPorPeriodo(resultados);
     }
 
     List<ResponseQuantidadeCardsByPeriodo> agruparResultadosPorPeriodo(List<FatoUserStoryTemporais> resultados) {
