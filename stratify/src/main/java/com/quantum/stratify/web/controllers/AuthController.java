@@ -23,17 +23,6 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/alterar-senha")
-    public ResponseEntity<String> alterarSenha(@RequestParam String email, @RequestParam String novaSenha) {
-        Usuario usuario = usuarioRepository.findByEmail(email);
-        if (usuario == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
-        }
-        usuario.setSenha(passwordEncoder.encode(novaSenha));
-        usuario.setRequireReset(false);
-        usuarioRepository.save(usuario);
-        return ResponseEntity.ok("Senha alterada com sucesso");
 
-    }
 }
 

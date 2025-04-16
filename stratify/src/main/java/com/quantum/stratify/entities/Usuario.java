@@ -2,6 +2,7 @@ package com.quantum.stratify.entities;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 import com.quantum.stratify.enums.Role;
 
@@ -26,9 +27,7 @@ public class Usuario implements UserDetails {
     private Long id;
 
     private String nome;
-
     private String email;
-
     private String senha;
 
     @Enumerated(EnumType.STRING)
@@ -86,5 +85,15 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return this.enabled;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(id, usuario.id);
+    }
+
+
 
 }
