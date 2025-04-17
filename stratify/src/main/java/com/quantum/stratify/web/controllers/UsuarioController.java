@@ -2,6 +2,7 @@ package com.quantum.stratify.web.controllers;
 
 
 import com.quantum.stratify.entities.Usuario;
+import com.quantum.stratify.enums.Role;
 import com.quantum.stratify.services.UsuarioService;
 import com.quantum.stratify.web.dtos.UsuarioCreateDto;
 import com.quantum.stratify.web.dtos.UsuarioMapper;
@@ -49,7 +50,7 @@ public class UsuarioController {
     }
     @Operation(
             summary = "Recuperar um usuário por ID.",
-            description = "Requisição exige um bearer token. Acesso restrito a ADMIN ou CLIENTE.",
+            description = "Requisição exige um bearer token. Acesso restrito a ADMIN ou GESTOR.",
             security = @SecurityRequirement(name = "security"),
             responses = {
                     @ApiResponse(responseCode = "200", description = "Recurso recuperado com sucesso",
@@ -62,14 +63,14 @@ public class UsuarioController {
     )
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') OR (hasRole('CLIENTE') AND #id == authentication.principal.id)")
+    @PreAuthorize("hasRole('ADMIN') OR (hasRole('GESTOR') AND #id == authentication.principal.id)")
     public ResponseEntity<UsuarioResponseDto> getById(@PathVariable Long id){
         Usuario user = usuarioService.buscarPorId(id);
         return ResponseEntity.ok(UsuarioMapper.toDto(user));
     }
     @Operation(
             summary = "Atualizar senha.",
-            description = "Requisição exige um bearer token. Acesso restrito a ADMIN ou CLIENTE.",
+            description = "Requisição exige um bearer token. Acesso restrito a ADMIN ou GESTOR.",
             security = @SecurityRequirement(name = "security"),
             responses = {
                     @ApiResponse(responseCode = "204", description = "Senha atualizada com sucesso."),
@@ -82,7 +83,7 @@ public class UsuarioController {
             }
     )
     @PatchMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'CLIENTE') AND (#id == authentication.principal.id) ")
+    @PreAuthorize("hasAnyRole('ADMIN', 'GESTOR') AND (#id == authentication.principal.id) ")
     public ResponseEntity<Void> updatePassword(@PathVariable Long id, @Valid @RequestBody UsuarioSenhaDto dto){
         usuarioService.editarSenha(id, dto.getSenhaAtual(), dto.getNovaSenha(), dto.getConfirmaSenha());
         return ResponseEntity.noContent().build();
@@ -100,7 +101,7 @@ public class UsuarioController {
             }
     )
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<UsuarioResponseDto>> getAll(){
         List<Usuario> users = usuarioService.buscarTodos();
         return ResponseEntity.ok(UsuarioMapper.toListDto(users));

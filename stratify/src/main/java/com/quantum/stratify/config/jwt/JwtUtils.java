@@ -46,7 +46,6 @@ public class JwtUtils {
                 .setIssuedAt(issuedAt)
                 .setExpiration(limit)
                 .signWith(generateKey(), SignatureAlgorithm.HS256)
-                .claim("role", role)
                 .compact();
 
         return new JwtToken(token);
