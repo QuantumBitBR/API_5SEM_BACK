@@ -15,6 +15,5 @@ public class UsuarioCreateDto {
     @Email(message = "Formato do e-mail inválido.")
     private String email;
     @NotBlank
-    @Size(min = 6, max = 6)
     private String senha;
 }

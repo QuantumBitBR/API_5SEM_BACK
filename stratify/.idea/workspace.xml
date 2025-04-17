@@ -4,22 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM- 64 - feat(AuthController): add password recovery endpoint and update user status handling">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/UsuarioService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/UsuarioController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioCreateDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioLoginDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioSenhaDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/exceptions/ApiExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/exceptions/ErrorMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/exceptions/PasswordInvalidException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/exceptions/UsernameUniqueViolationException.java" afterDir="false" />
+    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM- 64 - feat: implement global exception handling and user-related DTOs for improved error management">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/SpringSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtAuthorizationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtRequestFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioCreateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioLoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioLoginDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -56,6 +56,9 @@
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -122,7 +125,7 @@
       <workItem from="1744416701358" duration="3345000" />
       <workItem from="1744668801438" duration="5927000" />
       <workItem from="1744675568667" duration="728000" />
-      <workItem from="1744844169677" duration="2183000" />
+      <workItem from="1744844169677" duration="6109000" />
     </task>
     <task id="LOCAL-00001" summary="SCRUM-64 - feat:implemented spring security and security methods">
       <option name="closed" value="true" />
@@ -164,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744672355228</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="SCRUM- 64 - feat: implement global exception handling and user-related DTOs for improved error management">
+      <option name="closed" value="true" />
+      <created>1744846484991</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744846484991</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +198,7 @@
     <MESSAGE value="SCRUM-64 - feat(AuthorizationService): implement loadUserByEmail and loadUserByUsername methods for Spring Security integration" />
     <MESSAGE value="SCRUM- 64 -feat(AuthorizationService): remove loadUserByEmail method and update password handling for Spring Security" />
     <MESSAGE value="SCRUM- 64 - feat(AuthController): add password recovery endpoint and update user status handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="SCRUM- 64 - feat(AuthController): add password recovery endpoint and update user status handling" />
+    <MESSAGE value="SCRUM- 64 - feat: implement global exception handling and user-related DTOs for improved error management" />
+    <option name="LAST_COMMIT_MESSAGE" value="SCRUM- 64 - feat: implement global exception handling and user-related DTOs for improved error management" />
   </component>
 </project>
