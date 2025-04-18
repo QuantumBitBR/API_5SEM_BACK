@@ -1,6 +1,7 @@
 package com.quantum.stratify.web.controllers;
 import com.quantum.stratify.config.jwt.JwtToken;
 import com.quantum.stratify.config.jwt.JwtUserDetailsService;
+import com.quantum.stratify.entities.Usuario;
 import com.quantum.stratify.web.dtos.UsuarioLoginDto;
 import com.quantum.stratify.web.dtos.UsuarioResponseDto;
 import com.quantum.stratify.web.exceptions.ErrorMessage;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 
 @Slf4j
 @RequiredArgsConstructor
@@ -36,20 +39,38 @@ public class AuthController {
 
 
     @Operation(
-            summary = "Autenticar na API", description = "Recurso de autenticação na API",
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Autenticação realizada com sucesso e retorno de um Bearer token",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioResponseDto.class))),
-                    @ApiResponse(responseCode = "400", description = "Credenciais invalidas",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
-                    @ApiResponse(responseCode = "422", description = "Campo(s) invalido(s).",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
-            }
+            summary = "Autenticar na API", description = "Recurso de autenticação na API"
     )
     @PostMapping("/auth")
     public ResponseEntity<?> autenticar(@RequestBody @Valid UsuarioLoginDto dto, HttpServletRequest request) {
         log.info("Processo de autenticação pelo login {}", dto.getEmail());
+
         try {
+            // Primeiro, recuperar o usuário
+            Optional<Usuario> optionalUsuario = detailsService.getUsuarioByEmail(dto.getEmail());
+
+            if (optionalUsuario.isEmpty()) {
+                return ResponseEntity
+                        .status(HttpStatus.BAD_REQUEST)
+                        .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Credenciais inválidas"));
+            }
+
+            Usuario usuario = optionalUsuario.get();
+
+            // Verificar se a conta está ativa
+            if (!usuario.isEnabled()) {
+                return ResponseEntity
+                        .status(HttpStatus.UNAUTHORIZED)
+                        .body(new ErrorMessage(request, HttpStatus.UNAUTHORIZED, "Conta desativada. Contate o administrador."));
+            }
+
+            if (usuario.isRequireReset()) {
+                return ResponseEntity
+                        .status(HttpStatus.UNAUTHORIZED)
+                        .body(new ErrorMessage(request, HttpStatus.UNAUTHORIZED, "Necessário alterar senha. contate o administrador."));
+            }
+
+            // Realiza a autenticação
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha());
 
@@ -57,13 +78,15 @@ public class AuthController {
 
             JwtToken token = detailsService.getTokenAuthenticated(dto.getEmail());
 
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(new UsuarioResponseDto(token.getToken(), usuario.isRequireReset(), usuario.isEnabled() ,usuario.getRole().name()));
+
         } catch (AuthenticationException ex) {
             log.warn("Bad Credentials from username '{}'", dto.getEmail());
+            return ResponseEntity
+                    .badRequest()
+                    .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Credenciais Inválidas"));
         }
-        return ResponseEntity
-                .badRequest()
-                .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Credenciais Inválidas"));
     }
+
 }
 

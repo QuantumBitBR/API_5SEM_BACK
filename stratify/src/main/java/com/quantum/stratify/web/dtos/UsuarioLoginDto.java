@@ -16,4 +16,6 @@ public class UsuarioLoginDto {
     private String email;
     @NotBlank
     private String senha;
+
 }
+

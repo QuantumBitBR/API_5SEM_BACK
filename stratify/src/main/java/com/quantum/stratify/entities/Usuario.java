@@ -36,6 +36,7 @@ public class Usuario implements UserDetails {
     @Column(name = "is_enable")
     private boolean enabled;
 
+    @Getter
     @Column(name = "require_reset")
     private boolean requireReset;
 
