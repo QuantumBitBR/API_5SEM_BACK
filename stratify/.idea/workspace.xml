@@ -4,16 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-64 feat: update JWT authentication error handling and refine role management in user entity">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/web/controllers/AuthControllerTest.java" afterDir="false" />
+    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-64 - hotfix: deleted unused files">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/workflow.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/changelog/V1_0__initial_schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/UsuarioController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/AtribuirGestor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/services/FatoUserStoryTemporaisServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/services/UsuarioServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/config/jwt/JwtUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/FatoUserStoryTemporais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/FatoUserStoryTemporais.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/Projeto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/Projeto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/UserStory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/UserStory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/entities/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/enums/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoUserStoryTemporaisRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoUserStoryTemporaisRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/ProjetoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/ProjetoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UserStoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UserStoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioLoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioLoginDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/FatoUserStoryTemporaisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/FatoUserStoryTemporaisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/ProjetoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/ProjetoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/UserStoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/UserStoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/FatoEficienciaUserStoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/FatoEficienciaUserStoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/FatoUserStoryTemporaisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/FatoUserStoryTemporaisController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/ProjetoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/ProjetoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/UserStoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/UserStoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/UserStoryServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/UserStoryServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/services/ProjetoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/services/ProjetoServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +74,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -75,7 +96,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.StratifyApplication.executor": "Run",
-    "git-widget-placeholder": "SCRUM-64-Configuração-do-Spring-Security",
+    "git-widget-placeholder": "Merging SCRUM-64-Configuração-do-Spring-Security",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/caiosousa/Documentos/projetinhos/API5S/API_5SEM_BACK/stratify",
     "node.js.detected.package.eslint": "true",
@@ -92,7 +113,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.AuthControllerTest">
+  <component name="RunManager" selected="Spring Boot.StratifyApplication">
     <configuration name="AuthControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="stratify" />
       <extension name="coverage">
@@ -250,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745011424757</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="SCRUM-64 - hotfix: deleted unused files">
+      <option name="closed" value="true" />
+      <created>1745016712748</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745016712748</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,21 +306,7 @@
     <MESSAGE value="SCRUM- 64 - feat: implement JWT authentication and authorization with global exception handling" />
     <MESSAGE value="SCRUM- 64 feat: update role handling and improve security configurations in user management" />
     <MESSAGE value="SCRUM-64 feat: update JWT authentication error handling and refine role management in user entity" />
-    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-64 feat: update JWT authentication error handling and refine role management in user entity" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/UsuarioService.java</url>
-          <line>57</line>
-          <properties class="com.quantum.stratify.services.UsuarioService" method="buscarTodos">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="SCRUM-64 - hotfix: deleted unused files" />
+    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-64 - hotfix: deleted unused files" />
   </component>
 </project>

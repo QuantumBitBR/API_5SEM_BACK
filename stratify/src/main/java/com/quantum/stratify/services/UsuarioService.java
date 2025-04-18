@@ -7,6 +7,7 @@ import com.quantum.stratify.repositories.UsuarioRepository;
 import com.quantum.stratify.web.exceptions.EntityNotFoundException;
 import com.quantum.stratify.web.exceptions.PasswordInvalidException;
 import com.quantum.stratify.web.exceptions.UsernameUniqueViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +15,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.quantum.stratify.web.dtos.AtribuirGestor;
+import com.quantum.stratify.web.dtos.UsuarioDTO;
+
 @RequiredArgsConstructor
 @Service
 public class UsuarioService {
 
-    private final UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     private final PasswordEncoder passwordEncoder;
 
 
@@ -32,11 +41,29 @@ public class UsuarioService {
         }
     }
 
+    public Usuario getById(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Usuario não encontrado com o id: " + id));
+    }
+
     @Transactional(readOnly = true)
     public Usuario buscarPorId(Long id) {
         return usuarioRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException(String.format("Usuário id=%s não encontrado", id))
         );
+    }
+
+    public void ativarUsuario(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+        usuario.setIsEnable(true);
+        usuarioRepository.save(usuario);
+    }
+    public void desativarUsuario(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+        usuario.setIsEnable(false);
+        usuarioRepository.save(usuario);
     }
 
     @Transactional
@@ -53,7 +80,6 @@ public class UsuarioService {
         user.setSenha(passwordEncoder.encode(novaSenha));
         return user;
     }
-
     @Transactional(readOnly = true)
     public List<Usuario> buscarTodos() {
         return usuarioRepository.findAll();
@@ -65,9 +91,28 @@ public class UsuarioService {
                 () -> new EntityNotFoundException(String.format("Usuario com '%s' não encontrado", email))
         );
     }
-
     @Transactional(readOnly = true)
     public Role buscarRolePorEmail(String email) {
         return usuarioRepository.findRoleByEmail(email);
     }
+
+    public void atribuirLideradosAoGestor(AtribuirGestor dto) {
+        Usuario gestor = usuarioRepository.findById(dto.getIdUsuarioGestor())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Gestor não encontrado"));
+
+        for (Long idLiderado : dto.getListaIdLiderados()) {
+            Usuario liderado = usuarioRepository.findById(idLiderado)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário liderado não encontrado: " + idLiderado));
+
+            liderado.setGestor(gestor);
+            usuarioRepository.save(liderado);
+        }
+
+        }
+    public List<UsuarioDTO> buscarUsuariosPorProjetoEGestor(Long idProjeto, Long idGestor){
+        return usuarioRepository.findUsuarioByProjetoAndGestor(idProjeto, idGestor);
+    }
 }
+
+
+
