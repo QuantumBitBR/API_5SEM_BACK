@@ -15,7 +15,8 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.List;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,16 +34,22 @@ class UsuarioControllerTest {
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     void deveRetornarListaDeUsuariosComStatus200() throws Exception {
         List<Usuario> usuarios = List.of(
-                new Usuario(111L, "João", "joao@email.com","aaa", Role.USER, true, false, null),
-                new Usuario(222L, "Maria", "maria@email.com","bbb", Role.ADMIN, true, false, null)
+                new Usuario(111L, "João", "joao@email.com", "aaa", Role.USER, true, false, null),
+                new Usuario(222L, "Maria", "maria@email.com", "bbb", Role.ADMIN, true, false, null)
         );
-
         Mockito.when(usuarioService.buscarTodos()).thenReturn(usuarios);
 
         mockMvc.perform(get("/api/v1/usuarios"))
+                .andDo(print()) // Adiciona o print para inspecionar a resposta
                 .andExpect(status().isOk())
-                .andExpect((ResultMatcher) jsonPath("$.length()").value(2))
-                .andExpect((ResultMatcher) jsonPath("$[0].nome").value("João"));
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$[0].email").value("joao@email.com"))
+                .andExpect(jsonPath("$[1].email").value("maria@email.com"));
+    }
+    @Test
+    void deveRetornar401SemUsuarioLogado() throws Exception {
+        mockMvc.perform(get("/api/v1/usuarios"))
+                .andExpect(status().isUnauthorized());
     }
 
     @Test
@@ -52,9 +59,5 @@ class UsuarioControllerTest {
                 .andExpect(status().isForbidden());
     }
 
-    @Test
-    void deveRetornar401SemUsuarioLogado() throws Exception {
-        mockMvc.perform(get("/api/v1/usuarios"))
-                .andExpect(status().isUnauthorized());
-    }
+
 }

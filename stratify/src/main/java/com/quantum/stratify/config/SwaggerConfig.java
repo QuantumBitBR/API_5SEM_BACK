@@ -12,32 +12,20 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 public class SwaggerConfig {
 
     @Bean
-    public OpenAPI customOpenAPI() {
+    public OpenAPI openAPI(){
         return new OpenAPI()
-                .components(new Components()
-                        .addSecuritySchemes("bearer-jwt",
-                                new SecurityScheme()
-                                        .type(SecurityScheme.Type.HTTP)
-                                        .scheme("bearer")
-                                        .bearerFormat("JWT")
-                        )
-                ).info(
-                        new Info()
-                                .title("Stratify API")
-                                .description("Api dedicada a criação de ferramenta de dashboards para administração de cards")
-                                .version("v1")
-                )
-                .addSecurityItem(new SecurityRequirement().addList("bearer-jwt"));
-
+                .components(new Components().addSecuritySchemes("bearerAuth", securityScheme()))
+                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
+                .info(new Info().title("Stratify API").version("v1"));
     }
 
     private SecurityScheme securityScheme(){
         return new SecurityScheme()
-                .description("Insira um bearer token válido para prosseguir")
+                .name("Authorization")
+                .description("Insira o token JWT no formato: Bearer <token>")
                 .type(SecurityScheme.Type.HTTP)
-                .in(SecurityScheme.In.HEADER)
                 .scheme("bearer")
                 .bearerFormat("JWT")
-                .name("Authorization");
+                .in(SecurityScheme.In.HEADER);
     }
 }

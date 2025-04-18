@@ -34,6 +34,7 @@ public class UsuarioController {
     @Operation(
             summary = "Criar um novo usuário.",
             description = "Recurso para criar um novo usuário",
+            security = @SecurityRequirement(name = "bearerAuth"),
             responses = {
                     @ApiResponse(responseCode = "201", description = "Recurso criado com sucesso",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioResponseDto.class))),
@@ -51,7 +52,7 @@ public class UsuarioController {
     @Operation(
             summary = "Recuperar um usuário por ID.",
             description = "Requisição exige um bearer token. Acesso restrito a ADMIN ou GESTOR.",
-            security = @SecurityRequirement(name = "security"),
+            security = @SecurityRequirement(name = "bearerAuth"),
             responses = {
                     @ApiResponse(responseCode = "200", description = "Recurso recuperado com sucesso",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = UsuarioResponseDto.class))),
@@ -71,7 +72,7 @@ public class UsuarioController {
     @Operation(
             summary = "Atualizar senha.",
             description = "Requisição exige um bearer token. Acesso restrito a ADMIN ou GESTOR.",
-            security = @SecurityRequirement(name = "security"),
+            security = @SecurityRequirement(name = "bearerAuth"),
             responses = {
                     @ApiResponse(responseCode = "204", description = "Senha atualizada com sucesso."),
                     @ApiResponse(responseCode = "403", description = "Usuário sem permissão para acessar esse recurso.",
@@ -83,15 +84,17 @@ public class UsuarioController {
             }
     )
     @PatchMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'GESTOR') AND (#id == authentication.principal.id) ")
+    @PreAuthorize("hasAnyRole(' ADMIN', 'GESTOR') AND (#id == authentication.principal.id) ")
     public ResponseEntity<Void> updatePassword(@PathVariable Long id, @Valid @RequestBody UsuarioSenhaDto dto){
         usuarioService.editarSenha(id, dto.getSenhaAtual(), dto.getNovaSenha(), dto.getConfirmaSenha());
         return ResponseEntity.noContent().build();
     }
+
+
     @Operation(
             summary = "Recuperar todos os usuários",
             description = "Requisição exige um bearer token. Acesso restrito a ADMIN.",
-            security = @SecurityRequirement(name = "security"),
+            security = @SecurityRequirement(name = "bearerAuth"),
             responses = {
                     @ApiResponse(responseCode = "200", description = "Usuários recuperados",
                             content = @Content(mediaType = "application/json",
@@ -101,7 +104,6 @@ public class UsuarioController {
             }
     )
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<UsuarioResponseDto>> getAll(){
         List<Usuario> users = usuarioService.buscarTodos();
         return ResponseEntity.ok(UsuarioMapper.toListDto(users));

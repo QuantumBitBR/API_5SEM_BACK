@@ -46,11 +46,11 @@ public class Usuario implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == Role.ADMIN) {
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            return List.of(new SimpleGrantedAuthority("ADMIN"));
         } else if (this.role == Role.USER) {
-            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+            return List.of(new SimpleGrantedAuthority("USER"));
         } else if (this.role == Role.GESTOR) {
-            return List.of(new SimpleGrantedAuthority("ROLE_GESTOR"));
+            return List.of(new SimpleGrantedAuthority("GESTOR"));
         } else {
             throw new IllegalArgumentException("Role inválido para o usuário.");
         }
