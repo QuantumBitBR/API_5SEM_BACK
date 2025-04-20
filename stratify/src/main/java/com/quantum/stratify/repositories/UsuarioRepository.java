@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.quantum.stratify.entities.Usuario;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
+import com.quantum.stratify.web.dtos.UsuarioPorRoleDTO; 
+import com.quantum.stratify.enums.Role;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
@@ -24,4 +26,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
         @Param("idProjeto") Long idProjeto,
         @Param("idGestor") Long idGestor
     );
+    
+        @Query("""
+             SELECT new com.quantum.stratify.web.dtos.UsuarioPorRoleDTO(u.id, u.nome, u.email, u.role, u.isEnable, 
+            COALESCE(u.gestor.nome, null))
+            FROM Usuario u 
+            WHERE u.role = :role
+            ORDER BY u.nome
+     """)
+            List<UsuarioPorRoleDTO> findByRole(@Param("role") Role role);
 }

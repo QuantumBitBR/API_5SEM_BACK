@@ -13,6 +13,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.quantum.stratify.web.dtos.AtribuirGestor;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
+import com.quantum.stratify.web.dtos.UsuarioPorRoleDTO;
+import com.quantum.stratify.enums.Role;
 
 @Service
 public class UsuarioService {
@@ -55,5 +57,15 @@ public class UsuarioService {
     public List<UsuarioDTO> buscarUsuariosPorProjetoEGestor(Long idProjeto, Long idGestor){
         return usuarioRepository.findUsuarioByProjetoAndGestor(idProjeto, idGestor);
     }
+    
+     public List<UsuarioPorRoleDTO> listarPorRole(Role role) {
+          List<UsuarioPorRoleDTO> usuarios = usuarioRepository.findByRole(role);
+    
+            if (usuarios.isEmpty()) {
+             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum usuário encontrado com a role: " + role );
+      }
+    
+          return usuarios;
+}
 
 }

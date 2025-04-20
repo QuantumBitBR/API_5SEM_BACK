@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,9 @@ import com.quantum.stratify.entities.Usuario;
 import com.quantum.stratify.repositories.UsuarioRepository;
 import com.quantum.stratify.web.dtos.AtribuirGestor;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
+import com.quantum.stratify.web.dtos.UsuarioPorRoleDTO;
+import com.quantum.stratify.enums.Role;
+
 
 @ExtendWith(MockitoExtension.class)
 public class UsuarioServiceTest {
@@ -165,7 +169,7 @@ public class UsuarioServiceTest {
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
         assertEquals("Usuário liderado não encontrado: 1", exception.getReason());}
     void deveRetornarTodosUsuariosQuandoFiltrosForemNulos() {
-        // Arrange
+        // Arrange 
         List<UsuarioDTO> usuariosMock = List.of(
             new UsuarioDTO(1L, "João"),
             new UsuarioDTO(2L, "Maria")
@@ -228,5 +232,81 @@ public class UsuarioServiceTest {
         assertEquals(1, resultado.size());
         assertEquals("Carlos", resultado.get(0).getNomeUsuario());
         verify(usuarioRepository).findUsuarioByProjetoAndGestor(idProjeto, idGestor);
+    }
+    @Test
+    void listarPorRole_deveRetornarUsuariosQuandoExistirem() {
+        // Arrange
+        Role role = Role.GESTOR;
+        List<UsuarioPorRoleDTO> usuariosMock = Arrays.asList(
+            new UsuarioPorRoleDTO(1L, "João", "joao@email.com", role, true, null),
+            new UsuarioPorRoleDTO(2L, "Maria", "maria@email.com", role, true, "João")
+        );
+        
+        when(usuarioRepository.findByRole(role)).thenReturn(usuariosMock);
+
+        // Act
+        List<UsuarioPorRoleDTO> resultado = usuarioService.listarPorRole(role);
+
+        // Assert
+        assertEquals(2, resultado.size());
+        assertEquals("João", resultado.get(0).getNome());
+        assertEquals("Maria", resultado.get(1).getNome());
+        assertEquals("joao@email.com", resultado.get(0).getEmail());
+        verify(usuarioRepository).findByRole(role);
+    }
+
+    @Test
+    void listarPorRole_deveLancarExcecaoQuandoNenhumUsuarioEncontrado() {
+        // Arrange
+        Role role = Role.OPERADOR;
+        when(usuarioRepository.findByRole(role)).thenReturn(Collections.emptyList());
+
+        // Act 
+        ResponseStatusException exception = assertThrows(ResponseStatusException.class, () ->
+            usuarioService.listarPorRole(role)
+        );
+        //  Assert
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
+        assertEquals("Nenhum usuário encontrado com a role: OPERADOR", exception.getReason());
+        verify(usuarioRepository).findByRole(role);
+    }
+
+    @Test
+    void listarPorRole_deveRetornarUsuariosComGestorQuandoExistir() {
+        // Arrange
+        Role role = Role.USER;
+        List<UsuarioPorRoleDTO> usuariosMock = List.of(
+            new UsuarioPorRoleDTO(3L, "Pedro", "pedro@email.com", role, true, "Carlos")
+        );
+        
+        when(usuarioRepository.findByRole(role)).thenReturn(usuariosMock);
+
+        // Act
+        List<UsuarioPorRoleDTO> resultado = usuarioService.listarPorRole(role);
+
+        // Assert
+        assertEquals(1, resultado.size());
+        assertEquals("Pedro", resultado.get(0).getNome());
+        assertEquals("Carlos", resultado.get(0).getGestorNome());
+        verify(usuarioRepository).findByRole(role);
+    }
+
+    @Test
+    void listarPorRole_deveRetornarUsuariosInativosQuandoExistirem() {
+        // Arrange
+        Role role = Role.ADMIN;
+        List<UsuarioPorRoleDTO> usuariosMock = List.of(
+            new UsuarioPorRoleDTO(4L, "Admin", "admin@email.com", role, false, null)
+        );
+        
+        when(usuarioRepository.findByRole(role)).thenReturn(usuariosMock);
+
+        // Act
+        List<UsuarioPorRoleDTO> resultado = usuarioService.listarPorRole(role);
+
+        // Assert
+        assertEquals(1, resultado.size());
+        assertFalse(resultado.get(0).getIsEnable());
+        verify(usuarioRepository).findByRole(role); 
     }
 }
