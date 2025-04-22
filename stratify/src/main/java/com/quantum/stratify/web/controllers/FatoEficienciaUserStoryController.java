@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin("*")
 public class FatoEficienciaUserStoryController {
     @Autowired
-    private FatoEficienciaUserStoryService fatoEficienciaUserStoryService;
+    FatoEficienciaUserStoryService fatoEficienciaUserStoryService;
 
 
     @Operation(summary = "Tempo medio por projeto", description = "Retorna tempo médio, descricao e ID de todas as userStories de um projeto")
