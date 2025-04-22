@@ -1,34 +1,35 @@
 package com.quantum.stratify.services;
 
 
-import com.quantum.stratify.entities.Usuario;
-import com.quantum.stratify.enums.Role;
-import com.quantum.stratify.repositories.UsuarioRepository;
-import com.quantum.stratify.web.exceptions.EntityNotFoundException;
-import com.quantum.stratify.web.exceptions.PasswordInvalidException;
-import com.quantum.stratify.web.exceptions.UsernameUniqueViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.transaction.annotation.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.quantum.stratify.entities.Usuario;
+import com.quantum.stratify.enums.Role;
+import com.quantum.stratify.repositories.UsuarioRepository;
 import com.quantum.stratify.web.dtos.AtribuirGestor;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
 import com.quantum.stratify.web.dtos.UsuarioPorRoleDTO;
 import com.quantum.stratify.enums.Role;
+import com.quantum.stratify.web.exceptions.EntityNotFoundException;
+import com.quantum.stratify.web.exceptions.PasswordInvalidException;
+import com.quantum.stratify.web.exceptions.UsernameUniqueViolationException;
 
-@RequiredArgsConstructor
+
 @Service
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+
+    public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
+        this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     private final PasswordEncoder passwordEncoder;
 
@@ -114,6 +115,7 @@ public class UsuarioService {
     public List<UsuarioDTO> buscarUsuariosPorProjetoEGestor(Long idProjeto, Long idGestor){
         return usuarioRepository.findUsuarioByProjetoAndGestor(idProjeto, idGestor);
     }
+
     
      public List<UsuarioPorRoleDTO> listarPorRole(Role role) {
           List<UsuarioPorRoleDTO> usuarios = usuarioRepository.findByRole(role);
@@ -124,6 +126,20 @@ public class UsuarioService {
     
           return usuarios;
 }
+
+
+    
+    @Transactional
+    public Usuario alterarRole(Long idUsuario, Role novaRole) {
+    Usuario usuario = usuarioRepository.findById(idUsuario)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+    if (novaRole == null) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Role inválida.");
+    }
+    usuario.setRole(novaRole);
+    return usuarioRepository.save(usuario);
+    }
+
 }
 
 
