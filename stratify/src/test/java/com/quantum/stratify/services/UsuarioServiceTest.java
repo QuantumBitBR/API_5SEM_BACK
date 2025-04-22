@@ -229,4 +229,5 @@ public class UsuarioServiceTest {
         assertEquals("Carlos", resultado.get(0).getNomeUsuario());
         verify(usuarioRepository).findUsuarioByProjetoAndGestor(idProjeto, idGestor);
     }
+
 }

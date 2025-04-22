@@ -1,21 +1,29 @@
 package com.quantum.stratify.web.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quantum.stratify.entities.Usuario;
 import com.quantum.stratify.services.UsuarioService;
+import com.quantum.stratify.web.dtos.AlterarRoleDTO;
 import com.quantum.stratify.web.dtos.AtribuirGestor;
+import com.quantum.stratify.web.dtos.UsuarioDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin("*")
@@ -58,6 +66,34 @@ public class UsuarioController {
     ) {
     usuarioService.atribuirLideradosAoGestor(dto);
     return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{idUsuario}")
+    @Operation(summary = "Alterar Role de um usuário", description = "Atualiza a role do usuário")
+    @ApiResponses({
+    @ApiResponse(responseCode = "200", description = "Role alterada com sucesso"),
+    @ApiResponse(responseCode = "400", description = "Dados inválidos"),
+    @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    public ResponseEntity<UsuarioDTO> alterarRoleUsuario(
+        @PathVariable Long idUsuario,
+        @Valid @RequestBody AlterarRoleDTO dto) {
+
+    Usuario atualizado = usuarioService.alterarRole(idUsuario, dto.getRole());
+    return ResponseEntity.ok(new UsuarioDTO(atualizado.getId(), atualizado.getNome()));
+    }
+
+    @GetMapping("filtrarprojetogestor")
+    @Operation(summary = "Buscar usuários por projeto e/ou gestor")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso")
+    })
+    public ResponseEntity<List<UsuarioDTO>> filtrarUsuarios(
+        @RequestParam(required = false) Long idProjeto,
+        @RequestParam(required = false) Long idGestor
+    ) {
+        List<UsuarioDTO> usuarios = usuarioService.buscarUsuariosPorProjetoEGestor(idProjeto, idGestor);
+        return ResponseEntity.ok(usuarios);
     }
     
 }
