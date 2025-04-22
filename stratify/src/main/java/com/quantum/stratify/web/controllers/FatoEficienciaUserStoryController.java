@@ -28,15 +28,6 @@ public class FatoEficienciaUserStoryController {
     @Autowired
     private FatoEficienciaUserStoryService fatoEficienciaUserStoryService;
 
-    // @Operation(summary = "Tempo medio por UserStory", description = "Tempo médio de uma única UserStory")
-    // @ApiResponses(value = {
-    //         @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
-    //         @ApiResponse(responseCode = "404", description = "UserStory não foi encontrada")
-    // })
-    // @GetMapping("/userStory/{userStoryId}")
-    // public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getFatoEficienciaTempoMedioPorUserStory(@PathVariable Long userStoryId) {
-    //     return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioPorUserStory(userStoryId));
-    // }
 
     @Operation(summary = "Tempo medio por projeto", description = "Retorna tempo médio, descricao e ID de todas as userStories de um projeto")
     @ApiResponses(value = {
@@ -58,13 +49,15 @@ public class FatoEficienciaUserStoryController {
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotalPorProjeto(projetoId));
     }
 
-    // @Operation(summary = "Tempo medio geral de todos os projetos", description = "Retorna tempo médio entre todas as userStories de todos projeto")
-    // @ApiResponses(value = {
-    //         @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
-    //         @ApiResponse(responseCode = "404", description = "Projeto não foi encontrada")
-    // })
-    // @GetMapping("/projeto/todos")
-    // public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioTotal() {
-    //     return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotal());
-    // }
+    @Operation(summary = "Tempo médio por projeto com filtro opcional por usuário",
+            description = "Retorna lista de tempos médios por user story de um projeto, podendo filtrar por usuário")
+    @GetMapping("/projeto/tempo-medio")
+    public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioPorProjetoFiltrado(
+            @RequestParam Long projetoId,
+            @RequestParam(required = false) Long usuarioId) {
+
+        return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioFiltrado(projetoId, usuarioId));
+    }
+
+
 }
