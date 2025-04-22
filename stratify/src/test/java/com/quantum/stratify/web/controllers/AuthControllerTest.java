@@ -1,24 +1,28 @@
 package com.quantum.stratify.web.controllers;
 
-import com.quantum.stratify.config.jwt.JwtToken;
-import com.quantum.stratify.config.jwt.JwtUserDetailsService;
-import com.quantum.stratify.entities.Usuario;
-import com.quantum.stratify.enums.Role;
-import com.quantum.stratify.web.dtos.UsuarioLoginDto;
-import jakarta.servlet.http.HttpServletRequest;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-import java.util.Optional;
+import com.quantum.stratify.config.jwt.JwtToken;
+import com.quantum.stratify.config.jwt.JwtUserDetailsService;
+import com.quantum.stratify.entities.Usuario;
+import com.quantum.stratify.enums.Role;
+import com.quantum.stratify.web.dtos.UsuarioLoginDto;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import jakarta.servlet.http.HttpServletRequest;
 
 class AuthControllerTest {
 
@@ -43,7 +47,7 @@ class AuthControllerTest {
         Usuario usuario = new Usuario();
         usuario.setEmail("usuario@teste.com");
         usuario.setSenha("senha123");
-        usuario.setEnabled(enabled);
+        usuario.setIsEnable(enabled);
         usuario.setRequireReset(requireReset);
         usuario.setRole(Role.ADMIN);
         return usuario;

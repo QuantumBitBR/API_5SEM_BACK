@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.quantum.stratify.services.UserStoryService;
@@ -43,13 +44,12 @@ class UserStoryControllerTest {
 
     @Test
     @DisplayName("Deve retornar 200 e lista de percentuais sem filtros")
+    @WithMockUser(username = "mockUser", roles = {"ADMIN"})
     void testPercentualSemParametros() throws Exception {
-        // Arrange juntos (testando quando não vem nenhum argumento)
         List<PercentualStatusUsuarioDTO> mockResponse = getMockResponse();
         when(userStoryStatusService.getPercentualUserStoriesPorStatus(null, null))
             .thenReturn(mockResponse);
 
-        // Act & Assert
         mockMvc.perform(get("/userStory/percentual-por-status"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$[0].nomeStatus").value("TO DO"))
@@ -60,14 +60,13 @@ class UserStoryControllerTest {
 
     @Test
     @DisplayName("Deve retornar percentuais com projetoId")
+    @WithMockUser(username = "mockUser", roles = {"ADMIN"})
     void testPercentualComProjetoId() throws Exception {
-        // Arrange (testnado só com projeto ID)
         Long projetoId = 1L;
         List<PercentualStatusUsuarioDTO> mockResponse = getMockResponse();
         when(userStoryStatusService.getPercentualUserStoriesPorStatus(projetoId, null))
             .thenReturn(mockResponse);
 
-        // Act & Assert
         mockMvc.perform(get("/userStory/percentual-por-status")
                 .param("projetoId", projetoId.toString()))
             .andExpect(status().isOk())
@@ -77,14 +76,13 @@ class UserStoryControllerTest {
 
     @Test
     @DisplayName("Deve retornar percentuais com usuarioId")
+    @WithMockUser(username = "mockUser", roles = {"ADMIN"})
     void testPercentualComUsuarioId() throws Exception {
-        // Arrange (testando só com usuárioid)
         Long usuarioId = 42L;
         List<PercentualStatusUsuarioDTO> mockResponse = getMockResponse();
         when(userStoryStatusService.getPercentualUserStoriesPorStatus(null, usuarioId))
             .thenReturn(mockResponse);
 
-        // Act & Assert juntos
         mockMvc.perform(get("/userStory/percentual-por-status")
                 .param("usuarioId", usuarioId.toString()))
             .andExpect(status().isOk())
@@ -94,15 +92,14 @@ class UserStoryControllerTest {
 
     @Test
     @DisplayName("Deve retornar percentuais com projetoId e usuarioId")
+    @WithMockUser(username = "mockUser", roles = {"ADMIN"})
     void testPercentualComProjetoEUsuario() throws Exception {
-        // Arrange (testando os dois cenários)
         Long projetoId = 1L;
         Long usuarioId = 42L;
         List<PercentualStatusUsuarioDTO> mockResponse = getMockResponse();
         when(userStoryStatusService.getPercentualUserStoriesPorStatus(projetoId, usuarioId))
             .thenReturn(mockResponse);
 
-        // Act & Assert juntos
         mockMvc.perform(get("/userStory/percentual-por-status")
                 .param("projetoId", projetoId.toString())
                 .param("usuarioId", usuarioId.toString()))

@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.quantum.stratify.entities.Usuario;
+import com.quantum.stratify.enums.Role;
 import com.quantum.stratify.repositories.UsuarioRepository;
 import com.quantum.stratify.web.dtos.AtribuirGestor;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
@@ -228,5 +229,63 @@ public class UsuarioServiceTest {
         assertEquals(1, resultado.size());
         assertEquals("Carlos", resultado.get(0).getNomeUsuario());
         verify(usuarioRepository).findUsuarioByProjetoAndGestor(idProjeto, idGestor);
+    }
+
+    @Test
+    void shouldUpdateUserRoleToUSER() {
+        shouldUpdateUserRoleSuccessfully(Role.USER);
+    }
+
+    @Test
+    void shouldUpdateUserRoleToADMIN() {
+        shouldUpdateUserRoleSuccessfully(Role.ADMIN);
+    }
+
+    @Test
+    void shouldUpdateUserRoleToOPERADOR() {
+        shouldUpdateUserRoleSuccessfully(Role.OPERADOR);
+    }
+
+    @Test
+    void shouldUpdateUserRoleToGESTOR() {
+        shouldUpdateUserRoleSuccessfully(Role.GESTOR);
+    }
+
+    private void shouldUpdateUserRoleSuccessfully(Role novaRole) {
+        // Arrange
+        Long userId = 1L;
+
+        Usuario usuario = new Usuario();
+        usuario.setId(userId);
+        usuario.setNome("Teste");
+        usuario.setRole(Role.USER);
+
+        when(usuarioRepository.findById(userId)).thenReturn(Optional.of(usuario));
+        when(usuarioRepository.save(any(Usuario.class))).thenReturn(usuario);
+
+        // Act
+        Usuario atualizado = usuarioService.alterarRole(userId, novaRole);
+
+        // Assert
+        assertEquals(novaRole, atualizado.getRole());
+        verify(usuarioRepository).save(usuario);
+    }
+
+    @Test
+    void shouldThrowExceptionWhenUserNotFoundToUpdateRole() {
+    // Arrange
+    Long userId = 99L;
+    Role novaRole = Role.ADMIN;
+
+    when(usuarioRepository.findById(userId)).thenReturn(Optional.empty());
+
+    // Act + Assert
+    ResponseStatusException exception = assertThrows(ResponseStatusException.class, () ->
+        usuarioService.alterarRole(userId, novaRole)
+    );
+
+    assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
+    assertEquals("Usuário não encontrado", exception.getReason());
+    verify(usuarioRepository, never()).save(any());
     }
 }
