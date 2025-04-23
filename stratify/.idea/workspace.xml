@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-76 - feat(FatoEficienciaUserStory): add unit tests for average time retrieval endpoint with user filtering">
+    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-76 -feat(FatoEficienciaUserStory): add unit tests for project average time retrieval with user filtering">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoEficienciaUserStoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoEficienciaUserStoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/FatoEficienciaUserStoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/FatoEficienciaUserStoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/FatoEficienciaUserStoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/FatoEficienciaUserStoryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,41 +62,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.AuthControllerTest.executor": "Run",
-    "JUnit.FatoEficienciaUserStoryControllerTest.executor": "Run",
-    "JUnit.FatoEficienciaUserStoryControllerTest.testGetTempoMedioPorProjetoFiltrado_comUsuario.executor": "Run",
-    "JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200.executor": "Run",
-    "JUnit.UsuarioControllerTest.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.StratifyApplication.executor": "Run",
-    "git-widget-placeholder": "SCRUM-76-Criar-endpoint-de-tempo-medio-por-usuário-e-projeto",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/caiosousa/Documentos/projetinhos/API5S/API_5SEM_BACK/stratify",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FatoEficienciaUserStoryControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FatoEficienciaUserStoryControllerTest.testGetTempoMedioPorProjetoFiltrado_comUsuario.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UsuarioControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.stratify [package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.StratifyApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;SCRUM-76-Criar-endpoint-de-tempo-medio-por-usuário-e-projeto&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/caiosousa/Documentos/projetinhos/API5S/API_5SEM_BACK/stratify&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.quantum.stratify.web.controllers" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn package" />
+    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.StratifyApplication">
     <configuration name="AuthControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -217,6 +222,7 @@
       <workItem from="1744668801438" duration="5927000" />
       <workItem from="1744675568667" duration="728000" />
       <workItem from="1744844169677" duration="23534000" />
+      <workItem from="1745450487971" duration="531000" />
     </task>
     <task id="LOCAL-00001" summary="SCRUM-64 - feat:implemented spring security and security methods">
       <option name="closed" value="true" />
@@ -322,7 +328,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745366290417</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="SCRUM-76 -feat(FatoEficienciaUserStory): enhance project average time retrieval with optional user filtering">
+      <option name="closed" value="true" />
+      <created>1745439508293</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1745439508293</updated>
+    </task>
+    <task id="LOCAL-00015" summary="SCRUM-76 -feat(FatoEficienciaUserStory): add unit tests for project average time retrieval with user filtering">
+      <option name="closed" value="true" />
+      <created>1745440068568</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1745440068568</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,6 +375,8 @@
     <MESSAGE value="hotfix-feat-SCRUM-64-(AuthController): enable CORS support for authentication endpoints" />
     <MESSAGE value="SCRUM-76 - feat(FatoEficienciaUserStory): add endpoint to retrieve average time per project with optional user filter" />
     <MESSAGE value="SCRUM-76 - feat(FatoEficienciaUserStory): add unit tests for average time retrieval endpoint with user filtering" />
-    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-76 - feat(FatoEficienciaUserStory): add unit tests for average time retrieval endpoint with user filtering" />
+    <MESSAGE value="SCRUM-76 -feat(FatoEficienciaUserStory): enhance project average time retrieval with optional user filtering" />
+    <MESSAGE value="SCRUM-76 -feat(FatoEficienciaUserStory): add unit tests for project average time retrieval with user filtering" />
+    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-76 -feat(FatoEficienciaUserStory): add unit tests for project average time retrieval with user filtering" />
   </component>
 </project>
