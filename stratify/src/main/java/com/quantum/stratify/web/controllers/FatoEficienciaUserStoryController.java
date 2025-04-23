@@ -49,15 +49,14 @@ public class FatoEficienciaUserStoryController {
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioTotalPorProjeto(projetoId));
     }
 
-    @Operation(summary = "Tempo médio por projeto com filtro opcional por usuário",
-            description = "Retorna lista de tempos médios por user story de um projeto, podendo filtrar por usuário")
+    @Operation(summary = "Tempo médio por projeto com filtro opcional por usuário e/ou projeto.",
+            description = "Retorna lista de tempos médios por user story, podendo filtrar, de forma opcional, por um projeto ou por usuário")
     @GetMapping("/projeto/tempo-medio")
     public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioPorProjetoFiltrado(
-            @RequestParam Long projetoId,
+            @RequestParam(required = false) Long projetoId,
             @RequestParam(required = false) Long usuarioId) {
 
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioFiltrado(projetoId, usuarioId));
     }
-
 
 }

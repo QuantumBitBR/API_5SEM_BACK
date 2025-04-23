@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-64 - hotfix: deleted unused files">
+    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-76 - feat(FatoEficienciaUserStory): add unit tests for average time retrieval endpoint with user filtering">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoEficienciaUserStoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoEficienciaUserStoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/FatoEficienciaUserStoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/FatoEficienciaUserStoryService.java" afterDir="false" />
@@ -66,6 +66,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.FatoEficienciaUserStoryControllerTest.executor": "Run",
+    "JUnit.FatoEficienciaUserStoryControllerTest.testGetTempoMedioPorProjetoFiltrado_comUsuario.executor": "Run",
     "JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200.executor": "Run",
     "JUnit.UsuarioControllerTest.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
@@ -92,6 +94,11 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.quantum.stratify.web.controllers" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.StratifyApplication">
     <configuration name="AuthControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="stratify" />
@@ -104,6 +111,37 @@
       <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
       <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.AuthControllerTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FatoEficienciaUserStoryControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="stratify" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.quantum.stratify.web.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.FatoEficienciaUserStoryControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FatoEficienciaUserStoryControllerTest.testGetTempoMedioPorProjetoFiltrado_comUsuario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="stratify" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.quantum.stratify.web.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.FatoEficienciaUserStoryControllerTest" />
+      <option name="METHOD_NAME" value="testGetTempoMedioPorProjetoFiltrado_comUsuario" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,11 +186,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FatoEficienciaUserStoryControllerTest" />
+        <item itemvalue="JUnit.FatoEficienciaUserStoryControllerTest.testGetTempoMedioPorProjetoFiltrado_comUsuario" />
         <item itemvalue="JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200" />
         <item itemvalue="JUnit.UsuarioControllerTest" />
         <item itemvalue="JUnit.AuthControllerTest" />
-        <item itemvalue="JUnit.AuthControllerTest" />
-        <item itemvalue="JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200" />
       </list>
     </recent_temporary>
   </component>
@@ -268,7 +306,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745362770750</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="SCRUM-76 - feat(FatoEficienciaUserStory): add endpoint to retrieve average time per project with optional user filter">
+      <option name="closed" value="true" />
+      <created>1745365874258</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1745365874258</updated>
+    </task>
+    <task id="LOCAL-00013" summary="SCRUM-76 - feat(FatoEficienciaUserStory): add unit tests for average time retrieval endpoint with user filtering">
+      <option name="closed" value="true" />
+      <created>1745366290417</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745366290417</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +351,8 @@
     <MESSAGE value="SCRUM-64 feat: update JWT authentication error handling and refine role management in user entity" />
     <MESSAGE value="SCRUM-64 - hotfix: deleted unused files" />
     <MESSAGE value="hotfix-feat-SCRUM-64-(AuthController): enable CORS support for authentication endpoints" />
-    <option name="LAST_COMMIT_MESSAGE" value="hotfix-feat-SCRUM-64-(AuthController): enable CORS support for authentication endpoints" />
+    <MESSAGE value="SCRUM-76 - feat(FatoEficienciaUserStory): add endpoint to retrieve average time per project with optional user filter" />
+    <MESSAGE value="SCRUM-76 - feat(FatoEficienciaUserStory): add unit tests for average time retrieval endpoint with user filtering" />
+    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-76 - feat(FatoEficienciaUserStory): add unit tests for average time retrieval endpoint with user filtering" />
   </component>
 </project>

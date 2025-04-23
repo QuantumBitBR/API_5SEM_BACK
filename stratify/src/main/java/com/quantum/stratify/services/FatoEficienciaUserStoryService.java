@@ -45,15 +45,24 @@ public class FatoEficienciaUserStoryService {
         return new FatoEficienciaTempoMedioGeralDTO(tempoMedio / userStories.size());
 
     }
+
     public List<TempoMedioPorProjetoDTO> getTempoMedioFiltrado(Long projetoId, Long usuarioId) {
-        if (usuarioId != null) {
+        if (usuarioId != null && projetoId != null) {
             List<TempoMedioPorProjetoDTO> results = fatoEficienciaRepository.findByProjetoIdAndUsuarioId(projetoId, usuarioId);
             if (results == null || results.isEmpty()) {
                 throw new EntityNotFoundException("Nenhum dado encontrado para o projeto e usuário especificados.");
             }
             return results;
-        } else {
+        } else if (usuarioId != null) {
+            List<TempoMedioPorProjetoDTO> results = fatoEficienciaRepository.findByUsuarioId(usuarioId);
+            if (results == null || results.isEmpty()) {
+                throw new EntityNotFoundException("Nenhum dado encontrado para o usuário especificado.");
+            }
+            return results;
+        } else if (projetoId != null) {
             return getTempoMedioPorProjeto(projetoId);
+        } else {
+            return getTempoMedioTotal();
         }
     }
 

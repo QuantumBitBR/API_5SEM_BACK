@@ -34,5 +34,11 @@ public interface FatoEficienciaUserStoryRepository extends JpaRepository<FatoEfi
             "WHERE fe.projeto.id = :projetoId AND fe.usuario.id = :usuarioId")
     List<TempoMedioPorProjetoDTO> findByProjetoIdAndUsuarioId(@Param("projetoId") Long projetoId, @Param("usuarioId") Long usuarioId);
 
+    @Query("SELECT new com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO( " +
+            "us.id, us.assunto, fe.tempoMedio) " +
+            "FROM FatoEficienciaUserStory fe " +
+            "LEFT JOIN fe.userStory us " +
+            "WHERE fe.usuario.id = :usuarioId")
+    List<TempoMedioPorProjetoDTO> findByUsuarioId(@Param("usuarioId")Long usuarioId);
 
 }
