@@ -52,6 +52,9 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2vMw7AtE6wDUDyaxBwiYVzMSPxY" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -59,6 +62,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.FatoUserStoryTemporaisServiceTest.executor": "Run",
     "JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200.executor": "Run",
     "JUnit.UsuarioControllerTest.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
@@ -85,7 +89,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.StratifyApplication">
+  <component name="RunManager" selected="JUnit.StratifyApplicationTests">
     <configuration name="AuthControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="stratify" />
       <extension name="coverage">
@@ -101,22 +105,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UsuarioControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FatoUserStoryTemporaisServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="stratify" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.quantum.stratify.web.controllers.*" />
+          <option name="PATTERN" value="com.quantum.stratify.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.UsuarioControllerTest" />
+      <option name="PACKAGE_NAME" value="com.quantum.stratify" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.FatoUserStoryTemporaisServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StratifyApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="stratify" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.quantum.stratify.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.quantum.stratify" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.StratifyApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserStoryControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="stratify" />
       <extension name="coverage">
         <pattern>
@@ -125,9 +144,23 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.UsuarioControllerTest" />
-      <option name="METHOD_NAME" value="deveRetornarListaDeUsuariosComStatus200" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.UserStoryControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsuarioServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="stratify" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.quantum.stratify.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.quantum.stratify.services" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.services.UsuarioServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -141,9 +174,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StratifyApplicationTests" />
+        <item itemvalue="JUnit.FatoUserStoryTemporaisServiceTest" />
+        <item itemvalue="JUnit.UserStoryControllerTest" />
         <item itemvalue="JUnit.AuthControllerTest" />
-        <item itemvalue="JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200" />
-        <item itemvalue="JUnit.UsuarioControllerTest" />
+        <item itemvalue="JUnit.UsuarioServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -280,5 +315,25 @@
     <MESSAGE value="SCRUM-64 feat: update JWT authentication error handling and refine role management in user entity" />
     <MESSAGE value="SCRUM-64 - hotfix: deleted unused files" />
     <option name="LAST_COMMIT_MESSAGE" value="SCRUM-64 - hotfix: deleted unused files" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/stratify$UserStoryTagServiceTest.ic" NAME="UserStoryTagServiceTest Coverage Results" MODIFIED="1745368057247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.quantum.stratify.services.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/stratify$FatoUserStoryTemporaisServiceTest.ic" NAME="FatoUserStoryTemporaisServiceTest Coverage Results" MODIFIED="1745367992927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.quantum.stratify.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/stratify$UsuarioServiceTest.ic" NAME="UsuarioServiceTest Coverage Results" MODIFIED="1745368064633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.quantum.stratify.services.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/stratify$FatoUserStoryTemporaisServiceTest__1_.ic" NAME="FatoUserStoryTemporaisServiceTest (1) Coverage Results" MODIFIED="1745368033961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.quantum.stratify.services.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/stratify$ProjetoServiceTest.ic" NAME="ProjetoServiceTest Coverage Results" MODIFIED="1745368048345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.quantum.stratify.services.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/stratify$UserStoryServiceTest.ic" NAME="UserStoryServiceTest Coverage Results" MODIFIED="1745368009337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.quantum.stratify.*</FILTER>
+    </SUITE>
   </component>
 </project>
