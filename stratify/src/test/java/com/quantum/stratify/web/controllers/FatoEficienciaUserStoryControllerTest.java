@@ -65,4 +65,45 @@ public class FatoEficienciaUserStoryControllerTest {
         verify(service, times(1)).getTempoMedioFiltrado(projetoId, null);
         System.out.println("✅ testGetTempoMedioPorProjetoFiltrado_semUsuario passou!");
     }
+
+
+    @Test
+    public void testGetTempoMedioPorProjetoFiltrado_somenteUsuario() {
+        Long usuarioId = 2L;
+        List<TempoMedioPorProjetoDTO> mockList = Arrays.asList(
+                new TempoMedioPorProjetoDTO(30L, "UserStory D", 8.5)
+        );
+
+        when(service.getTempoMedioFiltrado(null, usuarioId)).thenReturn(mockList);
+
+        ResponseEntity<List<TempoMedioPorProjetoDTO>> response =
+                controller.getTempoMedioPorProjetoFiltrado(null, usuarioId);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertNotNull(response.getBody());
+        assertEquals(1, response.getBody().size());
+
+        verify(service, times(1)).getTempoMedioFiltrado(null, usuarioId);
+        System.out.println("✅ testGetTempoMedioPorProjetoFiltrado_somenteUsuario passou!");
+    }
+
+    @Test
+    public void testGetTempoMedioPorProjetoFiltrado_semParametros() {
+        List<TempoMedioPorProjetoDTO> mockList = Arrays.asList(
+                new TempoMedioPorProjetoDTO(40L, "UserStory E", 4.2)
+        );
+
+        when(service.getTempoMedioFiltrado(null, null)).thenReturn(mockList);
+
+        ResponseEntity<List<TempoMedioPorProjetoDTO>> response =
+                controller.getTempoMedioPorProjetoFiltrado(null, null);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertNotNull(response.getBody());
+        assertEquals(1, response.getBody().size());
+
+        verify(service, times(1)).getTempoMedioFiltrado(null, null);
+        System.out.println("✅ testGetTempoMedioPorProjetoFiltrado_semParametros passou!");
+    }
+
 }
