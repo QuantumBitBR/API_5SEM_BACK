@@ -1,6 +1,7 @@
 package com.quantum.stratify.web.controllers;
 
 import com.quantum.stratify.services.FatoEficienciaUserStoryService;
+import com.quantum.stratify.web.dtos.FatoEficienciaTempoMedioGeralDTO;
 import com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -106,4 +107,48 @@ public class FatoEficienciaUserStoryControllerTest {
         System.out.println("✅ testGetTempoMedioPorProjetoFiltrado_semParametros passou!");
     }
 
+    @Test
+    public void testGetMediaTempoFiltrado_comFiltros() {
+        Long projetoId = 1L;
+        Long usuarioId = 2L;
+        double mediaEsperada = 6.75;
+
+        when(service.getMediaTempoFiltrado(projetoId, usuarioId)).thenReturn(mediaEsperada);
+
+        ResponseEntity<FatoEficienciaTempoMedioGeralDTO> response = controller.getMediaTempoComFiltro(projetoId, usuarioId);
+
+        FatoEficienciaTempoMedioGeralDTO resultado = controller.getMediaTempoComFiltro(projetoId, usuarioId).getBody();
+        assertEquals(mediaEsperada, resultado.tempoMedio());
+
+        System.out.println("✅ testGetMediaTempoFiltrado_comFiltros passou!");
+    }
+
+    @Test
+    public void testGetMediaTempoFiltrado_somenteProjeto() {
+        Long projetoId = 1L;
+        double mediaEsperada = 5.5;
+
+        when(service.getMediaTempoFiltrado(projetoId, null)).thenReturn(mediaEsperada);
+
+        ResponseEntity<FatoEficienciaTempoMedioGeralDTO> response = controller.getMediaTempoComFiltro(projetoId, null);
+
+        FatoEficienciaTempoMedioGeralDTO resultado = controller.getMediaTempoComFiltro(projetoId, null).getBody();
+        assertEquals(mediaEsperada, resultado.tempoMedio());
+
+        System.out.println(mediaEsperada + " == " + resultado.tempoMedio());
+    }
+
+    @Test
+    public void testGetMediaTempoFiltrado_semParametros() {
+        double mediaEsperada = 7.25;
+
+        when(service.getMediaTempoFiltrado(null, null)).thenReturn(mediaEsperada);
+
+        ResponseEntity<FatoEficienciaTempoMedioGeralDTO> response = controller.getMediaTempoComFiltro(null, null);
+
+        FatoEficienciaTempoMedioGeralDTO resultado = controller.getMediaTempoComFiltro(null, null).getBody();
+        assertEquals(mediaEsperada, resultado.tempoMedio());
+
+        System.out.println("✅ testGetMediaTempoFiltrado_semParametros passou!");
+    }
 }

@@ -66,6 +66,29 @@ public class FatoEficienciaUserStoryService {
         }
     }
 
+    public double getMediaTempoFiltrado(Long projetoId, Long usuarioId) {
+        List<TempoMedioPorProjetoDTO> results;
+
+        if (usuarioId != null && projetoId != null) {
+            results = fatoEficienciaRepository.findByProjetoIdAndUsuarioId(projetoId, usuarioId);
+        } else if (usuarioId != null) {
+            results = fatoEficienciaRepository.findByUsuarioId(usuarioId);
+        } else if (projetoId != null) {
+            results = fatoEficienciaRepository.findByProjetoId(projetoId);
+        } else {
+            results = fatoEficienciaRepository.getAll();
+        }
+
+        if (results == null || results.isEmpty()) {
+            throw new EntityNotFoundException("Nenhum dado encontrado para os filtros especificados.");
+        }
+
+        return results.stream()
+                .mapToDouble(TempoMedioPorProjetoDTO::tempoMedio)
+                .average()
+                .orElse(0.0);
+    }
+
 
     public List<TempoMedioPorProjetoDTO> getTempoMedioTotal() {
 

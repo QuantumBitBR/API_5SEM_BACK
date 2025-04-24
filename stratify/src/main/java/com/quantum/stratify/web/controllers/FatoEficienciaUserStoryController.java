@@ -34,7 +34,7 @@ public class FatoEficienciaUserStoryController {
             @ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
             @ApiResponse(responseCode = "404", description = "Projeto não foi encontrada")
     })
-    @GetMapping("/projeto/{projetoId}")// FILTRAR POR USUARIO TBM
+    @GetMapping("/projeto/{projetoId}")
     public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioPorProjeto(@PathVariable Long projetoId) {
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioPorProjeto(projetoId));
     }
@@ -51,12 +51,23 @@ public class FatoEficienciaUserStoryController {
 
     @Operation(summary = "Tempo médio por projeto com filtro opcional por usuário e/ou projeto.",
             description = "Retorna lista de tempos médios por user story, podendo filtrar, de forma opcional, por um projeto ou por usuário")
-    @GetMapping("/projeto/tempo-medio")
+    @GetMapping("/projeto/{projetoId}/{usuarioId}")
     public ResponseEntity<List<TempoMedioPorProjetoDTO>> getTempoMedioPorProjetoFiltrado(
             @RequestParam(required = false) Long projetoId,
             @RequestParam(required = false) Long usuarioId) {
 
         return ResponseEntity.ok().body(fatoEficienciaUserStoryService.getTempoMedioFiltrado(projetoId, usuarioId));
     }
+
+    @Operation(summary = "Média de tempo por projeto com filtro opcional por usuário e/ou projeto.",
+            description = "Retorna o valor numérico da média do tempo por user story, podendo filtrar, de forma opcional, por um projeto ou por usuário")
+    @GetMapping("/media-tempo")
+    public ResponseEntity<FatoEficienciaTempoMedioGeralDTO> getMediaTempoComFiltro(
+            @RequestParam(required = false) Long projetoId,
+            @RequestParam(required = false) Long usuarioId) {
+        double media = fatoEficienciaUserStoryService.getMediaTempoFiltrado(projetoId, usuarioId);
+        return ResponseEntity.ok(new FatoEficienciaTempoMedioGeralDTO(media));
+    }
+
 
 }
