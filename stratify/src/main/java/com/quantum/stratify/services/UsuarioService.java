@@ -41,6 +41,18 @@ public class UsuarioService {
         }
     }
 
+    @Transactional
+    public Usuario resetarSenha(Long idUsuario, String novaSenha) {
+        Usuario usuario = buscarPorId(idUsuario);
+
+        String senhaCriptografada = passwordEncoder.encode(novaSenha);
+        usuario.setSenha(senhaCriptografada);
+        usuario.setRequireReset(false);
+
+        return usuarioRepository.save(usuario);
+    }
+
+
     public Usuario getById(Long id) {
         return usuarioRepository.findById(id)
                 .orElseThrow(() -> new jakarta.persistence.EntityNotFoundException("Usuario não encontrado com o id: " + id));
