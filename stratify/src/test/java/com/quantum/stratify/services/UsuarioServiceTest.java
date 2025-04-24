@@ -310,7 +310,7 @@ public class UsuarioServiceTest {
         assertEquals(1, resultado.size());
         assertFalse(resultado.get(0).getIsEnable());
         verify(usuarioRepository).findByRole(role); 
-
+    }
     @Test
     void shouldUpdateUserRoleToUSER() {
         shouldUpdateUserRoleSuccessfully(Role.USER);
