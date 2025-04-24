@@ -2,6 +2,7 @@ package com.quantum.stratify.web.controllers;
 
 import java.util.List;
 
+import com.quantum.stratify.web.dtos.ResetSenhaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -110,4 +111,18 @@ public class UsuarioController {
     return ResponseEntity.ok(usuarioService.listarPorRole(role));
     }
     
+
+    @PutMapping("/resetar-senha")
+    @Operation(summary = "Resetar senha de um usuário")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Senha resetada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Senha inválida"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    public ResponseEntity<String> resetarSenha(@Valid @RequestBody ResetSenhaDTO dto) {
+        usuarioService.resetarSenha(dto.getIdUsuario(), dto.getNovaSenha());
+        return ResponseEntity.ok("Senha resetada com sucesso.");
+    }
+
+
 }
