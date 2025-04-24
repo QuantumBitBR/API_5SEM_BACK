@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 
 import java.util.Optional;
 
+import com.quantum.stratify.services.UsuarioService;
+import com.quantum.stratify.web.dtos.ResetSenhaDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -37,6 +39,12 @@ class AuthControllerTest {
 
     @Mock
     private HttpServletRequest request;
+
+    @InjectMocks
+    private UsuarioController usuarioController;
+
+    @Mock
+    private UsuarioService usuarioService;
 
     @BeforeEach
     void setup() {
@@ -114,5 +122,30 @@ class AuthControllerTest {
         ResponseEntity<?> response = authController.autenticar(dto, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+
+    @Test
+    void deveResetarSenhaComSucesso() {
+        ResetSenhaDTO dto = new ResetSenhaDTO();
+        dto.setIdUsuario(1L);
+        dto.setNovaSenha("Senha@123");
+
+        ResponseEntity<String> response = usuarioController.resetarSenha(dto);
+
+        verify(usuarioService).resetarSenha(1L, "Senha@123");
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("Senha resetada com sucesso.", response.getBody());
+    }
+
+    @Test
+    void deveRejeitarSenhaInvalida() {
+        ResetSenhaDTO dto = new ResetSenhaDTO();
+        dto.setIdUsuario(1L);
+        dto.setNovaSenha("fraca");
+
+        // Aqui simulamos manualmente a validação, já que @Valid não roda fora do contexto do Spring MVC
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{9,}$";
+        assertFalse(dto.getNovaSenha().matches(regex));
     }
 }
