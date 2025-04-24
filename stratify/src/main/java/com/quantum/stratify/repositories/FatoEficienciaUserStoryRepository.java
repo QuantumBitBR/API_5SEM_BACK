@@ -14,25 +14,35 @@ import com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO;
 public interface FatoEficienciaUserStoryRepository extends JpaRepository<FatoEficienciaUserStory, Long> {
     FatoEficienciaUserStory findByUserStoryId(Long userStoryId);
 
-    @Query("SELECT new com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO( " +
-            "us.id, us.assunto, fe.tempoMedio) " +
+    @Query("SELECT DISTINCT new com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO( " +
+            "us.id, us.assunto, AVG(fe.tempoMedio)) " +
             "FROM FatoEficienciaUserStory fe " +
             "LEFT JOIN fe.userStory us " +
-            "WHERE fe.projeto.id = :projetoId")
+            "WHERE fe.projeto.id = :projetoId " +
+            "GROUP BY us.id, us.assunto ")
     List<TempoMedioPorProjetoDTO> findByProjetoId(@Param("projetoId") Long projetoId);
 
-    @Query("SELECT new com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO( " +
-                "us.id, us.assunto, fe.tempoMedio) " +
-                "FROM FatoEficienciaUserStory fe " +
-                "LEFT JOIN fe.userStory us " +
-                "WHERE fe.projeto.id = :projetoId AND us.usuario.id = :usuarioId")
-        List<TempoMedioPorProjetoDTO> findByProjetoIdAndUsuarioId(@Param("projetoId") Long projetoId, @Param("usuarioId") Long usuarioId);
-
-
-    @Query("SELECT new com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO( " +
-            "us.id, us.assunto, fe.tempoMedio) " +
+    @Query("SELECT DISTINCT new com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO( " +
+            "us.id, us.assunto, AVG(fe.tempoMedio)) " +
             "FROM FatoEficienciaUserStory fe " +
-            "LEFT JOIN fe.userStory us " )
+            "LEFT JOIN fe.userStory us " +
+            "GROUP BY us.id, us.assunto" )
     List<TempoMedioPorProjetoDTO> getAll();
+
+    @Query("SELECT DISTINCT new com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO( " +
+            "us.id, us.assunto, AVG(fe.tempoMedio)) " +
+            "FROM FatoEficienciaUserStory fe " +
+            "LEFT JOIN fe.userStory us " +
+            "WHERE fe.projeto.id = :projetoId AND fe.usuario.id = :usuarioId " +
+            "group by us.id, us.assunto")
+    List<TempoMedioPorProjetoDTO> findByProjetoIdAndUsuarioId(@Param("projetoId") Long projetoId, @Param("usuarioId") Long usuarioId);
+
+    @Query("SELECT DISTINCT new com.quantum.stratify.web.dtos.TempoMedioPorProjetoDTO( " +
+            "us.id, us.assunto, AVG(fe.tempoMedio)) " +
+            "FROM FatoEficienciaUserStory fe " +
+            "LEFT JOIN fe.userStory us " +
+            "WHERE fe.usuario.id = :usuarioId " +
+            "group by us.id, us.assunto")
+    List<TempoMedioPorProjetoDTO> findByUsuarioId(@Param("usuarioId")Long usuarioId);
 
 }

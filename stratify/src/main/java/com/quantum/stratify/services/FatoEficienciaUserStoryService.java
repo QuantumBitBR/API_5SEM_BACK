@@ -25,6 +25,71 @@ public class FatoEficienciaUserStoryService {
 
     }
 
+    public List<TempoMedioPorProjetoDTO> getTempoMedioPorProjeto(Long idProjeto) {
+        List<TempoMedioPorProjetoDTO> results = fatoEficienciaRepository.findByProjetoId(idProjeto);
+        if (results == null || results.isEmpty()) {
+            throw new EntityNotFoundException("UserStory not found");
+        }
+
+        return results;
+    }
+
+    public FatoEficienciaTempoMedioGeralDTO getTempoMedioTotalPorProjeto(Long projetoId) {
+        List<TempoMedioPorProjetoDTO> userStories = getTempoMedioPorProjeto(projetoId);
+        Double tempoMedio = 0.0;
+
+        for (TempoMedioPorProjetoDTO userStory : userStories) {
+            tempoMedio += userStory.tempoMedio();
+        }
+        tempoMedio = userStories.isEmpty() ? 0.0 : tempoMedio / userStories.size();
+        return new FatoEficienciaTempoMedioGeralDTO(tempoMedio / userStories.size());
+
+    }
+
+    public List<TempoMedioPorProjetoDTO> getTempoMedioFiltrado(Long projetoId, Long usuarioId) {
+        if (usuarioId != null && projetoId != null) {
+            List<TempoMedioPorProjetoDTO> results = fatoEficienciaRepository.findByProjetoIdAndUsuarioId(projetoId, usuarioId);
+            if (results == null || results.isEmpty()) {
+                throw new EntityNotFoundException("Nenhum dado encontrado para o projeto e usuário especificados.");
+            }
+            return results;
+        } else if (usuarioId != null) {
+            List<TempoMedioPorProjetoDTO> results = fatoEficienciaRepository.findByUsuarioId(usuarioId);
+            if (results == null || results.isEmpty()) {
+                throw new EntityNotFoundException("Nenhum dado encontrado para o usuário especificado.");
+            }
+            return results;
+        } else if (projetoId != null) {
+            return getTempoMedioPorProjeto(projetoId);
+        } else {
+            return getTempoMedioTotal();
+        }
+    }
+
+    public double getMediaTempoFiltrado(Long projetoId, Long usuarioId) {
+        List<TempoMedioPorProjetoDTO> results;
+
+        if (usuarioId != null && projetoId != null) {
+            results = fatoEficienciaRepository.findByProjetoIdAndUsuarioId(projetoId, usuarioId);
+        } else if (usuarioId != null) {
+            results = fatoEficienciaRepository.findByUsuarioId(usuarioId);
+        } else if (projetoId != null) {
+            results = fatoEficienciaRepository.findByProjetoId(projetoId);
+        } else {
+            results = fatoEficienciaRepository.getAll();
+        }
+
+        if (results == null || results.isEmpty()) {
+            throw new EntityNotFoundException("Nenhum dado encontrado para os filtros especificados.");
+        }
+
+        return results.stream()
+                .mapToDouble(TempoMedioPorProjetoDTO::tempoMedio)
+                .average()
+                .orElse(0.0);
+    }
+
+
     public List<TempoMedioPorProjetoDTO> getTempoMedioTotal() {
 
         return fatoEficienciaRepository.getAll();

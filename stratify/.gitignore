@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 external.properties
+stratify/.idea/workspace.xml
