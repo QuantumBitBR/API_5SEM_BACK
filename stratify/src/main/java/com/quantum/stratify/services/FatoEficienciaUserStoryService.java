@@ -25,30 +25,37 @@ public class FatoEficienciaUserStoryService {
 
     }
 
-    public List<TempoMedioPorProjetoDTO> getTempoMedioPorProjeto(Long idProjeto) {
-        List<TempoMedioPorProjetoDTO> results = fatoEficienciaRepository.findByProjetoId(idProjeto);
-        if (results == null || results.isEmpty()) {
-            throw new EntityNotFoundException("UserStory not found");
-        }
-
-        return results;
-    }
-
-    public FatoEficienciaTempoMedioGeralDTO getTempoMedioTotalPorProjeto(Long projetoId) {
-        List<TempoMedioPorProjetoDTO> userStories = getTempoMedioPorProjeto(projetoId);
-        Double tempoMedio = 0.0;
-
-        for (TempoMedioPorProjetoDTO userStory : userStories) {
-            tempoMedio += userStory.tempoMedio();
-        }
-        tempoMedio = userStories.isEmpty() ? 0.0 : tempoMedio / userStories.size();
-        return new FatoEficienciaTempoMedioGeralDTO(tempoMedio / userStories.size());
-
-    }
-
     public List<TempoMedioPorProjetoDTO> getTempoMedioTotal() {
 
         return fatoEficienciaRepository.getAll();
 
+    }
+
+    public List<TempoMedioPorProjetoDTO> getTempoMedioPorProjeto(Long idProjeto, Long usuarioId) {
+        List<TempoMedioPorProjetoDTO> results;
+    
+        if (usuarioId != null) {
+            results = fatoEficienciaRepository.findByProjetoIdAndUsuarioId(idProjeto, usuarioId);
+        } else {
+            results = fatoEficienciaRepository.findByProjetoId(idProjeto);
+        }
+    
+        if (results == null || results.isEmpty()) {
+            throw new EntityNotFoundException("UserStory not found");
+        }
+    
+        return results;
+    }
+    
+    public FatoEficienciaTempoMedioGeralDTO getTempoMedioTotalPorProjeto(Long projetoId, Long usuarioId) {
+        List<TempoMedioPorProjetoDTO> userStories = getTempoMedioPorProjeto(projetoId, usuarioId);
+        Double tempoMedio = 0.0;
+    
+        for (TempoMedioPorProjetoDTO userStory : userStories) {
+            tempoMedio += userStory.tempoMedio();
+        }
+    
+        tempoMedio = userStories.isEmpty() ? 0.0 : tempoMedio / userStories.size();
+        return new FatoEficienciaTempoMedioGeralDTO(tempoMedio);
     }
 }
