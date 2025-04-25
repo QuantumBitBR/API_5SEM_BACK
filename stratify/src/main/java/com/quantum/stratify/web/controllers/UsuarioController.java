@@ -19,6 +19,8 @@ import com.quantum.stratify.entities.Usuario;
 import com.quantum.stratify.services.UsuarioService;
 import com.quantum.stratify.web.dtos.AlterarRoleDTO;
 import com.quantum.stratify.web.dtos.AtribuirGestor;
+import com.quantum.stratify.web.dtos.UsuarioPorRoleDTO;
+import com.quantum.stratify.enums.Role;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -96,6 +98,19 @@ public class UsuarioController {
         List<UsuarioDTO> usuarios = usuarioService.buscarUsuariosPorProjetoEGestor(idProjeto, idGestor);
         return ResponseEntity.ok(usuarios);
     }
+    
+    @GetMapping("/por-role/{role}")
+    @Operation(summary = "Listar usuários por role", 
+          description = "Filtra usuários pelo tipo de perfil (USER, GESTOR, OPERADOR, ADMIN)")
+    @ApiResponses({
+    @ApiResponse(responseCode = "200", description = "Lista de usuários retornada"),
+    @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado para esta role")
+      })
+    public ResponseEntity<List<UsuarioPorRoleDTO>> listarPorRole(
+        @PathVariable Role role) {
+    return ResponseEntity.ok(usuarioService.listarPorRole(role));
+    }
+    
 
     @PutMapping("/resetar-senha")
     @Operation(summary = "Resetar senha de um usuário")
