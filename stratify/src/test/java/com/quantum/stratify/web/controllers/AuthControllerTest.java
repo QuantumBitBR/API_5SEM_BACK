@@ -96,7 +96,7 @@ class AuthControllerTest {
 
         ResponseEntity<?> response = authController.autenticar(dto, request);
 
-        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+        assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
     }
 
     @Test

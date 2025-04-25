@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-76 -feat(FatoEficienciaUserStory): add unit tests for project average time retrieval with user filtering">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="67053b76-9f87-4a73-a9e8-18d9e63b7b8d" name="Changes" comment="SCRUM-69 - feat(AuthController): update response status and include user ID in response DTO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoEficienciaUserStoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoEficienciaUserStoryRepository.java" afterDir="false" />
-=======
-    <list default="true" id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="SCRUM-64 - hotfix: deleted unused files">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" afterDir="false" />
->>>>>>> c5330dec85d7f998e3e152a61193529aad4769a8
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/web/controllers/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/web/controllers/AuthControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,87 +19,39 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Exception" />
-        <option value="HTTP Public Environment File" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="hotfix-feat-SCRUM-64-Configuração-do-Spring-Security" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Caio-sousaFatec&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Caio-sousaFatec"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/QuantumBitBR/API_5SEM_BACK.git&quot;,
-    &quot;accountId&quot;: &quot;ae74f21c-3b8e-42f2-8318-362227bcddf5&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/QuantumBitBR/API_5SEM_BACK.git",
+    "accountId": "ae74f21c-3b8e-42f2-8318-362227bcddf5"
   }
-}</component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="2vMw7AtE6wDUDyaxBwiYVzMSPxY" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2wCUTbRvA3gepFBTRLC2gLcc5Dv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FatoEficienciaUserStoryControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FatoEficienciaUserStoryControllerTest.testGetTempoMedioPorProjetoFiltrado_comUsuario.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UsuarioControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.stratify [package].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.StratifyApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;SCRUM-76-Criar-endpoint-de-tempo-medio-por-usuário-e-projeto&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/caiosousa/Documentos/projetinhos/API5S/API_5SEM_BACK/stratify&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.StratifyApplication.executor": "Run",
+    "Application.Unnamed.executor": "Run",
     "JUnit.AuthControllerTest.executor": "Run",
-    "JUnit.FatoUserStoryTemporaisServiceTest.executor": "Run",
-    "JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200.executor": "Run",
-    "JUnit.UsuarioControllerTest.executor": "Run",
+    "JUnit.UserStoryServiceTest.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -111,40 +59,24 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.StratifyApplication.executor": "Run",
-    "git-widget-placeholder": "hotfix-feat-SCRUM-64-Configuração-do-Spring-Security",
+    "git-widget-placeholder": "SCRUM-69-Criação-de-requisição-http-de-habilitar-desabilitar-usuário",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/caiosousa/Documentos/projetinhos/API5S/API_5SEM_BACK/stratify",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
->>>>>>> c5330dec85d7f998e3e152a61193529aad4769a8
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
-    ]
   }
-<<<<<<< HEAD
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.quantum.stratify.web.controllers" />
-    </key>
-  </component>
-  <component name="RunAnythingCache">
-    <option name="myCommands">
-      <command value="mvn package" />
-    </option>
-  </component>
-  <component name="RunManager" selected="Spring Boot.StratifyApplication">
-=======
 }]]></component>
-  <component name="RunManager" selected="JUnit.StratifyApplicationTests">
->>>>>>> c5330dec85d7f998e3e152a61193529aad4769a8
+  <component name="RunManager" selected="JUnit.AuthControllerTest">
+    <configuration name="StratifyApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.StratifyApplication" />
+      <module name="stratify" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AuthControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="stratify" />
       <extension name="coverage">
@@ -160,42 +92,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-<<<<<<< HEAD
-    <configuration name="FatoEficienciaUserStoryControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="stratify" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.quantum.stratify.web.controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.FatoEficienciaUserStoryControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FatoEficienciaUserStoryControllerTest.testGetTempoMedioPorProjetoFiltrado_comUsuario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="stratify" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.quantum.stratify.web.controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.FatoEficienciaUserStoryControllerTest" />
-      <option name="METHOD_NAME" value="testGetTempoMedioPorProjetoFiltrado_comUsuario" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UsuarioControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-=======
-    <configuration name="FatoUserStoryTemporaisServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
->>>>>>> c5330dec85d7f998e3e152a61193529aad4769a8
+    <configuration name="UserStoryServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="stratify" />
       <extension name="coverage">
         <pattern>
@@ -204,52 +101,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.quantum.stratify" />
-      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.FatoUserStoryTemporaisServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StratifyApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="stratify" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.quantum.stratify.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.quantum.stratify" />
-      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.StratifyApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserStoryControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="stratify" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.quantum.stratify.web.controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
-      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.UserStoryControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UsuarioServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="stratify" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.quantum.stratify.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.quantum.stratify.services" />
-      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.services.UsuarioServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.UserStoryServiceTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -262,21 +115,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.StratifyApplication" />
+      <item itemvalue="JUnit.AuthControllerTest" />
+      <item itemvalue="JUnit.UserStoryServiceTest" />
+      <item itemvalue="Spring Boot.StratifyApplication" />
+    </list>
     <recent_temporary>
       <list>
-<<<<<<< HEAD
-        <item itemvalue="JUnit.FatoEficienciaUserStoryControllerTest" />
-        <item itemvalue="JUnit.FatoEficienciaUserStoryControllerTest.testGetTempoMedioPorProjetoFiltrado_comUsuario" />
-        <item itemvalue="JUnit.UsuarioControllerTest.deveRetornarListaDeUsuariosComStatus200" />
-        <item itemvalue="JUnit.UsuarioControllerTest" />
         <item itemvalue="JUnit.AuthControllerTest" />
-=======
-        <item itemvalue="JUnit.StratifyApplicationTests" />
-        <item itemvalue="JUnit.FatoUserStoryTemporaisServiceTest" />
-        <item itemvalue="JUnit.UserStoryControllerTest" />
-        <item itemvalue="JUnit.AuthControllerTest" />
-        <item itemvalue="JUnit.UsuarioServiceTest" />
->>>>>>> c5330dec85d7f998e3e152a61193529aad4769a8
+        <item itemvalue="JUnit.UserStoryServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -291,141 +139,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2897de7f-8346-476c-a353-1a1a8a9c3df5" name="Changes" comment="" />
-      <created>1743968080714</created>
+      <changelist id="67053b76-9f87-4a73-a9e8-18d9e63b7b8d" name="Changes" comment="SCRUM-69 - feat(AuthController): update response status and include user ID in response DTO" />
+      <created>1745545061166</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1743968080714</updated>
-      <workItem from="1743968081859" duration="2332000" />
-      <workItem from="1744412028591" duration="4421000" />
-      <workItem from="1744416650893" duration="1000" />
-      <workItem from="1744416701358" duration="3345000" />
-      <workItem from="1744668801438" duration="5927000" />
-      <workItem from="1744675568667" duration="728000" />
-      <workItem from="1744844169677" duration="23534000" />
-      <workItem from="1745450487971" duration="531000" />
+      <updated>1745545061166</updated>
+      <workItem from="1745545063980" duration="222000" />
     </task>
-    <task id="LOCAL-00001" summary="SCRUM-64 - feat:implemented spring security and security methods">
-      <option name="closed" value="true" />
-      <created>1744414253327</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1744414253327</updated>
-    </task>
-    <task id="LOCAL-00002" summary="SCRUM-64 - feat: add AuthorizationService and update Role and Usuario for Spring Security integration">
-      <option name="closed" value="true" />
-      <created>1744421942192</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1744421942192</updated>
-    </task>
-    <task id="LOCAL-00003" summary="SCRUM-64 - feat(AuthorizationService): implement loadUserByEmail and loadUserByUsername methods for Spring Security integration">
-      <option name="closed" value="true" />
-      <created>1744504438365</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1744504438365</updated>
-    </task>
-    <task id="LOCAL-00004" summary="SCRUM- 64 -feat(AuthorizationService): remove loadUserByEmail method and update password handling for Spring Security">
-      <option name="closed" value="true" />
-      <created>1744670145696</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1744670145696</updated>
-    </task>
-    <task id="LOCAL-00005" summary="SCRUM- 64 - feat(AuthController): add password recovery endpoint and update user status handling">
-      <option name="closed" value="true" />
-      <created>1744672355228</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1744672355228</updated>
-    </task>
-    <task id="LOCAL-00006" summary="SCRUM- 64 - feat: implement global exception handling and user-related DTOs for improved error management">
-      <option name="closed" value="true" />
-      <created>1744846484991</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1744846484991</updated>
-    </task>
-    <task id="LOCAL-00007" summary="SCRUM- 64 - feat: implement JWT authentication and authorization with global exception handling">
-      <option name="closed" value="true" />
-      <created>1744850316829</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1744850316829</updated>
-    </task>
-    <task id="LOCAL-00008" summary="SCRUM- 64 feat: update role handling and improve security configurations in user management">
-      <option name="closed" value="true" />
-      <created>1744856134815</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1744856134815</updated>
-    </task>
-    <task id="LOCAL-00009" summary="SCRUM-64 feat: update JWT authentication error handling and refine role management in user entity">
-      <option name="closed" value="true" />
-      <created>1745011424757</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1745011424757</updated>
-    </task>
-    <task id="LOCAL-00010" summary="SCRUM-64 - hotfix: deleted unused files">
-      <option name="closed" value="true" />
-      <created>1745016712748</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1745016712748</updated>
-    </task>
-    <task id="LOCAL-00011" summary="hotfix-feat-SCRUM-64-(AuthController): enable CORS support for authentication endpoints">
-      <option name="closed" value="true" />
-      <created>1745362770750</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1745362770750</updated>
-    </task>
-    <task id="LOCAL-00012" summary="SCRUM-76 - feat(FatoEficienciaUserStory): add endpoint to retrieve average time per project with optional user filter">
-      <option name="closed" value="true" />
-      <created>1745365874258</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1745365874258</updated>
-    </task>
-    <task id="LOCAL-00013" summary="SCRUM-76 - feat(FatoEficienciaUserStory): add unit tests for average time retrieval endpoint with user filtering">
-      <option name="closed" value="true" />
-      <created>1745366290417</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1745366290417</updated>
-    </task>
-    <task id="LOCAL-00014" summary="SCRUM-76 -feat(FatoEficienciaUserStory): enhance project average time retrieval with optional user filtering">
-      <option name="closed" value="true" />
-      <created>1745439508293</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1745439508293</updated>
-    </task>
-    <task id="LOCAL-00015" summary="SCRUM-76 -feat(FatoEficienciaUserStory): add unit tests for project average time retrieval with user filtering">
-      <option name="closed" value="true" />
-      <created>1745440068568</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1745440068568</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,41 +163,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="SCRUM-64 - feat:implemented spring security and security methods" />
-    <MESSAGE value="SCRUM-64 - feat: add AuthorizationService and update Role and Usuario for Spring Security integration" />
-    <MESSAGE value="SCRUM-64 - feat(AuthorizationService): implement loadUserByEmail and loadUserByUsername methods for Spring Security integration" />
-    <MESSAGE value="SCRUM- 64 -feat(AuthorizationService): remove loadUserByEmail method and update password handling for Spring Security" />
-    <MESSAGE value="SCRUM- 64 - feat(AuthController): add password recovery endpoint and update user status handling" />
-    <MESSAGE value="SCRUM- 64 - feat: implement global exception handling and user-related DTOs for improved error management" />
-    <MESSAGE value="SCRUM- 64 - feat: implement JWT authentication and authorization with global exception handling" />
-    <MESSAGE value="SCRUM- 64 feat: update role handling and improve security configurations in user management" />
-    <MESSAGE value="SCRUM-64 feat: update JWT authentication error handling and refine role management in user entity" />
-    <MESSAGE value="SCRUM-64 - hotfix: deleted unused files" />
-    <MESSAGE value="hotfix-feat-SCRUM-64-(AuthController): enable CORS support for authentication endpoints" />
-    <MESSAGE value="SCRUM-76 - feat(FatoEficienciaUserStory): add endpoint to retrieve average time per project with optional user filter" />
-    <MESSAGE value="SCRUM-76 - feat(FatoEficienciaUserStory): add unit tests for average time retrieval endpoint with user filtering" />
-    <MESSAGE value="SCRUM-76 -feat(FatoEficienciaUserStory): enhance project average time retrieval with optional user filtering" />
-    <MESSAGE value="SCRUM-76 -feat(FatoEficienciaUserStory): add unit tests for project average time retrieval with user filtering" />
-    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-76 -feat(FatoEficienciaUserStory): add unit tests for project average time retrieval with user filtering" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/stratify$UserStoryTagServiceTest.ic" NAME="UserStoryTagServiceTest Coverage Results" MODIFIED="1745368057247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>com.quantum.stratify.services.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/stratify$FatoUserStoryTemporaisServiceTest.ic" NAME="FatoUserStoryTemporaisServiceTest Coverage Results" MODIFIED="1745367992927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>com.quantum.stratify.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/stratify$UsuarioServiceTest.ic" NAME="UsuarioServiceTest Coverage Results" MODIFIED="1745368064633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>com.quantum.stratify.services.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/stratify$FatoUserStoryTemporaisServiceTest__1_.ic" NAME="FatoUserStoryTemporaisServiceTest (1) Coverage Results" MODIFIED="1745368033961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>com.quantum.stratify.services.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/stratify$ProjetoServiceTest.ic" NAME="ProjetoServiceTest Coverage Results" MODIFIED="1745368048345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>com.quantum.stratify.services.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/stratify$UserStoryServiceTest.ic" NAME="UserStoryServiceTest Coverage Results" MODIFIED="1745368009337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>com.quantum.stratify.*</FILTER>
-    </SUITE>
+    <MESSAGE value="SCRUM-69 - feat(AuthController): update response status and include user ID in response DTO" />
+    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-69 - feat(AuthController): update response status and include user ID in response DTO" />
   </component>
 </project>

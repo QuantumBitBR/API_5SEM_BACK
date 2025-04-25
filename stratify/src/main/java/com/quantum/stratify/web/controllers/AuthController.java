@@ -44,7 +44,7 @@ public class AuthController {
         log.info("Processo de autenticação pelo login {}", dto.getEmail());
 
         try {
-            // Primeiro, recuperar o usuário
+            // Primeiro, recuperar o usuario
             Optional<Usuario> optionalUsuario = detailsService.getUsuarioByEmail(dto.getEmail());
 
             if (optionalUsuario.isEmpty()) {
@@ -64,8 +64,8 @@ public class AuthController {
 
             if (usuario.isRequireReset()) {
                 return ResponseEntity
-                        .status(HttpStatus.UNAUTHORIZED)
-                        .body(new ErrorMessage(request, HttpStatus.UNAUTHORIZED, "Necessário alterar senha. contate o administrador."));
+                        .status(HttpStatus.FORBIDDEN)
+                        .body(new ErrorMessage(request, HttpStatus.FORBIDDEN, "Necessário alterar senha. contate o administrador."));
             }
 
             // Realiza a autenticação
@@ -76,7 +76,7 @@ public class AuthController {
 
             JwtToken token = detailsService.getTokenAuthenticated(dto.getEmail());
 
-            return ResponseEntity.ok(new UsuarioResponseDto(token.getToken(), usuario.isRequireReset(), usuario.isEnabled() ,usuario.getRole().name()));
+            return ResponseEntity.ok(new UsuarioResponseDto(usuario.getId(), token.getToken(), usuario.isRequireReset(), usuario.isEnabled() ,usuario.getRole().name()));
 
         } catch (AuthenticationException ex) {
             log.warn("Bad Credentials from username '{}'", dto.getEmail());
