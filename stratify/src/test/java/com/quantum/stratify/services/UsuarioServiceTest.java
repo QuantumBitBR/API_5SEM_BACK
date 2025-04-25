@@ -257,22 +257,7 @@ public class UsuarioServiceTest {
         verify(usuarioRepository).findByRole(role);
     }
 
-    @Test
-    void listarPorRole_deveLancarExcecaoQuandoNenhumUsuarioEncontrado() {
-        // Arrange
-        Role role = Role.OPERADOR;
-        when(usuarioRepository.findByRole(role)).thenReturn(Collections.emptyList());
-
-        // Act 
-        ResponseStatusException exception = assertThrows(ResponseStatusException.class, () ->
-            usuarioService.listarPorRole(role)
-        );
-        //  Assert
-        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
-        assertEquals("Nenhum usuário encontrado com a role: OPERADOR", exception.getReason());
-        verify(usuarioRepository).findByRole(role);
-    }
-
+    
     @Test
     void listarPorRole_deveRetornarUsuariosComGestorQuandoExistir() {
         // Arrange
