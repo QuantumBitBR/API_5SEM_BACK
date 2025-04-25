@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67053b76-9f87-4a73-a9e8-18d9e63b7b8d" name="Changes" comment="SCRUM-69 - feat(AuthController): update response status and include user ID in response DTO">
+    <list default="true" id="67053b76-9f87-4a73-a9e8-18d9e63b7b8d" name="Changes" comment="SCRUM-69 - feat(AuthController): update response status and removed unused validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/UsuarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/web/controllers/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/web/controllers/AuthControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +68,8 @@
     "git-widget-placeholder": "SCRUM-69-Criação-de-requisição-http-de-habilitar-desabilitar-usuário",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/caio.sousa/OneDrive - GEO PIXEL GEOTECNOLOGIAS CONSULT. E SERVIÇOS LTDA/Documentos/CAIOS/API_5SEM_BACK/stratify",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
@@ -137,12 +140,15 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
-        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="67053b76-9f87-4a73-a9e8-18d9e63b7b8d" name="Changes" comment="SCRUM-69 - feat(AuthController): update response status and include user ID in response DTO" />
@@ -151,8 +157,17 @@
       <option name="presentableId" value="Default" />
       <updated>1745545061166</updated>
       <workItem from="1745545063980" duration="222000" />
-      <workItem from="1745610827731" duration="298000" />
+      <workItem from="1745610827731" duration="1862000" />
     </task>
+    <task id="LOCAL-00001" summary="SCRUM-69 - feat(AuthController): update response status and removed unused validation">
+      <option name="closed" value="true" />
+      <created>1745611540876</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745611540876</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +186,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SCRUM-69 - feat(AuthController): update response status and include user ID in response DTO" />
-    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-69 - feat(AuthController): update response status and include user ID in response DTO" />
+    <MESSAGE value="SCRUM-69 - feat(AuthController): update response status and removed unused validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-69 - feat(AuthController): update response status and removed unused validation" />
   </component>
 </project>

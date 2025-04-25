@@ -106,7 +106,7 @@ public class UsuarioController {
     })
     public ResponseEntity<String> resetarSenha(@Valid @RequestBody ResetSenhaDTO dto) {
         usuarioService.resetarSenha(dto.getIdUsuario(), dto.getNovaSenha());
-        return ResponseEntity.ok("Senha resetada com sucesso.");
+        return ResponseEntity.ok( "Senha resetada com sucesso. id:" + dto.getIdUsuario());
     }
 
 
