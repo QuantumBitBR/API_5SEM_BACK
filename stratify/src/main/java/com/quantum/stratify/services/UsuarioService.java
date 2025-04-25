@@ -1,6 +1,7 @@
 package com.quantum.stratify.services;
 
 
+import java.util.EnumSet;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,6 @@ import com.quantum.stratify.repositories.UsuarioRepository;
 import com.quantum.stratify.web.dtos.AtribuirGestor;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
 import com.quantum.stratify.web.dtos.UsuarioPorRoleDTO;
-import com.quantum.stratify.enums.Role;
 import com.quantum.stratify.web.exceptions.EntityNotFoundException;
 import com.quantum.stratify.web.exceptions.PasswordInvalidException;
 import com.quantum.stratify.web.exceptions.UsernameUniqueViolationException;
@@ -130,14 +130,15 @@ public class UsuarioService {
 
     
      public List<UsuarioPorRoleDTO> listarPorRole(Role role) {
-          List<UsuarioPorRoleDTO> usuarios = usuarioRepository.findByRole(role);
+  
+    if (role == null || !EnumSet.allOf(Role.class).contains(role)) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Role inválida: " + role);
+    }
     
-            if (usuarios.isEmpty()) {
-             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum usuário encontrado com a role: " + role );
-      }
-    
-          return usuarios;
+   
+    return usuarioRepository.findByRole(role);
 }
+
 
 
     
