@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="67053b76-9f87-4a73-a9e8-18d9e63b7b8d" name="Changes" comment="SCRUM-69 - feat(AuthController): update response status and include user ID in response DTO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/UsuarioRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/dtos/UsuarioResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/web/controllers/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/web/controllers/AuthControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,21 +24,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Caio-sousaFatec"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Caio-sousaFatec&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/QuantumBitBR/API_5SEM_BACK.git",
-    "accountId": "ae74f21c-3b8e-42f2-8318-362227bcddf5"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/QuantumBitBR/API_5SEM_BACK.git&quot;,
+    &quot;accountId&quot;: &quot;ae74f21c-3b8e-42f2-8318-362227bcddf5&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2wCUTbRvA3gepFBTRLC2gLcc5Dv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -61,13 +66,14 @@
     "Spring Boot.StratifyApplication.executor": "Run",
     "git-widget-placeholder": "SCRUM-69-Criação-de-requisição-http-de-habilitar-desabilitar-usuário",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/caio.sousa/OneDrive - GEO PIXEL GEOTECNOLOGIAS CONSULT. E SERVIÇOS LTDA/Documentos/CAIOS/API_5SEM_BACK/stratify",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.AuthControllerTest">
+  <component name="RunManager" selected="Spring Boot.StratifyApplication">
     <configuration name="StratifyApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -145,6 +151,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745545061166</updated>
       <workItem from="1745545063980" duration="222000" />
+      <workItem from="1745610827731" duration="298000" />
     </task>
     <servers />
   </component>

@@ -62,12 +62,6 @@ public class AuthController {
                         .body(new ErrorMessage(request, HttpStatus.UNAUTHORIZED, "Conta desativada. Contate o administrador."));
             }
 
-            if (usuario.isRequireReset()) {
-                return ResponseEntity
-                        .status(HttpStatus.FORBIDDEN)
-                        .body(new ErrorMessage(request, HttpStatus.FORBIDDEN, "Necessário alterar senha. contate o administrador."));
-            }
-
             // Realiza a autenticação
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getSenha());
