@@ -3,6 +3,7 @@ package com.quantum.stratify.services;
 
 import java.util.EnumSet;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,11 +25,13 @@ import com.quantum.stratify.web.exceptions.UsernameUniqueViolationException;
 @Service
 public class UsuarioService {
 
+    private final EmailService emailService;
     private final UsuarioRepository usuarioRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
+    public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
     private final PasswordEncoder passwordEncoder;
@@ -151,7 +154,29 @@ public class UsuarioService {
     }
     usuario.setRole(novaRole);
     return usuarioRepository.save(usuario);
+   }
+
+   @Transactional
+    public void resetarSenhaAdmin(Long idUsuario) {
+    Usuario usuario = buscarPorId(idUsuario);
+
+    String novaSenha = gerarSenhaAleatoria();
+    String senhaCriptografada = passwordEncoder.encode(novaSenha);
+    
+    usuario.setSenha(senhaCriptografada);
+    usuario.setRequireReset(true);
+
+    usuarioRepository.save(usuario);
+
+    emailService.enviarEmailSenhaResetada(usuario.getEmail(), novaSenha);
     }
+
+    private String gerarSenhaAleatoria() {
+        return UUID.randomUUID().toString()
+                .replace("-", "")
+                .substring(0, 10); // 10 caracteres aleatórios
+}
+
 
 }
 
