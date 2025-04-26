@@ -1,7 +1,9 @@
 package com.quantum.stratify.services;
 
 
+import java.util.EnumSet;
 import java.util.List;
+import java.util.UUID;
 
 import com.quantum.stratify.web.dtos.UsuarioInfoDTO;
 import org.springframework.http.HttpStatus;
@@ -15,18 +17,22 @@ import com.quantum.stratify.enums.Role;
 import com.quantum.stratify.repositories.UsuarioRepository;
 import com.quantum.stratify.web.dtos.AtribuirGestor;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
+import com.quantum.stratify.web.dtos.UsuarioPorRoleDTO;
 import com.quantum.stratify.web.exceptions.EntityNotFoundException;
 import com.quantum.stratify.web.exceptions.PasswordInvalidException;
 import com.quantum.stratify.web.exceptions.UsernameUniqueViolationException;
 
+
 @Service
 public class UsuarioService {
 
+    private final EmailService emailService;
     private final UsuarioRepository usuarioRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
+    public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
     private final PasswordEncoder passwordEncoder;
@@ -127,6 +133,19 @@ public class UsuarioService {
     }
 
     
+     public List<UsuarioPorRoleDTO> listarPorRole(Role role) {
+  
+    if (role == null || !EnumSet.allOf(Role.class).contains(role)) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Role inválida: " + role);
+    }
+    
+   
+    return usuarioRepository.findByRole(role);
+}
+
+
+
+    
     @Transactional
     public Usuario alterarRole(Long idUsuario, Role novaRole) {
     Usuario usuario = usuarioRepository.findById(idUsuario)
@@ -136,6 +155,21 @@ public class UsuarioService {
     }
     usuario.setRole(novaRole);
     return usuarioRepository.save(usuario);
+   }
+
+   @Transactional
+    public void resetarSenhaAdmin(Long idUsuario) {
+    Usuario usuario = buscarPorId(idUsuario);
+
+    String novaSenha = gerarSenhaAleatoria();
+    String senhaCriptografada = passwordEncoder.encode(novaSenha);
+    
+    usuario.setSenha(senhaCriptografada);
+    usuario.setRequireReset(true);
+
+    usuarioRepository.save(usuario);
+
+    emailService.enviarEmailSenhaResetada(usuario.getEmail(), novaSenha);
     }
 
     @Transactional(readOnly = true)
@@ -151,6 +185,12 @@ public class UsuarioService {
                 ))
                 .toList();
     }
+
+    private String gerarSenhaAleatoria() {
+        return UUID.randomUUID().toString()
+                .replace("-", "")
+                .substring(0, 10); // 10 caracteres aleatórios
+}
 
 
 }
