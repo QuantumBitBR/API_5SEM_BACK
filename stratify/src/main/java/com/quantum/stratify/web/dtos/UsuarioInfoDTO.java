@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 public class UsuarioInfoDTO {
     private Long id;
     private String email;
-    private Long gestorId;
+    private String gestorNome;
     private Role role;
     private boolean requireReset;
     private Boolean isEnable;
 }
+
 

@@ -144,13 +144,14 @@ public class UsuarioService {
                 .map(u -> new UsuarioInfoDTO(
                         u.getId(),
                         u.getEmail(),
-                        u.getGestor() != null ? u.getGestor().getId() : null,
+                        u.getGestor() != null ? u.getGestor().getNome() : null,  // aqui
                         u.getRole(),
-                        u.isRequireReset(),       // getter gerado por Lombok em Usuario
-                        u.getIsEnable()           // getter existente em Usuario :contentReference[oaicite:0]{index=0}&#8203;:contentReference[oaicite:1]{index=1}
+                        u.isRequireReset(),
+                        u.getIsEnable()
                 ))
                 .toList();
     }
+
 
 }
 
