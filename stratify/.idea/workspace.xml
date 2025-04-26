@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="369e0319-dfc7-4536-a802-fc4e6c020e03" name="Changes" comment="SCRUM-69 feat(list user): altered service to return gestor name, instead id">
+    <list default="true" id="369e0319-dfc7-4536-a802-fc4e6c020e03" name="Changes" comment="SCRUM-69 - feat(UsuarioController): add endpoint to set require reset for user">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/UsuarioService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/web/controllers/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/quantum/stratify/web/controllers/AuthControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +53,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.AuthControllerTest.deveRetornarNecessidadeDeAlteracaoDeSenha.executor": "Run",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.UsuarioServiceTest.executor": "Run",
+    "Maven.stratify [compiler:testCompile].executor": "Run",
+    "Maven.stratify [test].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -76,7 +81,59 @@
     ]
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn compiler:testCompile" />
+      <command value="mvn test" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.AuthControllerTest.deveRetornarNecessidadeDeAlteracaoDeSenha">
+    <configuration name="AuthControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="stratify" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.quantum.stratify.web.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.AuthControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthControllerTest.deveRetornarNecessidadeDeAlteracaoDeSenha" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="stratify" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.quantum.stratify.web.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.quantum.stratify.web.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.web.controllers.AuthControllerTest" />
+      <option name="METHOD_NAME" value="deveRetornarNecessidadeDeAlteracaoDeSenha" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsuarioServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="stratify" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.quantum.stratify.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.quantum.stratify.services" />
+      <option name="MAIN_CLASS_NAME" value="com.quantum.stratify.services.UsuarioServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StratifyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="stratify" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.quantum.stratify.StratifyApplication" />
@@ -84,6 +141,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AuthControllerTest.deveRetornarNecessidadeDeAlteracaoDeSenha" />
+        <item itemvalue="JUnit.AuthControllerTest" />
+        <item itemvalue="JUnit.UsuarioServiceTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -101,7 +165,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1745631247086</updated>
-      <workItem from="1745631248172" duration="7754000" />
+      <workItem from="1745631248172" duration="8370000" />
     </task>
     <task id="LOCAL-00001" summary="SCRUM-69 feat(list user): created list endpoint">
       <option name="closed" value="true" />
@@ -119,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745638755181</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="SCRUM-69 - feat(UsuarioController): add endpoint to set require reset for user">
+      <option name="closed" value="true" />
+      <created>1745684177807</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745684177807</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +200,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SCRUM-69 feat(list user): created list endpoint" />
     <MESSAGE value="SCRUM-69 feat(list user): altered service to return gestor name, instead id" />
-    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-69 feat(list user): altered service to return gestor name, instead id" />
+    <MESSAGE value="SCRUM-69 - feat(UsuarioController): add endpoint to set require reset for user" />
+    <option name="LAST_COMMIT_MESSAGE" value="SCRUM-69 - feat(UsuarioController): add endpoint to set require reset for user" />
   </component>
 </project>

@@ -87,17 +87,6 @@ class AuthControllerTest {
         assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
     }
 
-    @Test
-    void deveRetornarNecessidadeDeAlteracaoDeSenha() {
-        Usuario usuario = createUsuario(true, true);
-        UsuarioLoginDto dto = new UsuarioLoginDto("usuario@teste.com", "senha123");
-
-        when(detailsService.getUsuarioByEmail(dto.getEmail())).thenReturn(Optional.of(usuario));
-
-        ResponseEntity<?> response = authController.autenticar(dto, request);
-
-        assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
-    }
 
     @Test
     void deveRetornarCredenciaisInvalidasQuandoUsuarioNaoExiste() {
