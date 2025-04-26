@@ -2,7 +2,6 @@ package com.quantum.stratify.web.controllers;
 
 import java.util.List;
 
-import com.quantum.stratify.web.dtos.ResetSenhaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quantum.stratify.entities.Usuario;
+import com.quantum.stratify.enums.Role;
 import com.quantum.stratify.services.UsuarioService;
 import com.quantum.stratify.web.dtos.AlterarRoleDTO;
 import com.quantum.stratify.web.dtos.AtribuirGestor;
-import com.quantum.stratify.web.dtos.UsuarioPorRoleDTO;
-import com.quantum.stratify.enums.Role;
+import com.quantum.stratify.web.dtos.ResetSenhaAdminDTO;
+import com.quantum.stratify.web.dtos.ResetSenhaDTO;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
+import com.quantum.stratify.web.dtos.UsuarioPorRoleDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -124,5 +125,15 @@ public class UsuarioController {
         return ResponseEntity.ok("Senha resetada com sucesso.");
     }
 
+    @PostMapping("/admin-reset-senha")
+    @Operation(summary = "Resetar senha de um usuário (admin)", description = "Reseta a senha do usuário, gera nova senha e envia por e-mail.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Senha resetada e enviada por e-mail"),
+        @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    public ResponseEntity<String> resetarSenhaAdmin(@Valid @RequestBody ResetSenhaAdminDTO dto) {
+    usuarioService.resetarSenhaAdmin(dto.getIdUsuario());
+    return ResponseEntity.ok("Senha resetada e enviada com sucesso.");
+    }
 
 }
