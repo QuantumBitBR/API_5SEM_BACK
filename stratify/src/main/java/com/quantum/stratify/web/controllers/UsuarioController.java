@@ -2,7 +2,7 @@ package com.quantum.stratify.web.controllers;
 
 import java.util.List;
 
-import com.quantum.stratify.web.dtos.ResetSenhaDTO;
+import com.quantum.stratify.web.dtos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.quantum.stratify.entities.Usuario;
 import com.quantum.stratify.services.UsuarioService;
-import com.quantum.stratify.web.dtos.AlterarRoleDTO;
-import com.quantum.stratify.web.dtos.AtribuirGestor;
-import com.quantum.stratify.web.dtos.UsuarioDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -107,6 +104,12 @@ public class UsuarioController {
     public ResponseEntity<String> resetarSenha(@Valid @RequestBody ResetSenhaDTO dto) {
         usuarioService.resetarSenha(dto.getIdUsuario(), dto.getNovaSenha());
         return ResponseEntity.ok( "Senha resetada com sucesso. id:" + dto.getIdUsuario());
+    }
+    @GetMapping("/listar")
+    @Operation(summary = "Listar usuários (info reduzida)")
+    @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso")
+    public ResponseEntity<List<UsuarioInfoDTO>> listarUsuariosInfo() {
+        return ResponseEntity.ok(usuarioService.listarUsuariosInfo());
     }
 
 

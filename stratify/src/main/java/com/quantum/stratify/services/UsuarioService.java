@@ -3,6 +3,7 @@ package com.quantum.stratify.services;
 
 import java.util.List;
 
+import com.quantum.stratify.web.dtos.UsuarioInfoDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -136,6 +137,21 @@ public class UsuarioService {
     usuario.setRole(novaRole);
     return usuarioRepository.save(usuario);
     }
+
+    @Transactional(readOnly = true)
+    public List<UsuarioInfoDTO> listarUsuariosInfo() {
+        return usuarioRepository.findAll().stream()
+                .map(u -> new UsuarioInfoDTO(
+                        u.getId(),
+                        u.getEmail(),
+                        u.getGestor() != null ? u.getGestor().getId() : null,
+                        u.getRole(),
+                        u.isRequireReset(),       // getter gerado por Lombok em Usuario
+                        u.getIsEnable()           // getter existente em Usuario :contentReference[oaicite:0]{index=0}&#8203;:contentReference[oaicite:1]{index=1}
+                ))
+                .toList();
+    }
+
 }
 
 
