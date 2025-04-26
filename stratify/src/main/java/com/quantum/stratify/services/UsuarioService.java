@@ -70,12 +70,14 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
         usuario.setIsEnable(true);
+        usuario.setRequireReset(true);
         usuarioRepository.save(usuario);
     }
     public void desativarUsuario(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
         usuario.setIsEnable(false);
+        usuario.setRequireReset(true);
         usuarioRepository.save(usuario);
     }
 
@@ -136,6 +138,14 @@ public class UsuarioService {
     }
     usuario.setRole(novaRole);
     return usuarioRepository.save(usuario);
+    }
+
+    @Transactional
+    public void setRequireReset(Long idUsuario, Boolean requireReset) {
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+        usuario.setRequireReset(requireReset);
+        usuarioRepository.save(usuario);
     }
 
     @Transactional(readOnly = true)

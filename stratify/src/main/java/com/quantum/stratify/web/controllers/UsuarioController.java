@@ -112,5 +112,15 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.listarUsuariosInfo());
     }
 
+    @PostMapping("/set-require-reset")
+    @Operation(summary = "Set require reset de um usuário")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Require reset atualizado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+    })
+    public ResponseEntity<Void> setRequireReset(@RequestBody UsuarioResponseDto dto) {
+        usuarioService.setRequireReset(dto.getId(), dto.isRequireReset());
+        return ResponseEntity.ok().build();
+    }
 
 }
