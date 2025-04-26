@@ -2,6 +2,8 @@ package com.quantum.stratify.web.controllers;
 
 import java.util.List;
 
+import com.quantum.stratify.web.dtos.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,78 +42,74 @@ public class UsuarioController {
     @PutMapping("/{id}/ativar")
     @Operation(summary = "Ativar usuário", description = "Ativa um usuário com base no ID")
     @ApiResponses({
-    @ApiResponse(responseCode = "204", description = "Usuário ativado com sucesso"),
-    @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+            @ApiResponse(responseCode = "204", description = "Usuário ativado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
     })
     public ResponseEntity<Void> ativarUsuario(@PathVariable Long id) {
-    usuarioService.ativarUsuario(id);
-    return ResponseEntity.noContent().build();
+        usuarioService.ativarUsuario(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}/desativar")
     @Operation(summary = "Desativar usuário", description = "Desativa um usuário com base no ID")
     @ApiResponses({
-        @ApiResponse(responseCode = "204", description = "Usuário desativado com sucesso"),
-        @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+            @ApiResponse(responseCode = "204", description = "Usuário desativado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
     })
     public ResponseEntity<Void> desativarUsuario(@PathVariable Long id) {
-    usuarioService.desativarUsuario(id);
-    return ResponseEntity.noContent().build();
+        usuarioService.desativarUsuario(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/lideradosgestor")
     @Operation(summary = "Atribui usuários liderados a um gestor")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Usuários atribuídos com sucesso"),
-        @ApiResponse(responseCode = "404", description = "Gestor ou algum usuário não encontrado")
+            @ApiResponse(responseCode = "200", description = "Usuários atribuídos com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Gestor ou algum usuário não encontrado")
     })
     public ResponseEntity<Void> atribuirLiderados(
-        @RequestBody AtribuirGestor dto
-    ) {
-    usuarioService.atribuirLideradosAoGestor(dto);
-    return ResponseEntity.ok().build();
+            @RequestBody AtribuirGestor dto) {
+        usuarioService.atribuirLideradosAoGestor(dto);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{idUsuario}")
     @Operation(summary = "Alterar Role de um usuário", description = "Atualiza a role do usuário")
     @ApiResponses({
-    @ApiResponse(responseCode = "200", description = "Role alterada com sucesso"),
-    @ApiResponse(responseCode = "400", description = "Dados inválidos"),
-    @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+            @ApiResponse(responseCode = "200", description = "Role alterada com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Dados inválidos"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
     })
     public ResponseEntity<UsuarioDTO> alterarRoleUsuario(
-        @PathVariable Long idUsuario,
-        @Valid @RequestBody AlterarRoleDTO dto) {
+            @PathVariable Long idUsuario,
+            @Valid @RequestBody AlterarRoleDTO dto) {
 
-    Usuario atualizado = usuarioService.alterarRole(idUsuario, dto.getRole());
-    return ResponseEntity.ok(new UsuarioDTO(atualizado.getId(), atualizado.getNome()));
+        Usuario atualizado = usuarioService.alterarRole(idUsuario, dto.getRole());
+        return ResponseEntity.ok(new UsuarioDTO(atualizado.getId(), atualizado.getNome()));
     }
 
     @GetMapping("filtrarprojetogestor")
     @Operation(summary = "Buscar usuários por projeto e/ou gestor")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso")
+            @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso")
     })
     public ResponseEntity<List<UsuarioDTO>> filtrarUsuarios(
-        @RequestParam(required = false) Long idProjeto,
-        @RequestParam(required = false) Long idGestor
-    ) {
+            @RequestParam(required = false) Long idProjeto,
+            @RequestParam(required = false) Long idGestor) {
         List<UsuarioDTO> usuarios = usuarioService.buscarUsuariosPorProjetoEGestor(idProjeto, idGestor);
         return ResponseEntity.ok(usuarios);
     }
-    
+
     @GetMapping("/por-role/{role}")
-    @Operation(summary = "Listar usuários por role", 
-          description = "Filtra usuários pelo tipo de perfil (USER, GESTOR, OPERADOR, ADMIN)")
+    @Operation(summary = "Listar usuários por role", description = "Filtra usuários pelo tipo de perfil (USER, GESTOR, OPERADOR, ADMIN)")
     @ApiResponses({
-    @ApiResponse(responseCode = "200", description = "Lista de usuários retornada"),
-    @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado para esta role")
-      })
+            @ApiResponse(responseCode = "200", description = "Lista de usuários retornada"),
+            @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado para esta role")
+    })
     public ResponseEntity<List<UsuarioPorRoleDTO>> listarPorRole(
-        @PathVariable Role role) {
-    return ResponseEntity.ok(usuarioService.listarPorRole(role));
+            @PathVariable Role role) {
+        return ResponseEntity.ok(usuarioService.listarPorRole(role));
     }
-    
 
     @PutMapping("/resetar-senha")
     @Operation(summary = "Resetar senha de um usuário")
@@ -125,15 +123,22 @@ public class UsuarioController {
         return ResponseEntity.ok("Senha resetada com sucesso.");
     }
 
+    @GetMapping("/listar")
+    @Operation(summary = "Listar usuários (info reduzida)")
+    @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso")
+    public ResponseEntity<List<UsuarioInfoDTO>> listarUsuariosInfo() {
+        return ResponseEntity.ok(usuarioService.listarUsuariosInfo());
+    }
+
     @PostMapping("/admin-reset-senha")
     @Operation(summary = "Resetar senha de um usuário (admin)", description = "Reseta a senha do usuário, gera nova senha e envia por e-mail.")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Senha resetada e enviada por e-mail"),
-        @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
+            @ApiResponse(responseCode = "200", description = "Senha resetada e enviada por e-mail"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
     })
     public ResponseEntity<String> resetarSenhaAdmin(@Valid @RequestBody ResetSenhaAdminDTO dto) {
-    usuarioService.resetarSenhaAdmin(dto.getIdUsuario());
-    return ResponseEntity.ok("Senha resetada e enviada com sucesso.");
+        usuarioService.resetarSenhaAdmin(dto.getIdUsuario());
+        return ResponseEntity.ok("Senha resetada e enviada com sucesso.");
     }
 
 }

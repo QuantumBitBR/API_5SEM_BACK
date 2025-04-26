@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
 
+import com.quantum.stratify.web.dtos.UsuarioInfoDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -75,12 +76,14 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
         usuario.setIsEnable(true);
+        usuario.setRequireReset(true);
         usuarioRepository.save(usuario);
     }
     public void desativarUsuario(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
         usuario.setIsEnable(false);
+        usuario.setRequireReset(true);
         usuarioRepository.save(usuario);
     }
 
@@ -169,6 +172,28 @@ public class UsuarioService {
     usuarioRepository.save(usuario);
 
     emailService.enviarEmailSenhaResetada(usuario.getEmail(), novaSenha);
+    }
+
+    @Transactional
+    public void setRequireReset(Long idUsuario, Boolean requireReset) {
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
+        usuario.setRequireReset(requireReset);
+        usuarioRepository.save(usuario);
+    }
+
+    @Transactional(readOnly = true)
+    public List<UsuarioInfoDTO> listarUsuariosInfo() {
+        return usuarioRepository.findAll().stream()
+                .map(u -> new UsuarioInfoDTO(
+                        u.getId(),
+                        u.getEmail(),
+                        u.getGestor() != null ? u.getGestor().getNome() : null,  // aqui
+                        u.getRole(),
+                        u.isRequireReset(),
+                        u.getIsEnable()
+                ))
+                .toList();
     }
 
     private String gerarSenhaAleatoria() {
