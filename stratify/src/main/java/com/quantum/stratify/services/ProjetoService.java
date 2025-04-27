@@ -27,6 +27,10 @@ public class ProjetoService {
         }).collect(Collectors.toList());
     }
 
+    public List<ProjetoDTO> buscarProjetosPorUsuarios(Long idUsuario){
+        return projetoRepository.findProjetoByUsuarioId(idUsuario);
+    }
+
 }
 
 

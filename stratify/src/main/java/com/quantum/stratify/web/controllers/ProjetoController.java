@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quantum.stratify.services.ProjetoService;
@@ -34,4 +35,14 @@ public class ProjetoController {
     public List<ProjetoDTO> getAllProjetos() {
         return projetoService.getAll();
     }
+
+    @GetMapping("/porUsuario")
+    @Operation(summary = "Get project summaries", description = "Returns a list of projects filtered by optional user ID")
+    @ApiResponses( value = {
+        @ApiResponse(responseCode = "200", description = "List of project summaries returned succesfully")
+    })
+    public List<ProjetoDTO> getProjetosUsuario(
+        @RequestParam(name = "idUsuario", required = false) Long idUsuario) {
+            return projetoService.buscarProjetosPorUsuarios(idUsuario);
+        }
 }
