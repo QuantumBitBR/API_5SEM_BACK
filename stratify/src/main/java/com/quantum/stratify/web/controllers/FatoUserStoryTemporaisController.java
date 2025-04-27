@@ -35,7 +35,7 @@ public class FatoUserStoryTemporaisController {
         @ApiResponse(responseCode = "500", description = "Internal server error")})
     @GetMapping("/projeto")
     public List<ResponseQuantidadeCardsByPeriodo> getUserStoriesByPeriodoAndUser(
-            @RequestParam
+            @RequestParam(required = false)
             @Parameter(description = "Project ID to filter", required = true)
             Long idProjeto,
             
