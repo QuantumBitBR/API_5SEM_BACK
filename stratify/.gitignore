@@ -33,3 +33,5 @@ build/
 .vscode/
 external.properties
 stratify/.idea/workspace.xml
+
+liquibase.properties
