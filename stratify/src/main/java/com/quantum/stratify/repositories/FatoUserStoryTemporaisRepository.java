@@ -25,4 +25,7 @@ public interface FatoUserStoryTemporaisRepository extends JpaRepository<FatoUser
             "WHERE f.usuario = :usuario AND f.projeto = :projeto")
     boolean existsByUsuarioAndProjeto(Usuario usuario, Projeto projeto);
 
+    @Query("SELECT f FROM FatoEficienciaUserStory f")
+    List<FatoUserStoryTemporais> findAllFromProject();
+
 }
