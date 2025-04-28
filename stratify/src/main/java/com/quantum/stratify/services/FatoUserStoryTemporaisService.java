@@ -30,28 +30,36 @@ public class FatoUserStoryTemporaisService {
 
     public List<ResponseQuantidadeCardsByPeriodo> getUserStoriesByPeriodoAndUser(Long projetoId, Long usuarioId) {
         try {
-            Projeto projeto = projetoService.getById(projetoId);
-            
+            Projeto projeto = null;
+            if(projetoId != null) {
+                projeto = projetoService.getById(projetoId);
+            }
             // Se usuário foi especificado, verifica se existe
             Usuario usuario = null;
             if (usuarioId != null) {
                 usuario = usuarioService.getById(usuarioId);
             }
             
-            List<FatoUserStoryTemporais> resultados;
-            
-            if (usuarioId == null) {
+            List<FatoUserStoryTemporais> resultados = null;
+
+            if (usuarioId ==null && projetoId == null)
+                resultados = fatoUserStoryTemporaisRepository.findAll();
+
+            if (usuarioId == null && projetoId != null) {
                 resultados = fatoUserStoryTemporaisRepository.findByProjeto(projeto);
-            } else {
+            }
+
+            else if (usuarioId != null && projetoId != null) {
                 resultados = fatoUserStoryTemporaisRepository.findByProjetoAndUsuario(projeto, usuario);
             }
-            
+
+
             if (resultados == null || resultados.isEmpty()) {
                 throw new EntityNotFoundException("Nenhum registro de User Stories encontrado para os parâmetros fornecidos");
             }
             
             return agruparResultadosPorPeriodo(resultados);
-            
+
         } catch (Exception e) {
             // Se for uma EntityNotFoundException do projetoService ou usuarioService, relança
             if (e instanceof EntityNotFoundException) {
