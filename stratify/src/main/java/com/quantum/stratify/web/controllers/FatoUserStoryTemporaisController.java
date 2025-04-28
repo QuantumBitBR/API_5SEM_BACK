@@ -37,6 +37,7 @@ public class FatoUserStoryTemporaisController {
     public List<ResponseQuantidadeCardsByPeriodo> getUserStoriesByPeriodoAndUser(
             @RequestParam(required = false)
             @Parameter(description = "Project ID to filter")
+
             Long idProjeto,
             
             @RequestParam(required = false)
