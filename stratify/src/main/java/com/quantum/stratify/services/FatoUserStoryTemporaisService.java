@@ -51,12 +51,10 @@ public class FatoUserStoryTemporaisService {
 
             else if (usuarioId != null && projetoId != null) {
                 resultados = fatoUserStoryTemporaisRepository.findByProjetoAndUsuario(projeto, usuario);
-            }
+            }else if(usuarioId != null && projetoId == null)
+                 resultados = fatoUserStoryTemporaisRepository.findByUsuario(usuario);
 
 
-            if (resultados == null || resultados.isEmpty()) {
-                throw new EntityNotFoundException("Nenhum registro de User Stories encontrado para os parâmetros fornecidos");
-            }
             
             return agruparResultadosPorPeriodo(resultados);
 

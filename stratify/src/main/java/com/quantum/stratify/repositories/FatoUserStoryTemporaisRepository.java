@@ -20,6 +20,10 @@ public interface FatoUserStoryTemporaisRepository extends JpaRepository<FatoUser
             "WHERE f.projeto = :projeto AND f.usuario = :usuario")
     List<FatoUserStoryTemporais> findByProjetoAndUsuario(Projeto projeto, Usuario usuario);
 
+    @Query("SELECT f FROM FatoUserStoryTemporais f " +
+            "WHERE f.usuario = :usuario")
+    List<FatoUserStoryTemporais> findByUsuario(Usuario usuario);
+
     @Query("SELECT CASE WHEN COUNT(f) > 0 THEN true ELSE false END " +
             "FROM FatoUserStoryTemporais f " +
             "WHERE f.usuario = :usuario AND f.projeto = :projeto")
