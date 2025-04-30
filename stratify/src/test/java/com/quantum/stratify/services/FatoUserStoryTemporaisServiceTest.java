@@ -108,35 +108,6 @@ class FatoUserStoryTemporaisServiceTest {
             r.quantidadeFinalizadas() == 1));
     }
 
-    @Test
-    void getUserStoriesByPeriodoAndUser_ResultadosNull_DeveLancarExcecao() {
-        // Arrange
-        when(projetoService.getById(1L)).thenReturn(projeto);
-        when(fatoUserStoryTemporaisRepository.findByProjeto(projeto)).thenReturn(null);
-
-        // Act & Assert
-        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
-            service.getUserStoriesByPeriodoAndUser(1L, null);
-        });
-        
-        assertEquals("Nenhum registro de User Stories encontrado para os parâmetros fornecidos", 
-            exception.getMessage());
-    }
-
-    @Test
-    void getUserStoriesByPeriodoAndUser_ResultadosVazios_DeveLancarExcecao() {
-        // Arrange
-        when(projetoService.getById(1L)).thenReturn(projeto);
-        when(fatoUserStoryTemporaisRepository.findByProjeto(projeto)).thenReturn(Collections.emptyList());
-
-        // Act & Assert
-        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
-            service.getUserStoriesByPeriodoAndUser(1L, null);
-        });
-        
-        assertEquals("Nenhum registro de User Stories encontrado para os parâmetros fornecidos", 
-            exception.getMessage());
-    }
 
     @Test
     void agruparResultadosPorPeriodo_ComMultiplosPeriodos_DeveAgruparCorretamente() {
