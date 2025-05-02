@@ -1,0 +1,19 @@
+
+services:
+  db:
+    image: postgres:latest
+    container_name: database_test
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/main/resources/db/changelog:/V2.0.sql:/docker-entrypoint-initdb.d
+
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
