@@ -119,7 +119,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
     })
     public ResponseEntity<String> resetarSenha(@Valid @RequestBody ResetSenhaDTO dto) {
-        usuarioService.resetarSenha(dto.getIdUsuario(), dto.getNovaSenha());
+     usuarioService.resetarSenha(dto.getIdUsuario(), dto.getNovaSenha());
         return ResponseEntity.ok("Senha resetada com sucesso.");
     }
 

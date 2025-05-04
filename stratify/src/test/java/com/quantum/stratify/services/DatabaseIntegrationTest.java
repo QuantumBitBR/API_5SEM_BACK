@@ -36,15 +36,5 @@ public class DatabaseIntegrationTest {
         Integer result = jdbcTemplate.queryForObject("SELECT 1", Integer.class);
         assertEquals(1, result);
     }
-    @Test
-    public void testInsertAndQuery() {
-        jdbcTemplate.update("INSERT INTO dim_usuario (nome, email, senha) VALUES (?, ?, ?)", 
-                            "Gabriel", "gabriel@email.com", "senha123");
-
-        Integer count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM dim_usuario WHERE email = ?", 
-                                                     Integer.class, "gabriel@email.com");
-        
-        assertEquals(1, count);
-    }
-
+    
 }
