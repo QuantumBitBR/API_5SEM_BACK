@@ -18,7 +18,7 @@ public class UserStoryService {
             @RequestParam(required = false) Long idProjeto,
             @RequestParam(required = false) Long idUsuario) {
         
-        Long total;
+        Long total = 0L;
         
         if (idProjeto != null && idUsuario != null) {
             // Filtro por projeto e usuário
