@@ -1,10 +1,15 @@
 package com.quantum.stratify.services;
 
 import com.quantum.stratify.repositories.UserStoryRepository;
+import com.quantum.stratify.web.dtos.QuantidadeCardsPorSprintDTO;
 import com.quantum.stratify.web.dtos.TotalCardsDTO;
+import com.quantum.stratify.web.exceptions.EntityNotFoundException;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
@@ -35,5 +40,19 @@ public class UserStoryService {
         }
         
         return new TotalCardsDTO(total);
+    }
+
+    public List<QuantidadeCardsPorSprintDTO> getQuantidadeUserStoriesBySprint(Long projetoId, Long usuarioId) {
+    List<Object[]> resultados = userStoryRepository.countBySprintGrouped(projetoId, usuarioId);
+    
+    if (resultados.isEmpty()) {
+        throw new EntityNotFoundException("Nenhuma user story encontrada para os critérios especificados");
+    }
+    
+    return resultados.stream()
+            .map(result -> new QuantidadeCardsPorSprintDTO(
+                (String) result[0], 
+                (Long) result[1]))
+            .collect(Collectors.toList());
     }
 }

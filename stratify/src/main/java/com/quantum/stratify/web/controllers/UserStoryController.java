@@ -14,6 +14,7 @@ import com.quantum.stratify.services.UserStoryService;
 import com.quantum.stratify.services.UserStoryStatusService;
 import com.quantum.stratify.services.UserStoryTagService;
 import com.quantum.stratify.web.dtos.PercentualStatusUsuarioDTO;
+import com.quantum.stratify.web.dtos.QuantidadeCardsPorSprintDTO;
 import com.quantum.stratify.web.dtos.QuantidadeCardsPorTagDTO;
 import com.quantum.stratify.web.dtos.TotalCardsDTO;
 
@@ -70,6 +71,18 @@ public class UserStoryController {
         @RequestParam(required = false) Long projetoId,
         @RequestParam(required = false) Long usuarioId) {
     List<PercentualStatusUsuarioDTO> resultado = userStoryStatusService.getPercentualUserStoriesPorStatus(projetoId, usuarioId);
+    return ResponseEntity.ok(resultado);
+        }
+    
+    @Operation(summary = "Obter a quantidade de user stories por sprint", description = "Retorna a quantidade de user stories agrupadas por sprint, com filtros por projeto e usuário")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Quantidade de User Stories por sprint retornada com sucesso")
+    })
+    @GetMapping("/quantidade-por-sprint")
+    public ResponseEntity<?> getQuantidadePorSprint(
+        @RequestParam(required = true) Long projetoId, 
+        @RequestParam(required = true) Long usuarioId) {
+    List<QuantidadeCardsPorSprintDTO> resultado = userStoryService.getQuantidadeUserStoriesBySprint(projetoId, usuarioId);
     return ResponseEntity.ok(resultado);
 }
 
