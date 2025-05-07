@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+import com.quantum.stratify.entities.Usuario;
+
 @Slf4j
 public class JwtUtils {
 
@@ -37,13 +39,16 @@ public class JwtUtils {
     }
 
 
-    public static JwtToken createToken(String username, String role) {
+    public static JwtToken createToken(Usuario usuario) {
         Date issuedAt = new Date();
         Date limit = toExpireDate(issuedAt);
 
         String token = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
-                .setSubject(username)
+                .claim("email", usuario.getUsername())
+                .claim("nome", usuario.getNome())
+                .claim("id", usuario.getId())
+                .claim("role", usuario.getRole())
                 .setIssuedAt(issuedAt)
                 .setExpiration(limit)
                 .signWith(generateKey(), SignatureAlgorithm.HS256)
