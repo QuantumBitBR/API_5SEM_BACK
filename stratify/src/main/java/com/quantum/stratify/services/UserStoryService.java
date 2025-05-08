@@ -43,16 +43,23 @@ public class UserStoryService {
     }
 
     public List<QuantidadeCardsPorSprintDTO> getQuantidadeUserStoriesBySprint(Long projetoId, Long usuarioId) {
-    List<Object[]> resultados = userStoryRepository.countBySprintGrouped(projetoId, usuarioId);
-    
-    if (resultados.isEmpty()) {
-        throw new EntityNotFoundException("Nenhuma user story encontrada para os critérios especificados");
-    }
-    
-    return resultados.stream()
-            .map(result -> new QuantidadeCardsPorSprintDTO(
-                (String) result[0], 
-                (Long) result[1]))
-            .collect(Collectors.toList());
+        // Não precisa verificar projetoId null pois o controller já validou
+        List<Object[]> resultados;
+        
+        if (usuarioId != null) {
+            resultados = userStoryRepository.countBySprintGroupedAndUser(projetoId, usuarioId);
+        } else {
+            resultados = userStoryRepository.countBySprintGrouped(projetoId);
+        }
+        
+        if (resultados.isEmpty()) {
+            throw new EntityNotFoundException("Nenhuma user story encontrada para os critérios especificados");
+        }
+        
+        return resultados.stream()
+                .map(result -> new QuantidadeCardsPorSprintDTO(
+                    (String) result[0], 
+                    (Long) result[1]))
+                .collect(Collectors.toList());
     }
 }

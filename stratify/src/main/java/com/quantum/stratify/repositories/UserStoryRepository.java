@@ -58,12 +58,19 @@ public interface UserStoryRepository extends JpaRepository<UserStory, Long> {
         );
     
         @Query("SELECT s.nome, COUNT(us) FROM UserStory us " +
+           "JOIN us.sprint s " +
+           "WHERE us.projeto.id = :projetoId " +
+           "GROUP BY s.nome")
+        List<Object[]> countBySprintGrouped(@Param("projetoId") Long projetoId);
+        
+        @Query("SELECT s.nome, COUNT(us) FROM UserStory us " +
             "JOIN us.sprint s " +
-            "WHERE (:idProjeto IS NULL OR us.projeto.id = :idProjeto) " +
-            "AND (:idUsuario IS NULL OR us.usuario.id = :idUsuario) " +
+            "WHERE us.projeto.id = :projetoId " +
+            "AND us.usuario.id = :usuarioId " +
             "GROUP BY s.nome")
-        List<Object[]> countBySprintGrouped(@Param("idProjeto") Long idProjeto, 
-                                    @Param("idUsuario") Long idUsuario);
-    
+        List<Object[]> countBySprintGroupedAndUser(
+            @Param("projetoId") Long projetoId, 
+            @Param("usuarioId") Long usuarioId);
+        
 
 }
