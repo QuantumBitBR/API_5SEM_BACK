@@ -80,7 +80,7 @@ public class UserStoryController {
     })
     @GetMapping("/quantidade-por-sprint")
     public ResponseEntity<?> getQuantidadePorSprint(
-        @RequestParam(required = true) Long projetoId, 
+        @RequestParam(required = false) Long projetoId, 
         @RequestParam(required = false) Long usuarioId) {
     List<QuantidadeCardsPorSprintDTO> resultado = userStoryService.getQuantidadeUserStoriesBySprint(projetoId, usuarioId);
     return ResponseEntity.ok(resultado);

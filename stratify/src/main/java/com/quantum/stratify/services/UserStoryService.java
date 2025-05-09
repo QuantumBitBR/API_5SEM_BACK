@@ -46,14 +46,19 @@ public class UserStoryService {
         // Não precisa verificar projetoId null pois o controller já validou
         List<Object[]> resultados;
         
-        if (usuarioId != null) {
+        if (projetoId == null) {
+            resultados = userStoryRepository.countBySprintGroupedAll();
+        }
+        else if (usuarioId != null) {
             resultados = userStoryRepository.countBySprintGroupedAndUser(projetoId, usuarioId);
+            if (resultados.isEmpty()) {
+                throw new EntityNotFoundException("Nenhuma user story encontrada para os critérios especificados");
+            }
         } else {
             resultados = userStoryRepository.countBySprintGrouped(projetoId);
-        }
-        
-        if (resultados.isEmpty()) {
-            throw new EntityNotFoundException("Nenhuma user story encontrada para os critérios especificados");
+            if (resultados.isEmpty()) {
+                throw new EntityNotFoundException("Nenhuma user story encontrada para os critérios especificados");
+            }
         }
         
         return resultados.stream()
