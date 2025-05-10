@@ -5,6 +5,7 @@ import com.quantum.stratify.web.dtos.QuantidadeCardsPorSprintDTO;
 import com.quantum.stratify.web.dtos.TotalCardsDTO;
 import com.quantum.stratify.web.exceptions.EntityNotFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,21 +45,19 @@ public class UserStoryService {
 
     public List<QuantidadeCardsPorSprintDTO> getQuantidadeUserStoriesBySprint(Long projetoId, Long usuarioId) {
         // Não precisa verificar projetoId null pois o controller já validou
-        List<Object[]> resultados;
+        List<Object[]> resultados = new ArrayList<>();
         
-        if (projetoId == null) {
-            resultados = userStoryRepository.countBySprintGroupedAll();
+        if (projetoId != null && usuarioId != null) {
+            resultados = userStoryRepository.countBySprintAndProjectAndUser(projetoId, usuarioId);
+        } 
+        else if (projetoId != null) {
+            resultados = userStoryRepository.countBySprintAndProject(projetoId);
         }
         else if (usuarioId != null) {
-            resultados = userStoryRepository.countBySprintGroupedAndUser(projetoId, usuarioId);
-            if (resultados.isEmpty()) {
-                throw new EntityNotFoundException("Nenhuma user story encontrada para os critérios especificados");
-            }
-        } else {
-            resultados = userStoryRepository.countBySprintGrouped(projetoId);
-            if (resultados.isEmpty()) {
-                throw new EntityNotFoundException("Nenhuma user story encontrada para os critérios especificados");
-            }
+            resultados = userStoryRepository.countBySprintAndUser(usuarioId);
+        }
+        else {
+            resultados = userStoryRepository.countBySprintAll();
         }
         
         return resultados.stream()

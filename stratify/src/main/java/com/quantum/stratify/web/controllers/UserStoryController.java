@@ -79,7 +79,7 @@ public class UserStoryController {
         @ApiResponse(responseCode = "200", description = "Quantidade de User Stories por sprint retornada com sucesso")
     })
     @GetMapping("/quantidade-por-sprint")
-    public ResponseEntity<?> getQuantidadePorSprint(
+    public ResponseEntity<List<QuantidadeCardsPorSprintDTO>> getQuantidadePorSprint(
         @RequestParam(required = false) Long projetoId, 
         @RequestParam(required = false) Long usuarioId) {
     List<QuantidadeCardsPorSprintDTO> resultado = userStoryService.getQuantidadeUserStoriesBySprint(projetoId, usuarioId);
