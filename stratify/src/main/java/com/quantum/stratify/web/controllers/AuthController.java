@@ -73,7 +73,7 @@ public class AuthController {
             return ResponseEntity.ok(new UsuarioResponseDto(usuario.getId(), token.getToken(), usuario.isRequireReset(), usuario.isEnabled() ,usuario.getRole().name()));
 
         } catch (AuthenticationException ex) {
-            log.warn("Bad Credentials from username '{}'", dto.getEmail());
+            log.warn("Credenciais inválidas para o usuário '{}'", dto.getEmail());
             return ResponseEntity
                     .badRequest()
                     .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Credenciais Inválidas"));

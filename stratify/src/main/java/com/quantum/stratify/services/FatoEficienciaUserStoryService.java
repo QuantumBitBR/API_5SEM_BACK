@@ -28,7 +28,7 @@ public class FatoEficienciaUserStoryService {
     public List<TempoMedioPorProjetoDTO> getTempoMedioPorProjeto(Long idProjeto) {
         List<TempoMedioPorProjetoDTO> results = fatoEficienciaRepository.findByProjetoId(idProjeto);
         if (results == null || results.isEmpty()) {
-            throw new EntityNotFoundException("UserStory not found");
+            throw new EntityNotFoundException("Nenhum dado encontrado para o usuário especificado.");
         }
 
         return results;
@@ -106,7 +106,7 @@ public class FatoEficienciaUserStoryService {
         }
     
         if (results == null || results.isEmpty()) {
-            throw new EntityNotFoundException("UserStory not found");
+            throw new EntityNotFoundException("Nenhum dado encontrado para o usuário especificado.");
         }
     
         return results;
