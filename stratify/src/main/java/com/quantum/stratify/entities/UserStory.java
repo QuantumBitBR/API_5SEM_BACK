@@ -68,4 +68,8 @@ public class UserStory {
         joinColumns = @JoinColumn(name = "id_user_story"),
         inverseJoinColumns = @JoinColumn(name = "id_tag"))
     private List<Tag> tags;
+
+    @ManyToOne
+    @JoinColumn(name = "id_sprint   ") 
+    private Sprint sprint;
 }

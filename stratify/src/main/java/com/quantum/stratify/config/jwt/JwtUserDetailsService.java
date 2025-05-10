@@ -33,7 +33,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     }
 
     public JwtToken getTokenAuthenticated(String email) {
-        Usuario usuario = usuarioService.buscarPorEmail(email);
-        return JwtUtils.createToken(usuario);
+        Role role = usuarioService.buscarRolePorEmail(email);
+        return JwtUtils.createToken(email, role.name().substring("ROLE_".length()));
     }
 }
