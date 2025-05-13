@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+import com.quantum.stratify.entities.Usuario;
+
 @Slf4j
 public class JwtUtils {
 
@@ -37,7 +39,7 @@ public class JwtUtils {
     }
 
 
-    public static JwtToken createToken(String username, String role) {
+    public static JwtToken createToken(Usuario usuario) {
         Date issuedAt = new Date();
         Date limit = toExpireDate(issuedAt);
 
