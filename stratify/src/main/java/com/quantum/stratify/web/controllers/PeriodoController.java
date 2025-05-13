@@ -22,30 +22,30 @@ public class PeriodoController {
     private final PeriodoService periodoService;
 
     @GetMapping
-    @Operation(summary = "Get all periods", description = "Retrieve a list of all available time periods")
+    @Operation(summary = "Busca de todos os periodos", description = "Recuperar uma lista de todos os períodos disponíveis")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Successfully retrieved list of periods"),
-        @ApiResponse(responseCode = "500", description = "Internal server error")})
+        @ApiResponse(responseCode = "200", description = "Lista de períodos recuperada com sucesso"),
+        @ApiResponse(responseCode = "500", description = "Erro interno do servidor")})
     public List<PeriodoDTO> getAll() {
         return periodoService.getAll();
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get period by ID", description = "Retrieve a specific period by its unique identifier")
+    @Operation(summary = "Busca de periodos por Id", description = "Recuperar um período específico pelo seu Id único")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Period found and returned"),
-        @ApiResponse(responseCode = "404", description = "Period not found"),
-        @ApiResponse(responseCode = "500", description = "Internal server error")})
+        @ApiResponse(responseCode = "200", description = "Período encontrado e retornado com sucesso"),
+        @ApiResponse(responseCode = "404", description = "Período não encontrado"),
+        @ApiResponse(responseCode = "500", description = "Erro interno do servidor")})
     public Periodo getById(@PathVariable Long id) {
         return periodoService.getById(id);
     }
 
     @GetMapping("/buscar")
-    @Operation(summary = "Search periods by name", description = "Search periods containing the specified term in their name")
+    @Operation(summary = "Busca de periodos por nome", description = "Buscar períodos por nome")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "List of matching periods returned"),
-        @ApiResponse(responseCode = "400", description = "Invalid search parameter"),
-        @ApiResponse(responseCode = "500", description = "Internal server error")})
+        @ApiResponse(responseCode = "200", description = "Lista de períodos recuperada com sucesso"),
+        @ApiResponse(responseCode = "400", description = "Parâmetro inválido"),
+        @ApiResponse(responseCode = "500", description = "Erro interno do servidor")})
     public List<PeriodoDTO> buscarPorNome(@RequestParam String termo) {
         return periodoService.findByNomeContaining(termo);
     }
