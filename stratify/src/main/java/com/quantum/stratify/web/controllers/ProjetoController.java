@@ -27,9 +27,9 @@ public class ProjetoController {
     private ProjetoService projetoService;
 
     @GetMapping("/all")
-    @Operation(summary = "Get all projects", description = "Returns a list of all registered projects")
+    @Operation(summary = "Busca todos os projetos", description = "Retorna uma lista de todos os projetos cadastrados")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "List of projects returned successfully"),
+            @ApiResponse(responseCode = "200", description = "Lista de projetos retornada com sucesso"),
             // @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     public List<ProjetoDTO> getAllProjetos() {
@@ -37,9 +37,9 @@ public class ProjetoController {
     }
 
     @GetMapping("/porUsuario")
-    @Operation(summary = "Get project summaries", description = "Returns a list of projects filtered by optional user ID")
+    @Operation(summary = "Busca de projeto por idUsuario", description = "Retorna uma lista de projetos filtrados por ID de usuário ")
     @ApiResponses( value = {
-        @ApiResponse(responseCode = "200", description = "List of project summaries returned succesfully")
+        @ApiResponse(responseCode = "200", description = "Lista de resumos de projetos retornada com sucesso")
     })
     public List<ProjetoDTO> getProjetosUsuario(
         @RequestParam(name = "idUsuario", required = false) Long idUsuario) {

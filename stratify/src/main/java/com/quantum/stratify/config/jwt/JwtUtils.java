@@ -43,7 +43,11 @@ public class JwtUtils {
 
         String token = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
-                .setSubject(username)
+                .setSubject(usuario.getEmail())
+                .claim("email", usuario.getUsername())
+                .claim("nome", usuario.getNome())
+                .claim("id", usuario.getId())
+                .claim("role", usuario.getRole())
                 .setIssuedAt(issuedAt)
                 .setExpiration(limit)
                 .signWith(generateKey(), SignatureAlgorithm.HS256)
