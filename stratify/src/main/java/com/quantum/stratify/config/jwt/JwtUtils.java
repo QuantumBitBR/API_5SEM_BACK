@@ -45,6 +45,7 @@ public class JwtUtils {
 
         String token = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
+                .setSubject(usuario.getEmail())
                 .claim("email", usuario.getUsername())
                 .claim("nome", usuario.getNome())
                 .claim("id", usuario.getId())
