@@ -187,7 +187,6 @@ public class UsuarioService {
         return usuarioRepository.findAll().stream()
                 .map(u -> new UsuarioInfoDTO(
                         u.getId(),
-                        u.getNome(),
                         u.getEmail(),
                         u.getGestor() != null ? u.getGestor().getNome() : null,  // aqui
                         u.getRole(),

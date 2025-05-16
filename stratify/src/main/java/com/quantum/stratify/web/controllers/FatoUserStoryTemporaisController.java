@@ -28,20 +28,20 @@ public class FatoUserStoryTemporaisController {
     @Autowired
     private FatoUserStoryTemporaisService fatoUserStoryTemporaisService;
 
-    @Operation(summary = "Get user stories by project", description = "Retrieve metrics of created and finished user stories filtered by project.")
+    @Operation(summary = "Busca de UserStories por projeto", description = "Recuperar métricas de histórias de usuário criadas e finalizadas filtradas por projeto.")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Metrics successfully retrieved"),
-        @ApiResponse(responseCode = "400", description = "Invalid filter parameters"),
-        @ApiResponse(responseCode = "500", description = "Internal server error")})
+        @ApiResponse(responseCode = "200", description = "Métricas recuperadas com sucesso"),
+        @ApiResponse(responseCode = "400", description = "Parâmetro inválido"),
+        @ApiResponse(responseCode = "500", description = "Erro interno do servidor")})
     @GetMapping("/projeto")
     public List<ResponseQuantidadeCardsByPeriodo> getUserStoriesByPeriodoAndUser(
             @RequestParam(required = false)
-            @Parameter(description = "Project ID to filter")
+            @Parameter(description = "idProjeto para filtrar")
 
             Long idProjeto,
             
             @RequestParam(required = false)
-            @Parameter(description = "User ID to filter. If not provided, returns metrics for all users in the project")
+            @Parameter(description = "idUsuário para filtrar. Se não fornecido, retorna métricas para todos os usuários do projeto")
             Long idUsuario) {
         return fatoUserStoryTemporaisService.getUserStoriesByPeriodoAndUser(idProjeto, idUsuario);
     }
