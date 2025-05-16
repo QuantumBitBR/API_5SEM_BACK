@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="369e0319-dfc7-4536-a802-fc4e6c020e03" name="Changes" comment="SCRUM-69 - feat(UsuarioController): add endpoint to set require reset for user" />
+    <list default="true" id="369e0319-dfc7-4536-a802-fc4e6c020e03" name="Changes" comment="SCRUM-69 - feat(UsuarioController): add endpoint to set require reset for user">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/workflow.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/workflow.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -177,7 +179,7 @@
       <workItem from="1746569327837" duration="1077000" />
       <workItem from="1746741304888" duration="2995000" />
       <workItem from="1747092104298" duration="76000" />
-      <workItem from="1747435560865" duration="333000" />
+      <workItem from="1747435560865" duration="471000" />
     </task>
     <task id="LOCAL-00001" summary="SCRUM-69 feat(list user): created list endpoint">
       <option name="closed" value="true" />

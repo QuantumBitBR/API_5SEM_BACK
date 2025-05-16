@@ -2,9 +2,9 @@ name: Continuous Integration - Stratify
 
 on:
   push:
-    branches: [ "**" ]  # todos os branches
+    branches: [ "**" ]
   pull_request:
-    branches: [ "**" ]  # todos os branches
+    branches: [ "**" ]
 
 jobs:
   build:
@@ -28,9 +28,6 @@ jobs:
     name: Run Tests
     runs-on: ubuntu-latest
 
-    # Executa somente em:
-    # - push em qualquer branch
-    # - pull_request em main, sprint-1, sprint-2, etc.
     if: |
       github.event_name == 'push' ||
       (
