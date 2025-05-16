@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="369e0319-dfc7-4536-a802-fc4e6c020e03" name="Changes" comment="SCRUM-69 - feat(UsuarioController): add endpoint to set require reset for user">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoUserStoryTemporaisRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/repositories/FatoUserStoryTemporaisRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/FatoUserStoryTemporaisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/services/FatoUserStoryTemporaisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/FatoUserStoryTemporaisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quantum/stratify/web/controllers/FatoUserStoryTemporaisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/workflow.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/workflow.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -49,40 +50,44 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2wFJAkcnbnKvcy3xIXZYt29p7Mu" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.AuthControllerTest.deveRetornarNecessidadeDeAlteracaoDeSenha.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UsuarioServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.stratify [compiler:testCompile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.stratify [test].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.StratifyApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;sprint-2&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/caiosousa/Documentos/projetinhos/API5S/API_5SEM_BACK/stratify/stratify&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.AuthControllerTest.deveRetornarNecessidadeDeAlteracaoDeSenha.executor": "Run",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.UsuarioServiceTest.executor": "Run",
+    "Maven.stratify [compiler:testCompile].executor": "Run",
+    "Maven.stratify [test].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.StratifyApplication.executor": "Run",
+    "git-widget-placeholder": "SCRUM-126-Alterar-Workflow-do-CI",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/caiosousa/Documentos/projetinhos/API5S/API_5SEM_BACK/stratify/stratify",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn compiler:testCompile" />
@@ -145,17 +150,19 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UsuarioServiceTest" />
         <item itemvalue="JUnit.AuthControllerTest.deveRetornarNecessidadeDeAlteracaoDeSenha" />
         <item itemvalue="JUnit.AuthControllerTest" />
-        <item itemvalue="JUnit.UsuarioServiceTest" />
+        <item itemvalue="JUnit.AuthControllerTest.deveRetornarNecessidadeDeAlteracaoDeSenha" />
+        <item itemvalue="JUnit.AuthControllerTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
       </set>
     </attachedChunks>
   </component>
@@ -169,6 +176,10 @@
       <updated>1745631247086</updated>
       <workItem from="1745631248172" duration="8370000" />
       <workItem from="1745793108195" duration="5487000" />
+      <workItem from="1746569327837" duration="1077000" />
+      <workItem from="1746741304888" duration="2995000" />
+      <workItem from="1747092104298" duration="76000" />
+      <workItem from="1747435560865" duration="471000" />
     </task>
     <task id="LOCAL-00001" summary="SCRUM-69 feat(list user): created list endpoint">
       <option name="closed" value="true" />
@@ -199,6 +210,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SCRUM-69 feat(list user): created list endpoint" />
