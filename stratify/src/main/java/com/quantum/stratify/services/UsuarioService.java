@@ -156,6 +156,10 @@ public class UsuarioService {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Role inválida.");
     }
     usuario.setRole(novaRole);
+
+    if(usuario.getRole() == Role.GESTOR && novaRole != Role.GESTOR) {
+        usuarioRepository.setRolesGestorToNull(idUsuario);
+    }
     return usuarioRepository.save(usuario);
    }
 

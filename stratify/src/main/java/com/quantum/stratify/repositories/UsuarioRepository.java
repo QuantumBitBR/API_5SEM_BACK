@@ -40,4 +40,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             ORDER BY u.nome
      """)
             List<UsuarioPorRoleDTO> findByRole(@Param("role") Role role);
+
+        @Query("UPDATE Usuario u SET u.role = null WHERE u.gestor = ?1")
+        void setRolesGestorToNull(Long idUsuario);
 }
