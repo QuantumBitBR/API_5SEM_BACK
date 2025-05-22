@@ -155,11 +155,17 @@ public class UsuarioService {
     if (novaRole == null) {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Role inválida.");
     }
-    usuario.setRole(novaRole);
+    
 
-    if(usuario.getRole() == Role.GESTOR && novaRole != Role.GESTOR) {
+    if(usuario.getRole() == Role.GESTOR && novaRole != Role.GESTOR ) {
+        try{
         usuarioRepository.setRolesGestorToNull(idUsuario);
+
+        }catch (Exception e) {
+            System.out.println("Erro no update...........");
+        }
     }
+    usuario.setRole(novaRole);
     return usuarioRepository.save(usuario);
    }
 
