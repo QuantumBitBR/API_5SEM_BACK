@@ -1,4 +1,4 @@
-name: Continuous Integration - Stratify
+name: Continuous Integration - Stratify Backend
 
 on:
   push:
@@ -7,6 +7,39 @@ on:
     branches: [ "**" ]
 
 jobs:
+  integration:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: appdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout frontend (Vue)
+        uses: actions/checkout@v3
+
+      - name: Checkout backend (Spring Boot)
+        uses: actions/checkout@v3
+        with:
+          repository: usuario/repo-backend
+          path: backend
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+ 
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -25,7 +58,7 @@ jobs:
         run: mvn -B package --file stratify/pom.xml
 
   test:
-    name: Testes
+    name: Testes unitários
     runs-on: ubuntu-latest
 
     if: |
@@ -50,3 +83,4 @@ jobs:
 
       - name: Run tests with Maven
         run: mvn -B test --file stratify/pom.xml
+  
