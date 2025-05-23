@@ -7,6 +7,10 @@ on:
     branches: [ "**" ]
 
 jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
   integration:
     name: Teste de Integração
     runs-on: ubuntu-latest
