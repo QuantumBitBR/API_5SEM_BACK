@@ -88,12 +88,13 @@ public class CsvDownloadService {
     case "tempomedio": {
         List<TempoMedioPorProjetoDTO> lista = fatoEficienciaUserStoryService.getTempoMedioFiltrado(projectId, userId);
         csvData = new ArrayList<>();
-        csvData.add(new String[]{"ID User Story", "Descrição", "Tempo Médio"});
+        csvData.add(new String[]{"ID User Story", "Descrição", "Tempo Médio", "Quantidade Retrabalho"});
         for (TempoMedioPorProjetoDTO dto : lista) {
             csvData.add(new String[]{
                 String.valueOf(dto.idUserStory()),
                 dto.descricao(),
-                String.valueOf(dto.tempoMedio())
+                String.valueOf(dto.tempoMedio()),
+                String.valueOf(dto.quantidadeRetrabalhos())
             });
         }
         break;
