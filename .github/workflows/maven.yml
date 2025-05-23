@@ -7,23 +7,6 @@ on:
     branches: [ "**" ]
 
 jobs:
-  build:
-  name: Build
-  runs-on: ubuntu-latest
-
-  steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
-
-    - name: Build with Maven
-      run: mvn -B package --file stratify/pom.xml
-
   integration:
     name: Teste de Integração
     runs-on: ubuntu-latest
@@ -54,10 +37,34 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
- 
   build:
     name: Build
     runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B package --file stratify/pom.xml
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    if: |
+      github.event_name == 'push' ||
+      (
+        github.event_name == 'pull_request' &&
+        (
+          startsWith(github.base_ref, 'main') ||
+          startsWith(github.base_ref, 'sprint-')
+        )
+      )
 
     steps:
       - uses: actions/checkout@v4
@@ -69,9 +76,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build with Maven
-        run: mvn -B package --file stratify/pom.xml
-
+      - name: Run tests with Maven
+        run: mvn -B test --file stratify/pom.xml
   test:
     name: Testes unitários
     runs-on: ubuntu-latest
@@ -98,5 +104,4 @@ jobs:
 
       - name: Run tests with Maven
         run: mvn -B test --file stratify/pom.xml
-
-
+  
