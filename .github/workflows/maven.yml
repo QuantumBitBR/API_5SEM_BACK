@@ -26,14 +26,11 @@ jobs:
           --health-retries 5
 
     steps:
-      - name: Checkout frontend (Vue)
+      - name: Checkout frontend
         uses: actions/checkout@v3
 
-      - name: Checkout backend (Spring Boot)
+      - name: Checkout backend
         uses: actions/checkout@v3
-        with:
-          repository: usuario/repo-backend
-          path: backend
 
       - name: Set up Java
         uses: actions/setup-java@v3
