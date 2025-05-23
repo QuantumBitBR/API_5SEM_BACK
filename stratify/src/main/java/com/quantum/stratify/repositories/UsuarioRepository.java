@@ -5,9 +5,11 @@ import com.quantum.stratify.enums.Role;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import com.quantum.stratify.web.dtos.UsuarioDTO;
@@ -40,4 +42,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             ORDER BY u.nome
      """)
             List<UsuarioPorRoleDTO> findByRole(@Param("role") Role role);
+        @Transactional    
+        @Modifying
+        @Query("UPDATE Usuario u SET u.gestor = null WHERE u.gestor.id = ?1")
+        void setRolesGestorToNull(Long idUsuario);
 }
