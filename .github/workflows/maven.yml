@@ -8,6 +8,7 @@ on:
 
 jobs:
   integration:
+    name: Teste de Integração
     runs-on: ubuntu-latest
     services:
       postgres:
