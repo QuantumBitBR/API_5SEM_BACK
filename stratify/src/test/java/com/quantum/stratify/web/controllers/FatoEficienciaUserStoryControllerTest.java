@@ -18,6 +18,8 @@ public class FatoEficienciaUserStoryControllerTest {
     private FatoEficienciaUserStoryService service;
     private FatoEficienciaUserStoryController controller;
 
+
+
     @BeforeEach
     public void setup() {
         service = mock(FatoEficienciaUserStoryService.class);
@@ -30,8 +32,8 @@ public class FatoEficienciaUserStoryControllerTest {
         Long projetoId = 1L;
         Long usuarioId = 2L;
         List<TempoMedioPorProjetoDTO> mockList = Arrays.asList(
-                new TempoMedioPorProjetoDTO(10L, "UserStory A", 5.0),
-                new TempoMedioPorProjetoDTO(11L, "UserStory B", 6.0)
+                new TempoMedioPorProjetoDTO(10L, "UserStory A", 5.0,1L),
+                new TempoMedioPorProjetoDTO(11L, "UserStory B", 6.0,1L)
         );
 
         when(service.getTempoMedioFiltrado(projetoId, usuarioId)).thenReturn(mockList);
@@ -51,7 +53,7 @@ public class FatoEficienciaUserStoryControllerTest {
     public void testGetTempoMedioPorProjetoFiltrado_semUsuario() {
         Long projetoId = 1L;
         List<TempoMedioPorProjetoDTO> mockList = Arrays.asList(
-                new TempoMedioPorProjetoDTO(20L, "UserStory C", 7.0)
+                new TempoMedioPorProjetoDTO(20L, "UserStory C", 7.0,1L)
         );
 
         when(service.getTempoMedioFiltrado(projetoId, null)).thenReturn(mockList);
@@ -72,7 +74,7 @@ public class FatoEficienciaUserStoryControllerTest {
     public void testGetTempoMedioPorProjetoFiltrado_somenteUsuario() {
         Long usuarioId = 2L;
         List<TempoMedioPorProjetoDTO> mockList = Arrays.asList(
-                new TempoMedioPorProjetoDTO(30L, "UserStory D", 8.5)
+                new TempoMedioPorProjetoDTO(30L, "UserStory D", 8.5,1L)
         );
 
         when(service.getTempoMedioFiltrado(null, usuarioId)).thenReturn(mockList);
@@ -91,7 +93,7 @@ public class FatoEficienciaUserStoryControllerTest {
     @Test
     public void testGetTempoMedioPorProjetoFiltrado_semParametros() {
         List<TempoMedioPorProjetoDTO> mockList = Arrays.asList(
-                new TempoMedioPorProjetoDTO(40L, "UserStory E", 4.2)
+                new TempoMedioPorProjetoDTO(40L, "UserStory E", 4.2,1L)
         );
 
         when(service.getTempoMedioFiltrado(null, null)).thenReturn(mockList);
