@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: check-scrum-commit-msg
+        name: "Valida formato 'SCRUM-XX' no commit"
+        language: system
+        entry: bash -c 'if ! grep -qE "^SCRUM-[0-9]+" "$1"; then echo "Erro-> Commit deve começar com SCRUM-XX (ex-> SCRUM-81)"; exit 1; fi'
+        args: [".git/COMMIT_EDITMSG"]
+        stages: [commit-msg]
