@@ -23,6 +23,7 @@ jobs:
         - name: Build with Maven
           run: mvn -B package --file stratify/pom.xml
   integration:
+    needs: build
     name: Teste de Integração
     runs-on: ubuntu-latest
     services:
@@ -54,6 +55,7 @@ jobs:
           distribution: 'temurin'
   
   test:
+    needs: integration
     name: Testes unitários
     runs-on: ubuntu-latest
 
@@ -81,6 +83,7 @@ jobs:
         run: mvn -B test --file stratify/pom.xml
   
   deploy:
+    needs: test
     name: Deploy
     runs-on: ubuntu-latest
   
