@@ -108,12 +108,12 @@ jobs:
             git checkout $(git rev-parse --abbrev-ref HEAD)
             git pull origin $(git rev-parse --abbrev-ref HEAD)
 
-            docker stop stratify-server-container || true
-            docker rm stratify-server-container || true
+            sudo docker stop stratify-server-container || true
+            sudo docker rm stratify-server-container || true
 
-            docker build -t stratify-server .
+            sudo docker build -t stratify-server .
 
-            docker run -d \
+            sudo docker run -d \
               -e DB_URL="${{ secrets.DB_URL }}" \
               -e DB_USERNAME="${{ secrets.DB_USERNAME }}" \
               -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
