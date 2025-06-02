@@ -100,10 +100,10 @@ jobs:
       - name: Git Pull and Deploy on Remote Server
         run: |
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-            if [ ! -d "apps/API_5SEM_ETL/" ]; then
-              mkdir -p apps/API_5SEM_ETL/
+            if [ ! -d "apps/API_5SEM_BACK/" ]; then
+              mkdir -p apps/API_5SEM_BACK/
             fi
-            cd apps/API_5SEM_ETL/
+            cd apps/API_5SEM_BACK/
 
             git checkout $(git rev-parse --abbrev-ref HEAD)
             git pull origin $(git rev-parse --abbrev-ref HEAD)
