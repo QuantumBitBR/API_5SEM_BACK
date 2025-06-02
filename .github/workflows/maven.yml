@@ -83,29 +83,41 @@ jobs:
         run: mvn -B test --file stratify/pom.xml
   
   deploy:
-    needs: test
     name: Deploy
     runs-on: ubuntu-latest
-  
-    if: |
-      github.event_name == 'push' ||
-      (
-        github.event_name == 'pull_request' &&
-        (
-          startsWith(github.base_ref, 'main') ||
-          startsWith(github.base_ref, 'sprint-')
-        )
-      )
+    needs: test
 
     steps:
-      - uses: actions/checkout@v4
-  
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-  
-      - name: Run tests with Maven
-        run: mvn -B test --file stratify/pom.xml
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add Remote Server to Known Hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Git Pull and Deploy on Remote Server
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+            if [ ! -d "apps/API_5SEM_ETL/" ]; then
+              mkdir -p apps/API_5SEM_ETL/
+            fi
+            cd apps/API_5SEM_ETL/
+
+            git checkout $(git rev-parse --abbrev-ref HEAD)
+            git pull origin $(git rev-parse --abbrev-ref HEAD)
+
+            docker stop stratify-server-container || true
+            docker rm stratify-server-container || true
+
+            docker build -t stratify-server .
+
+            docker run -d \
+              -e DB_URL="${{ secrets.DB_URL }}" \
+              -e DB_USERNAME="${{ secrets.DB_USERNAME }}" \
+              -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
+              -p 8080:8080 \
+              --name stratify-server-container \
+              stratify-server
+          EOF
