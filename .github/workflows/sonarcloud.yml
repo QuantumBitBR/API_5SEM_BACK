@@ -33,6 +33,9 @@ jobs:
       
       - name: list packages
         run: ls -a
+
+      - name: go to project
+        run: cd stratify
         
       - name: Build and analyze
         env:
