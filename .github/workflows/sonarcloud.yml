@@ -34,10 +34,8 @@ jobs:
       - name: list packages
         run: ls -a
 
-      - name: go to project
-        run: cd stratify
-        
       - name: Build and analyze
+        working-directory: stratify
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=QuantumBitBR_API_5SEM_BACK
