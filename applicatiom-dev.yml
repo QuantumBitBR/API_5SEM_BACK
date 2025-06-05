@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/stratify_db
+    username: admin
+    password: admin123
+  jpa:
+    hibernate:
+      ddl-auto: update
