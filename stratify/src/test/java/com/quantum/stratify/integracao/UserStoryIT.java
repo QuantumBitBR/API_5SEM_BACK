@@ -15,13 +15,13 @@ import com.quantum.stratify.web.dtos.TotalCardsDTO;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = {"resources/sql/userStories/delete.sql", "resources/sql/userStories/insert.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "resources/sql/userStories/delete.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class UserStoryIT {
+class UserStoryIT {
 
     @Autowired
     WebTestClient testClient;
 
      @Test
-    public void getTotalCards_status200(){
+    void getTotalCards_status200(){
         TotalCardsDTO responseBody = testClient.get()
                 .uri("/userStory/total-cards")
                 .exchange()
@@ -31,13 +31,15 @@ public class UserStoryIT {
                 .getResponseBody();
 
         org.assertj.core.api.Assertions.assertThat(responseBody).isNotNull();
-        org.assertj.core.api.Assertions.assertThat(responseBody.quantidadeUserStories()).isEqualTo(1);
+        if (responseBody != null) {
+            org.assertj.core.api.Assertions.assertThat(responseBody.quantidadeUserStories()).isEqualTo(1);
+        }
 
 
     }
 
     @Test
-    public void getPercentualStatus_status200(){
+    void getPercentualStatus_status200(){
         List<PercentualStatusUsuarioDTO> responseBody = testClient.get()
                 .uri("/userStory/percentual-por-status")
                 .exchange()
@@ -47,7 +49,9 @@ public class UserStoryIT {
                 .getResponseBody();
 
         org.assertj.core.api.Assertions.assertThat(responseBody).isNotNull();
-        org.assertj.core.api.Assertions.assertThat(responseBody.size()).isEqualTo(1);
+        if (responseBody != null) {
+            org.assertj.core.api.Assertions.assertThat(responseBody).hasSize(1);
+        }
     }
 
     
