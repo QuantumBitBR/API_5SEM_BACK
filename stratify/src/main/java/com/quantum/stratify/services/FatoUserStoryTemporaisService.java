@@ -37,7 +37,7 @@ public class FatoUserStoryTemporaisService {
             // Se usuário foi especificado, verifica se existe
             Usuario usuario = null;
             if (usuarioId != null) {
-                usuario = usuarioService.getById(usuarioId);
+                usuario = usuarioService.buscarPorId(usuarioId);
             }
             
             List<FatoUserStoryTemporais> resultados = null;

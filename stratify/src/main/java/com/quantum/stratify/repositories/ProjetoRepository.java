@@ -1,6 +1,7 @@
 package com.quantum.stratify.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +12,7 @@ import com.quantum.stratify.entities.Projeto;
 import com.quantum.stratify.web.dtos.ProjetoDTO;
 
 @Repository
-public interface ProjetoRepository extends JpaRepository<Projeto, Long>{
+public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
 
     @Query("""
         SELECT new com.quantum.stratify.web.dtos.ProjetoDTO(p.id, p.nome)
@@ -22,4 +23,7 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long>{
         """)
     List<ProjetoDTO> findProjetoByUsuarioId(@Param("idUsuario") Long idUsuario);
 
+    // Adicionado método para buscar por nome
+    Optional<Projeto> findByNome(String nome);
 }
+

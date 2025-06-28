@@ -3,13 +3,9 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                        http://www.liquibase.org/xml/ns/dbchangelog/db.changelog-4.3.xsd">
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-   <include file="V2.0.sql" />
-<include file="V3.0.sql"/>
-<changeSet id="test-cleanup" author="test" context="test">
-    <sqlFile path="test-cleanup.sql" relativeToChangelogFile="true"/>
-</changeSet>
-<changeSet id="test-data" author="test" context="test">
-    <sqlFile path="testdata.sql" relativeToChangelogFile="true"/>
-</changeSet>
+    <!-- INCLUDE de todos os scripts de versão -->
+    <include file="db/changelog/V2.0.sql" relativeToChangelogFile="true" />
+    <include file="db/changelog/V3.0.sql" relativeToChangelogFile="true" />
+</databaseChangeLog>

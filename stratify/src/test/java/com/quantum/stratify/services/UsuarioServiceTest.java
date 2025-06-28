@@ -28,7 +28,7 @@ import com.quantum.stratify.enums.Role;
 
 
 @ExtendWith(MockitoExtension.class)
-public class UsuarioServiceTest {
+ class UsuarioServiceTest {
 
     @Mock
     private UsuarioRepository usuarioRepository;

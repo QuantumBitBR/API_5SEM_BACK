@@ -89,7 +89,7 @@ class FatoUserStoryTemporaisServiceTest {
         FatoUserStoryTemporais fato2 = criarFato(projeto, usuario, periodo2, 2, 1);
 
         when(projetoService.getById(1L)).thenReturn(projeto);
-        when(usuarioService.getById(2L)).thenReturn(usuario);
+        when(usuarioService.buscarPorId(2L)).thenReturn(usuario);
         when(fatoUserStoryTemporaisRepository.findByProjetoAndUsuario(projeto, usuario))
             .thenReturn(Arrays.asList(fato1, fato2));
 

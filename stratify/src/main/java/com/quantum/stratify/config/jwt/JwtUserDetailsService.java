@@ -2,7 +2,7 @@ package com.quantum.stratify.config.jwt;
 
 
 import com.quantum.stratify.entities.Usuario;
-import com.quantum.stratify.enums.Role;
+
 import com.quantum.stratify.repositories.UsuarioRepository;
 import com.quantum.stratify.services.UsuarioService;
 import lombok.RequiredArgsConstructor;
